@@ -26,9 +26,21 @@ class BooksPage extends Component
 
         $books = $booksQuery->get();
 
+        $seoData = [
+            'title' => 'Books | By Ek Publishing - Linda Ettehag Kviby',
+            'description' => 'Explore emotional journeys through powerful storytelling. Discover psychological thriller books by Swedish author Linda Ettehag Kviby, available in multiple languages.',
+            'keywords' => 'Linda Ettehag Kviby books, Swedish author, psychological thriller, emotional storytelling, multilingual books, Swedish literature',
+            'image' => asset('images/default-og-image.jpg'),
+            'url' => route('books'),
+            'type' => 'website',
+            'author' => 'Linda Ettehag Kviby',
+            'site_name' => 'By Ek Publishing',
+        ];
+
         return view('livewire.books-page', [
             'books' => $books,
             'languages' => $languages,
-        ])->layout('layouts.app')->title('Books');
+            'seoData' => $seoData,
+        ])->layout('layouts.app')->title($seoData['title']);
     }
 }
