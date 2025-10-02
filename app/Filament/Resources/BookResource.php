@@ -31,7 +31,9 @@ class BookResource extends Resource
                     ->rows(4),
                 Forms\Components\FileUpload::make('cover_image')
                     ->image()
+                    ->disk('public')
                     ->directory('images/books')
+                    ->visibility('public')
                     ->imageEditor()
                     ->imageEditorAspectRatios([
                         '2:3',

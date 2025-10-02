@@ -33,4 +33,19 @@ class Book extends Model
     {
         return $this->hasMany(PurchaseLink::class);
     }
+
+    public function getCoverImageUrlAttribute(): ?string
+    {
+        if (!$this->cover_image) {
+            return null;
+        }
+
+        // If path starts with /images/ or /storage/, return as is
+        if (str_starts_with($this->cover_image, '/images/') || str_starts_with($this->cover_image, '/storage/')) {
+            return $this->cover_image;
+        }
+
+        // Otherwise, prepend /storage/ for files uploaded via Filament
+        return '/storage/' . $this->cover_image;
+    }
 }
