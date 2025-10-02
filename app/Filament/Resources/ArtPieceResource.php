@@ -32,7 +32,9 @@ class ArtPieceResource extends Resource
                 Forms\Components\FileUpload::make('image_path')
                     ->image()
                     ->required()
+                    ->disk('public')
                     ->directory('art')
+                    ->visibility('public')
                     ->imageEditor(),
                 Forms\Components\TextInput::make('medium'),
                 Forms\Components\TextInput::make('dimensions'),

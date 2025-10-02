@@ -31,7 +31,9 @@ class MusicReleaseResource extends Resource
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('album_cover')
                     ->image()
-                    ->directory('music'),
+                    ->disk('public')
+                    ->directory('music')
+                    ->visibility('public'),
                 Forms\Components\TextInput::make('release_type')
                     ->required(),
                 Forms\Components\DatePicker::make('release_date')
