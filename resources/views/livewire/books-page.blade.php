@@ -38,7 +38,7 @@
                             @endphp
                             <div class="w-64 h-96 bg-gradient-to-br from-primary-200 to-accent-200 rounded-lg shadow-xl flex items-center justify-center">
                                 @if($coverImage)
-                                    <img src="{{ $coverImage }}" alt="{{ $book->title }}" class="w-full h-full object-cover rounded-lg">
+                                    <img src="{{ asset($coverImage) }}" alt="{{ $book->title }}" class="w-full h-full object-cover rounded-lg">
                                 @else
                                     <span class="text-6xl">📖</span>
                                 @endif
