@@ -23,22 +23,24 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 bg-accent-100 rounded-lg p-8">
                         <div class="flex justify-center">
                             @php
-                                $coverImage = $book->cover_image;
+                                $coverImageUrl = $book->cover_image_url;
                                 // If filtered by language, try to show language-specific cover
-                                if ($selectedLanguageId) {
+                                if ($selectedLanguageId && $coverImageUrl) {
                                     $language = $languages->firstWhere('id', $selectedLanguageId);
-                                    if ($language && $book->cover_image) {
-                                        $langCover = str_replace('.jpg', '-' . $language->code . '.jpg', $book->cover_image);
-                                        $langCover = str_replace('.png', '-' . $language->code . '.png', $langCover);
-                                        if (file_exists(public_path($langCover))) {
-                                            $coverImage = $langCover;
+                                    if ($language) {
+                                        $langCoverUrl = str_replace('.jpg', '-' . $language->code . '.jpg', $coverImageUrl);
+                                        $langCoverUrl = str_replace('.png', '-' . $language->code . '.png', $langCoverUrl);
+                                        // Check if language-specific file exists
+                                        $publicPath = str_replace('/storage/', '', $langCoverUrl);
+                                        if (str_starts_with($langCoverUrl, '/images/') && file_exists(public_path($langCoverUrl))) {
+                                            $coverImageUrl = $langCoverUrl;
                                         }
                                     }
                                 }
                             @endphp
                             <div class="w-64 h-96 bg-gradient-to-br from-primary-200 to-accent-200 rounded-lg shadow-xl flex items-center justify-center">
-                                @if($book->cover_image_url)
-                                    <img src="{{ $book->cover_image_url }}" alt="{{ $book->title }}" class="w-full h-full object-cover rounded-lg">
+                                @if($coverImageUrl)
+                                    <img src="{{ $coverImageUrl }}" alt="{{ $book->title }}" class="w-full h-full object-cover rounded-lg">
                                 @else
                                     <span class="text-6xl">📖</span>
                                 @endif
