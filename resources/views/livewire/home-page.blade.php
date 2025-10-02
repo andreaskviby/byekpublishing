@@ -47,7 +47,7 @@
                      x-transition:enter-end="opacity-100 transform translate-x-0">
                     <div class="w-64 h-96 bg-gradient-to-br from-primary-200 to-accent-200 rounded-lg shadow-xl flex items-center justify-center image-zoom hover-lift">
                         @if($featuredBook->cover_image)
-                            <img src="{{ $featuredBook->cover_image }}" alt="{{ $featuredBook->title }}" class="w-full h-full object-cover rounded-lg">
+                            <img src="{{ asset($featuredBook->cover_image) }}" alt="{{ $featuredBook->title }}" class="w-full h-full object-cover rounded-lg">
                         @else
                             <span class="text-6xl">📖</span>
                         @endif
