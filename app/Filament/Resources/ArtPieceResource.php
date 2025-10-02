@@ -17,19 +17,23 @@ class ArtPieceResource extends Resource
 {
     protected static ?string $model = ArtPiece::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-photo';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->rows(4),
                 Forms\Components\FileUpload::make('image_path')
                     ->image()
-                    ->required(),
+                    ->required()
+                    ->directory('art')
+                    ->imageEditor(),
                 Forms\Components\TextInput::make('medium'),
                 Forms\Components\TextInput::make('dimensions'),
                 Forms\Components\TextInput::make('year')

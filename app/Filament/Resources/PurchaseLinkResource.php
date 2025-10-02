@@ -17,7 +17,7 @@ class PurchaseLinkResource extends Resource
 {
     protected static ?string $model = PurchaseLink::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-link';
 
     public static function form(Form $form): Form
     {
@@ -30,9 +30,12 @@ class PurchaseLinkResource extends Resource
                     ->relationship('language', 'name')
                     ->required(),
                 Forms\Components\TextInput::make('store_name')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('url')
-                    ->required(),
+                    ->required()
+                    ->url()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('price'),
                 Forms\Components\TextInput::make('currency'),
                 Forms\Components\TextInput::make('format'),

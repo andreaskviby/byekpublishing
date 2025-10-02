@@ -17,17 +17,21 @@ class MusicReleaseResource extends Resource
 {
     protected static ?string $model = MusicRelease::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-musical-note';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('artist_name')
-                    ->required(),
-                Forms\Components\TextInput::make('album_cover'),
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\FileUpload::make('album_cover')
+                    ->image()
+                    ->directory('music'),
                 Forms\Components\TextInput::make('release_type')
                     ->required(),
                 Forms\Components\DatePicker::make('release_date')

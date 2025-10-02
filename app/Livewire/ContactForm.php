@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Message;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
@@ -26,11 +27,15 @@ class ContactForm extends Component
     {
         $validated = $this->validate();
 
+        // Save message to database
+        Message::create($validated);
+
+        // Send email notification
         Mail::raw(
             "Name: {$validated['name']}\nEmail: {$validated['email']}\n\n{$validated['message']}",
             function ($mail) use ($validated) {
                 $mail->to('linda.ettehag@gmail.com')
-                    ->subject("Art Inquiry: {$validated['subject']}")
+                    ->subject("Contact Form: {$validated['subject']}")
                     ->replyTo($validated['email'], $validated['name']);
             }
         );

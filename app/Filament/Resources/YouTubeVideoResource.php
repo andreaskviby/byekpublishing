@@ -17,7 +17,7 @@ class YouTubeVideoResource extends Resource
 {
     protected static ?string $model = YouTubeVideo::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-video-camera';
 
     public static function form(Form $form): Form
     {
