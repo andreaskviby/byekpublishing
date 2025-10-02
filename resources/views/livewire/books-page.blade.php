@@ -48,7 +48,15 @@
                         </div>
 
                         <div class="md:col-span-2">
-                            <h2 class="text-3xl font-display font-bold text-brown-900 mb-4">{{ $book->title }}</h2>
+                            <h2 class="text-3xl font-display font-bold text-brown-900 mb-4">
+                                @if($book->slug)
+                                    <a href="{{ route('book.detail', $book) }}" class="hover:text-primary-600 transition-colors">
+                                        {{ $book->title }}
+                                    </a>
+                                @else
+                                    {{ $book->title }}
+                                @endif
+                            </h2>
                             <p class="text-gray-700 mb-6">{{ $book->description }}</p>
 
                             @if($book->isbn)
@@ -59,6 +67,18 @@
                             @endif
                             @if($book->genre)
                                 <p class="text-sm text-gray-600 mb-6"><strong>Genre:</strong> {{ $book->genre }}</p>
+                            @endif
+
+                            @if($book->slug)
+                                <div class="mb-6">
+                                    <a href="{{ route('book.detail', $book) }}" 
+                                       class="inline-flex items-center px-4 py-2 bg-brown-900 text-white rounded-md hover:bg-brown-800 transition-colors">
+                                        Learn More
+                                        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
+                                </div>
                             @endif
 
                             <div class="mt-6">
