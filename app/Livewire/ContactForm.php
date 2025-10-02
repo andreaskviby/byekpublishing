@@ -13,6 +13,13 @@ class ContactForm extends Component
     public string $subject = '';
     public string $message = '';
 
+    public function mount(): void
+    {
+        if (request()->has('art')) {
+            $this->message = 'I am interested in ' . request()->get('art');
+        }
+    }
+
     protected function rules(): array
     {
         return [

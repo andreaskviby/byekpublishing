@@ -37,7 +37,7 @@
                             @if($art->price)
                                 <p class="text-xl font-semibold text-primary-600 mt-4">{{ number_format($art->price, 0) }} {{ $art->currency }}</p>
                             @endif
-                            <a href="{{ route('contact') }}" class="inline-block mt-4 bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-colors text-sm">
+                            <a href="{{ route('contact', ['art' => $art->title]) }}" class="inline-block mt-4 bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-colors text-sm">
                                 Inquire
                             </a>
                         </div>
