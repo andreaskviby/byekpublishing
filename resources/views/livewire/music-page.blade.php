@@ -12,8 +12,8 @@
                 @forelse($musicReleases as $music)
                     <div class="bg-accent-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
                         <div class="aspect-square bg-gradient-to-br from-primary-300 to-accent-300 flex items-center justify-center">
-                            @if($music->album_cover)
-                                <img src="{{ $music->album_cover }}" alt="{{ $music->title }}" class="w-full h-full object-cover">
+                            @if($music->album_cover_url)
+                                <img src="{{ $music->album_cover_url }}" alt="{{ $music->title }}" class="w-full h-full object-cover">
                             @else
                                 <span class="text-6xl">🎵</span>
                             @endif

@@ -28,4 +28,19 @@ class ArtPiece extends Model
             'sort_order' => 'integer',
         ];
     }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        if (!$this->image_path) {
+            return null;
+        }
+
+        // If path already starts with /storage/, return as is
+        if (str_starts_with($this->image_path, '/storage/')) {
+            return $this->image_path;
+        }
+
+        // Otherwise, prepend /storage/ for files uploaded via Filament
+        return '/storage/' . $this->image_path;
+    }
 }

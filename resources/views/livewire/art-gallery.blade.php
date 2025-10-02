@@ -12,8 +12,8 @@
                 @forelse($artPieces as $art)
                     <div class="bg-accent-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
                         <div class="aspect-square bg-gradient-to-br from-primary-200 to-accent-200 flex items-center justify-center">
-                            @if($art->image_path)
-                                <img src="{{ $art->image_path }}" alt="{{ $art->title }}" class="w-full h-full object-cover">
+                            @if($art->image_url)
+                                <img src="{{ $art->image_url }}" alt="{{ $art->title }}" class="w-full h-full object-cover">
                             @else
                                 <span class="text-6xl">🎨</span>
                             @endif
