@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\YouTubeOAuthController;
 use App\Livewire\ArtGallery;
 use App\Livewire\ArtPieceDetail;
 use App\Livewire\AuthorPage;
@@ -31,6 +32,10 @@ Route::get('/contact', ContactForm::class)->name('contact');
 // Verification routes
 Route::get('/verify/review/{token}', [VerificationController::class, 'verifyReview'])->name('review.verify');
 Route::get('/verify/newsletter/{token}', [VerificationController::class, 'verifyNewsletter'])->name('newsletter.verify');
+
+// YouTube OAuth routes
+Route::get('/youtube/oauth/authorize', [YouTubeOAuthController::class, 'authorize'])->name('youtube.oauth.authorize');
+Route::get('/youtube/oauth/callback', [YouTubeOAuthController::class, 'callback'])->name('youtube.oauth.callback');
 
 // Sitemap
 Route::get('/sitemap.xml', function () {

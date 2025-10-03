@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class YouTubeVideo extends Model
@@ -26,6 +27,16 @@ class YouTubeVideo extends Model
             'published_at' => 'datetime',
             'view_count' => 'integer',
         ];
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(VideoComment::class, 'you_tube_video_id');
+    }
+
+    public function approvedComments(): HasMany
+    {
+        return $this->hasMany(VideoComment::class, 'you_tube_video_id')->where('is_approved', true)->orderBy('published_at', 'desc');
     }
 
     protected static function boot()

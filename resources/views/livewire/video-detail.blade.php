@@ -57,9 +57,9 @@
 
     <div class="bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
                 <!-- Video Player -->
-                <div class="lg:col-span-2">
+                <div class="lg:col-span-4">
                     <header class="mb-6">
                         <h1 class="text-3xl font-display font-bold text-brown-900 mb-2">{{ $youTubeVideo->title }}</h1>
                         <div class="flex items-center text-sm text-gray-500 space-x-4">
@@ -101,7 +101,7 @@
                            target="_blank" 
                            rel="noopener noreferrer"
                            class="w-full inline-flex items-center justify-center px-4 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                             </svg>
                             Open in YouTube
@@ -111,26 +111,15 @@
                     <!-- Share Section -->
                     <div class="bg-gray-50 rounded-lg p-6">
                         <h3 class="text-lg font-semibold text-gray-900 mb-4">Share this video</h3>
-                        <div class="space-y-3">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($seoData['url']) }}" 
-                               target="_blank" 
-                               rel="noopener noreferrer"
-                               class="w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors">
-                                <svg class="w-4 h-4 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                                </svg>
-                                Share on Facebook
-                            </a>
-                            <a href="https://twitter.com/intent/tweet?url={{ urlencode($seoData['url']) }}&text={{ urlencode($youTubeVideo->title . ' by Linda Ettehag Kviby') }}" 
-                               target="_blank" 
-                               rel="noopener noreferrer"
-                               class="w-full inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors">
-                                <svg class="w-4 h-4 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                                </svg>
-                                Share on Twitter
-                            </a>
-                        </div>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($seoData['url']) }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="w-full inline-flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition-colors">
+                            <svg class="w-3.5 h-3.5 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            Share on Facebook
+                        </a>
                     </div>
 
                     <!-- Author Info -->
@@ -153,6 +142,83 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                             </svg>
                         </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comments Section -->
+            @if($comments->count() > 0)
+                <div class="mt-16 max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-display font-bold text-brown-900 mb-8">Comments ({{ $comments->count() }})</h2>
+                    <div class="space-y-6">
+                        @foreach($comments as $comment)
+                            <div class="bg-white rounded-lg p-6 shadow-md">
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-500 to-pink-500 flex items-center justify-center text-white font-semibold">
+                                            {{ substr($comment->author_name, 0, 1) }}
+                                        </div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h3 class="font-semibold text-gray-900">{{ $comment->author_name }}</h3>
+                                            <span class="text-sm text-gray-500">{{ $comment->published_at->diffForHumans() }}</span>
+                                        </div>
+                                        <div class="text-gray-700 whitespace-pre-line">{!! nl2br(e($comment->comment_text)) !!}</div>
+                                        @if($comment->like_count > 0)
+                                            <div class="mt-2 flex items-center text-sm text-gray-500">
+                                                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"/>
+                                                </svg>
+                                                {{ $comment->like_count }} {{ $comment->like_count === 1 ? 'like' : 'likes' }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
+            <!-- Call to Action -->
+            <div class="mt-16">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-2xl font-display font-bold text-brown-900 mb-8 text-center">Join Our Sicilian Adventure</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- YouTube CTA -->
+                        <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+                            <div class="mb-3">
+                                <svg class="w-12 h-12 mx-auto text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Subscribe on YouTube</h3>
+                            <p class="text-gray-700 text-sm mb-4">Never miss a Sicily adventure!</p>
+                            <a href="https://www.youtube.com/@WeBoughtAnAdventureInSicily"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-block bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition-colors font-semibold text-sm">
+                                Subscribe Now
+                            </a>
+                        </div>
+
+                        <!-- Patreon CTA -->
+                        <div class="bg-gradient-to-br from-orange-50 to-pink-100 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
+                            <div class="mb-3">
+                                <svg class="w-12 h-12 mx-auto text-orange-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M15.386.524c-4.764 0-8.64 3.876-8.64 8.64 0 4.75 3.876 8.613 8.64 8.613 4.75 0 8.614-3.864 8.614-8.613C24 4.4 20.136.524 15.386.524M.003 23.537h4.22V.524H.003"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Support on Patreon</h3>
+                            <p class="text-gray-700 text-sm mb-4">Get exclusive behind-the-scenes content!</p>
+                            <a href="https://www.patreon.com/c/WeBoughtAnAdventureInSicily"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-block bg-orange-600 text-white px-6 py-2 rounded-full hover:bg-orange-700 transition-colors font-semibold text-sm">
+                                Become a Patron
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

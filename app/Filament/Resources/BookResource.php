@@ -64,6 +64,13 @@ class BookResource extends Resource
                     ->imageEditorAspectRatios([
                         '2:3',
                     ]),
+                Forms\Components\FileUpload::make('sample_pdf')
+                    ->label('Sample PDF (Test Read)')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->disk('public')
+                    ->directory('pdfs/books')
+                    ->visibility('public')
+                    ->maxSize(10240),
                 Forms\Components\TextInput::make('isbn'),
                 Forms\Components\DatePicker::make('publication_date'),
                 Forms\Components\TextInput::make('pages')

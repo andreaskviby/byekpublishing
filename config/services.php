@@ -38,6 +38,14 @@ return [
     'youtube' => [
         'api_key' => env('YOUTUBE_API_KEY'),
         'channel_id' => env('YOUTUBE_CHANNEL_ID'),
+        'oauth_client_id' => env('YOUTUBE_OAUTH_CLIENT_ID'),
+        'oauth_client_secret' => env('YOUTUBE_OAUTH_CLIENT_SECRET'),
+    ],
+
+    'openai' => [
+        'api_key' => env('OPENAI_API_KEY'),
+        'organization' => env('OPENAI_ORGANIZATION'),
+        'model' => env('OPENAI_MODEL', 'gpt-4-turbo'),
     ],
 
     'instagram' => [

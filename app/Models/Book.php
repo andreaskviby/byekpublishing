@@ -15,6 +15,7 @@ class Book extends Model
         'meta_description',
         'meta_keywords',
         'cover_image',
+        'sample_pdf',
         'isbn',
         'publication_date',
         'pages',
@@ -61,6 +62,21 @@ class Book extends Model
 
         // Otherwise, prepend /storage/ for files uploaded via Filament
         return '/storage/' . $this->cover_image;
+    }
+
+    public function getSamplePdfUrlAttribute(): ?string
+    {
+        if (!$this->sample_pdf) {
+            return null;
+        }
+
+        // If path starts with /storage/, return as is
+        if (str_starts_with($this->sample_pdf, '/storage/')) {
+            return $this->sample_pdf;
+        }
+
+        // Otherwise, prepend /storage/ for files uploaded via Filament
+        return '/storage/' . $this->sample_pdf;
     }
 
     protected static function boot()

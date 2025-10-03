@@ -9,3 +9,4 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('sync:youtube')->dailyAt('23:15');
+Schedule::command('sync:youtube-comments')->everyThirtyMinutes();

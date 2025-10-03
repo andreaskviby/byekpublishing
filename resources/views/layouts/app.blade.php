@@ -117,8 +117,28 @@
                 </div>
 
                 <div>
-                    <h3 class="text-xl font-display font-semibold mb-4">AI Transparency</h3>
-                    <p class="text-accent-300 text-sm">
+                    <h3 class="text-xl font-display font-semibold mb-4">Follow Our Sicily Adventure</h3>
+                    <div class="space-y-3">
+                        <a href="https://www.youtube.com/@WeBoughtAnAdventureInSicily"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="flex items-center space-x-2 text-accent-300 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                            <span>YouTube Channel</span>
+                        </a>
+                        <a href="https://www.patreon.com/c/WeBoughtAnAdventureInSicily"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="flex items-center space-x-2 text-accent-300 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M15.386.524c-4.764 0-8.64 3.876-8.64 8.64 0 4.75 3.876 8.613 8.64 8.613 4.75 0 8.614-3.864 8.614-8.613C24 4.4 20.136.524 15.386.524M.003 23.537h4.22V.524H.003"/>
+                            </svg>
+                            <span>Support on Patreon</span>
+                        </a>
+                    </div>
+                    <p class="text-accent-300 text-sm mt-4">
                         We only use AI for research and music production. All book content and YouTube videos are created by humans.
                     </p>
                 </div>

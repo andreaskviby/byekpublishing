@@ -13,9 +13,9 @@ class VideosPage extends Component
         $videos = YouTubeVideo::orderBy('published_at', 'desc')->get();
 
         $seoData = [
-            'title' => 'We Bought an Adventure in Sicily | By Ek Publishing - Linda Ettehag Kviby',
-            'description' => 'Follow Linda Ettehag Kviby\'s Sicily adventure on YouTube. Watch as we traded our Swedish summer house for a large town house in Termini Imerese, Sicily. Join our journey learning Italian culture, language, and making Sicilian friends in our Mediterranean home.',
-            'keywords' => 'Sicily adventure, Linda Ettehag Kviby, Termini Imerese, Swedish in Sicily, Italy living, Mediterranean lifestyle, Italian culture, Sicily videos, expat life Italy, Sicily house renovation',
+            'title' => 'We Bought an Adventure in Sicily | Inspired by Husdrömmar Sicilien | By Ek Publishing',
+            'description' => 'Follow Linda Ettehag Kviby\'s Sicily adventure in Termini Imerese. Inspired by Bill and Marie Olsson Nylander from Husdrömmar Sicilien and their renovation of Palazzo Cirillo. Watch our journey learning Italian culture, language, and living the Mediterranean dream in Sicily.',
+            'keywords' => 'Husdrömmar Sicilien, Bill Nylander, Marie Olsson Nylander, Palazzo Cirillo, Termini Imerese, Sicily adventure, Linda Ettehag Kviby, Swedish in Sicily, Italy living, Sicily house renovation, SVT Husdrömmar, Swedish expats Sicily',
             'image' => asset('images/default-og-image.jpg'),
             'url' => route('videos'),
             'type' => 'website',
