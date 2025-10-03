@@ -53,7 +53,7 @@
 
     <div class="bg-gradient-to-b from-accent-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                 <!-- Book Cover - Smaller and more elegant -->
                 <div class="flex justify-center lg:justify-start">
                     <div class="w-72 shadow-2xl rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
@@ -70,7 +70,7 @@
                 </div>
 
                 <!-- Book Details -->
-                <div class="space-y-12">
+                <div class="space-y-6">
                     <header>
                         <h1 class="text-4xl font-display font-bold text-brown-900">{{ $book->title }}</h1>
                         <p class="text-xl text-gray-600 mt-2">by Linda Ettehag Kviby</p>
@@ -82,7 +82,7 @@
                         </div>
                     @endif
 
-                    <div class="bg-accent-50 rounded-xl p-6 grid grid-cols-2 gap-6 shadow-md">
+                    <div class="bg-white rounded-xl p-6 grid grid-cols-2 gap-6 shadow-md">
                         @if($book->isbn)
                             <div class="flex items-start space-x-3">
                                 <span class="text-2xl">🔖</span>
@@ -126,7 +126,7 @@
 
                     <!-- Purchase Links -->
                     @if($book->purchaseLinks->count() > 0)
-                        <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-8 shadow-md">
+                        <div class="bg-white rounded-xl p-8 shadow-md">
                             <h3 class="text-2xl font-display font-bold text-brown-900 mb-6 flex items-center">
                                 <span class="mr-2">📚</span> Get this book
                             </h3>
@@ -157,7 +157,7 @@
                     @endif
 
                     <!-- Share Section -->
-                    <div class="bg-gradient-to-r from-purple-50 via-pink-50 to-orange-50 rounded-xl p-8 shadow-md">
+                    <div class="bg-white rounded-xl p-8 shadow-md">
                         <h3 class="text-2xl font-display font-bold text-brown-900 mb-6 flex items-center">
                             <span class="mr-3 text-3xl">✨</span> Share this book
                         </h3>
