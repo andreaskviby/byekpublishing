@@ -15,25 +15,25 @@
     </url>
     <url>
         <loc>{{ route('books') }}</loc>
-        <lastmod>{{ \App\Models\Book::where('is_published', true)->max('updated_at')?->format('Y-m-d') ?? now()->format('Y-m-d') }}</lastmod>
+        <lastmod>{{ \App\Models\Book::where('is_published', true)->latest('updated_at')->value('updated_at')?->format('Y-m-d') ?? now()->format('Y-m-d') }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>{{ route('art') }}</loc>
-        <lastmod>{{ \App\Models\ArtPiece::where('is_available', true)->max('updated_at')?->format('Y-m-d') ?? now()->format('Y-m-d') }}</lastmod>
+        <lastmod>{{ \App\Models\ArtPiece::where('is_available', true)->latest('updated_at')->value('updated_at')?->format('Y-m-d') ?? now()->format('Y-m-d') }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>{{ route('music') }}</loc>
-        <lastmod>{{ \App\Models\MusicRelease::where('is_published', true)->max('updated_at')?->format('Y-m-d') ?? now()->format('Y-m-d') }}</lastmod>
+        <lastmod>{{ \App\Models\MusicRelease::where('is_published', true)->latest('updated_at')->value('updated_at')?->format('Y-m-d') ?? now()->format('Y-m-d') }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>{{ route('videos') }}</loc>
-        <lastmod>{{ \App\Models\YouTubeVideo::max('updated_at')?->format('Y-m-d') ?? now()->format('Y-m-d') }}</lastmod>
+        <lastmod>{{ \App\Models\YouTubeVideo::latest('updated_at')->value('updated_at')?->format('Y-m-d') ?? now()->format('Y-m-d') }}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
