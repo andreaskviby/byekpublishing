@@ -13,9 +13,9 @@ class VideosPage extends Component
         $videos = YouTubeVideo::orderBy('published_at', 'desc')->get();
 
         $seoData = [
-            'title' => 'Videos | By Ek Publishing - Linda Ettehag Kviby',
-            'description' => 'Watch Linda Ettehag Kviby\'s latest videos. Explore creative content, book discussions, and artistic insights from Swedish author and artist.',
-            'keywords' => 'Linda Ettehag Kviby videos, YouTube, creative content, Swedish author videos, book discussions, artistic insights',
+            'title' => 'We Bought an Adventure in Sicily | By Ek Publishing - Linda Ettehag Kviby',
+            'description' => 'Follow Linda Ettehag Kviby\'s Sicily adventure on YouTube. Watch as we traded our Swedish summer house for a large town house in Termini Imerese, Sicily. Join our journey learning Italian culture, language, and making Sicilian friends in our Mediterranean home.',
+            'keywords' => 'Sicily adventure, Linda Ettehag Kviby, Termini Imerese, Swedish in Sicily, Italy living, Mediterranean lifestyle, Italian culture, Sicily videos, expat life Italy, Sicily house renovation',
             'image' => asset('images/default-og-image.jpg'),
             'url' => route('videos'),
             'type' => 'website',

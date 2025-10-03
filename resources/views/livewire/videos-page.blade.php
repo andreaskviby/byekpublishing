@@ -22,8 +22,8 @@
 
     <section class="bg-gradient-to-r from-accent-100 to-primary-100 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 class="text-4xl font-display font-bold text-brown-900 mb-4 text-center">YouTube Videos</h1>
-            <p class="text-lg text-gray-700 text-center max-w-2xl mx-auto">Watch Linda's latest videos</p>
+            <h1 class="text-4xl font-display font-bold text-brown-900 mb-4 text-center">We Bought an Adventure in Sicily</h1>
+            <p class="text-lg text-gray-700 text-center max-w-2xl mx-auto">Follow our journey as we skipped the Swedish summer house and bought a large town house in Termini Imerese, Sicily. Watch as we learn the culture, language, and make Sicilian friends in our new Mediterranean home.</p>
         </div>
     </section>
 
