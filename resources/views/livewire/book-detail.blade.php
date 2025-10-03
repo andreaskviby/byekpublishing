@@ -187,7 +187,7 @@
 
             <!-- Reviews and Rating Section -->
             @if($totalReviews > 0 || true) {{-- Always show section so users can add reviews --}}
-                <div class="mt-16 py-16 bg-white">
+                <div class="mt-8 py-16 bg-white">
                     <div class="max-w-5xl mx-auto px-4">
                         <!-- Reviews Header -->
                         <div class="text-center mb-12">
