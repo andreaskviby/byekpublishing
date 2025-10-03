@@ -23,12 +23,38 @@ class ArtPieceResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull()
-                    ->rows(4),
+                Forms\Components\Section::make('Basic Information')
+                    ->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->required()
+                            ->maxLength(255)
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
+                        Forms\Components\TextInput::make('slug')
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true),
+                        Forms\Components\Textarea::make('description')
+                            ->columnSpanFull()
+                            ->rows(4),
+                    ])
+                    ->columns(2),
+
+                Forms\Components\Section::make('SEO')
+                    ->schema([
+                        Forms\Components\Textarea::make('meta_description')
+                            ->label('Meta Description')
+                            ->helperText('Recommended: 150-160 characters')
+                            ->maxLength(255)
+                            ->rows(2),
+                        Forms\Components\TextInput::make('meta_keywords')
+                            ->label('Meta Keywords')
+                            ->helperText('Comma-separated keywords')
+                            ->maxLength(255),
+                    ])
+                    ->columns(2)
+                    ->collapsed(),
+
                 Forms\Components\FileUpload::make('image_path')
                     ->image()
                     ->required()

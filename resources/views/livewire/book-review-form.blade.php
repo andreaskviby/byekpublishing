@@ -37,15 +37,12 @@
             </label>
             <div class="flex justify-center space-x-2 mb-2">
                 @for ($i = 1; $i <= 5; $i++)
-                    <button type="button" 
+                    <button type="button"
                             wire:click="$set('rating', {{ $i }})"
                             class="text-4xl transition-all duration-200 hover:scale-110 focus:outline-none focus:scale-110"
+                            style="{{ $rating >= $i ? '' : 'filter: grayscale(100%); opacity: 0.4;' }}"
                             title="{{ $i }} {{ $i === 1 ? 'butterfly' : 'butterflies' }}">
-                        @if ($rating >= $i)
-                            🦋
-                        @else
-                            <span class="text-gray-300">🤍</span>
-                        @endif
+                        🦋
                     </button>
                 @endfor
             </div>
@@ -107,59 +104,56 @@
         </div>
 
         <!-- Newsletter Signup -->
-        <div class="mb-6 p-6 bg-white rounded-xl border border-gray-200">
+        <div class="mb-6 p-4 bg-white rounded-xl border border-gray-200">
             <div class="flex items-start space-x-3">
                 <input type="checkbox"
                        id="subscribeToNewsletter"
                        wire:model.live="subscribeToNewsletter"
-                       class="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                       class="mt-0.5 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
                 <div class="flex-1">
-                    <label for="subscribeToNewsletter" class="text-base font-semibold text-brown-900 cursor-pointer">
+                    <label for="subscribeToNewsletter" class="text-sm font-semibold text-brown-900 cursor-pointer">
                         📧 Join Linda's Creative Newsletter
                     </label>
-                    <p class="text-sm text-gray-600 mt-1">
-                        Get updates about new books, art pieces, and creative inspiration delivered to your inbox.
-                    </p>
                 </div>
             </div>
 
             <!-- Newsletter fields with smooth animation -->
-            <div class="overflow-hidden transition-all duration-500 ease-in-out {{ $showNewsletterFields ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0' }}">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="overflow-hidden transition-all duration-500 ease-in-out {{ $showNewsletterFields ? 'max-h-80 opacity-100 mt-4' : 'max-h-0 opacity-0' }}">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="name" class="block text-xs font-medium text-gray-700 mb-1">
                             Your Name <span class="text-red-500">*</span>
                         </label>
                         <input type="text"
                                id="name"
                                wire:model="name"
-                               class="w-full px-3 py-2 text-base border border-gray-300 rounded-lg shadow-sm
+                               class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg shadow-sm
                                       focus:ring-2 focus:ring-primary-400 focus:border-primary-500
                                       transition-all duration-300"
                                placeholder="Your full name">
                         @error('name')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="email" class="block text-xs font-medium text-gray-700 mb-1">
                             Email Address <span class="text-red-500">*</span>
                         </label>
                         <input type="email"
                                id="email"
                                wire:model="email"
-                               class="w-full px-3 py-2 text-base border border-gray-300 rounded-lg shadow-sm
+                               class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg shadow-sm
                                       focus:ring-2 focus:ring-primary-400 focus:border-primary-500
                                       transition-all duration-300"
                                placeholder="your@email.com">
                         @error('email')
-                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
-                <div class="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                    <div class="flex items-center text-sm text-blue-800">
-                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <div class="mt-3 p-2 bg-blue-50 rounded-lg border border-blue-200">
+                    <div class="flex items-start text-xs text-blue-800">
+                        <svg class="w-3 h-3 mr-1.5 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
                         </svg>
                         <span>We'll send you a verification email to confirm your subscription.</span>

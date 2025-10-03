@@ -23,15 +23,40 @@ class BlogPostResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\TextInput::make('slug')
-                    ->required(),
-                Forms\Components\Textarea::make('excerpt')
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('content')
-                    ->required()
-                    ->columnSpanFull(),
+                Forms\Components\Section::make('Basic Information')
+                    ->schema([
+                        Forms\Components\TextInput::make('title')
+                            ->required()
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
+                        Forms\Components\TextInput::make('slug')
+                            ->required()
+                            ->unique(ignoreRecord: true),
+                        Forms\Components\Textarea::make('excerpt')
+                            ->columnSpanFull()
+                            ->rows(3),
+                        Forms\Components\Textarea::make('content')
+                            ->required()
+                            ->columnSpanFull()
+                            ->rows(6),
+                    ])
+                    ->columns(2),
+
+                Forms\Components\Section::make('SEO')
+                    ->schema([
+                        Forms\Components\Textarea::make('meta_description')
+                            ->label('Meta Description')
+                            ->helperText('Recommended: 150-160 characters')
+                            ->maxLength(255)
+                            ->rows(2),
+                        Forms\Components\TextInput::make('meta_keywords')
+                            ->label('Meta Keywords')
+                            ->helperText('Comma-separated keywords')
+                            ->maxLength(255),
+                    ])
+                    ->columns(2)
+                    ->collapsed(),
+
                 Forms\Components\FileUpload::make('featured_image')
                     ->image()
                     ->disk('public')

@@ -23,13 +23,40 @@ class YouTubeVideoResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('youtube_id')
-                    ->required(),
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('thumbnail_url'),
+                Forms\Components\Section::make('Basic Information')
+                    ->schema([
+                        Forms\Components\TextInput::make('youtube_id')
+                            ->required()
+                            ->label('YouTube ID'),
+                        Forms\Components\TextInput::make('title')
+                            ->required()
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn ($state, callable $set) => $set('slug', \Illuminate\Support\Str::slug($state))),
+                        Forms\Components\TextInput::make('slug')
+                            ->required()
+                            ->maxLength(255)
+                            ->unique(ignoreRecord: true),
+                        Forms\Components\Textarea::make('description')
+                            ->columnSpanFull()
+                            ->rows(4),
+                        Forms\Components\TextInput::make('thumbnail_url'),
+                    ])
+                    ->columns(2),
+
+                Forms\Components\Section::make('SEO')
+                    ->schema([
+                        Forms\Components\Textarea::make('meta_description')
+                            ->label('Meta Description')
+                            ->helperText('Recommended: 150-160 characters')
+                            ->maxLength(255)
+                            ->rows(2),
+                        Forms\Components\TextInput::make('meta_keywords')
+                            ->label('Meta Keywords')
+                            ->helperText('Comma-separated keywords')
+                            ->maxLength(255),
+                    ])
+                    ->columns(2)
+                    ->collapsed(),
                 Forms\Components\DateTimePicker::make('published_at')
                     ->required(),
                 Forms\Components\TextInput::make('duration'),
