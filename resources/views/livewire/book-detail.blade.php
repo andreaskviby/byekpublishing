@@ -77,12 +77,12 @@
                     </header>
 
                     @if($book->description)
-                        <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                        <div class="bg-white rounded-xl p-6 shadow-md">
                             <p class="text-gray-700 leading-relaxed text-lg">{{ $book->description }}</p>
                         </div>
                     @endif
 
-                    <div class="bg-accent-50 rounded-xl p-6 grid grid-cols-2 gap-6">
+                    <div class="bg-accent-50 rounded-xl p-6 grid grid-cols-2 gap-6 shadow-md">
                         @if($book->isbn)
                             <div class="flex items-start space-x-3">
                                 <span class="text-2xl">🔖</span>
@@ -126,7 +126,7 @@
 
                     <!-- Purchase Links -->
                     @if($book->purchaseLinks->count() > 0)
-                        <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-8 border-2 border-primary-200">
+                        <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-8 shadow-md">
                             <h3 class="text-2xl font-display font-bold text-brown-900 mb-6 flex items-center">
                                 <span class="mr-2">📚</span> Get this book
                             </h3>
@@ -157,7 +157,7 @@
                     @endif
 
                     <!-- Share Section -->
-                    <div class="bg-gradient-to-r from-purple-50 via-pink-50 to-orange-50 rounded-xl p-8 shadow-md border-2 border-purple-100">
+                    <div class="bg-gradient-to-r from-purple-50 via-pink-50 to-orange-50 rounded-xl p-8 shadow-md">
                         <h3 class="text-2xl font-display font-bold text-brown-900 mb-6 flex items-center">
                             <span class="mr-3 text-3xl">✨</span> Share this book
                         </h3>
@@ -187,7 +187,7 @@
 
             <!-- Reviews and Rating Section -->
             @if($totalReviews > 0 || true) {{-- Always show section so users can add reviews --}}
-                <div class="mt-32 border-t-2 border-gray-300 pt-20">
+                <div class="mt-40 border-t-2 border-gray-300 pt-24">
                     <div class="max-w-5xl mx-auto">
                         <!-- Reviews Header -->
                         <div class="text-center mb-12">
