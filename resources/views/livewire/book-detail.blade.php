@@ -53,7 +53,7 @@
 
     <div class="bg-gradient-to-b from-accent-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-16 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 <!-- Book Cover - Smaller and more elegant -->
                 <div class="flex justify-center lg:justify-start">
                     <div class="w-72 shadow-2xl rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
@@ -187,7 +187,7 @@
 
             <!-- Reviews and Rating Section -->
             @if($totalReviews > 0 || true) {{-- Always show section so users can add reviews --}}
-                <div class="mt-16 border-t border-gray-200 pt-16 px-8">
+                <div class="mt-24 border-t-2 border-gray-300 pt-16">
                     <div class="max-w-5xl mx-auto">
                         <!-- Reviews Header -->
                         <div class="text-center mb-12">
