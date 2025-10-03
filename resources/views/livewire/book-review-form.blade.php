@@ -166,10 +166,11 @@
         <div class="text-center">
             <button type="submit"
                     wire:loading.attr="disabled"
-                    class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-pink-600 
+                    style="background: linear-gradient(to right, #e6a491, #ec4899);"
+                    class="inline-flex items-center px-8 py-4
                            text-white font-semibold rounded-xl shadow-lg hover:shadow-xl
                            transform hover:scale-105 transition-all duration-200
-                           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
+                           focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2
                            disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
                 <span wire:loading.remove>
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
