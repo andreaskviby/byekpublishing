@@ -70,7 +70,7 @@
                 </div>
 
                 <!-- Book Details -->
-                <div class="space-y-10">
+                <div class="space-y-12">
                     <header>
                         <h1 class="text-4xl font-display font-bold text-brown-900">{{ $book->title }}</h1>
                         <p class="text-xl text-gray-600 mt-2">by Linda Ettehag Kviby</p>
