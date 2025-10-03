@@ -70,7 +70,7 @@
                 </div>
 
                 <!-- Book Details -->
-                <div class="space-y-8">
+                <div class="space-y-10">
                     <header>
                         <h1 class="text-4xl font-display font-bold text-brown-900">{{ $book->title }}</h1>
                         <p class="text-xl text-gray-600 mt-2">by Linda Ettehag Kviby</p>
@@ -187,8 +187,8 @@
 
             <!-- Reviews and Rating Section -->
             @if($totalReviews > 0 || true) {{-- Always show section so users can add reviews --}}
-                <div class="mt-40 border-t-2 border-gray-300 pt-24">
-                    <div class="max-w-5xl mx-auto">
+                <div class="mt-40 bg-gradient-to-b from-white to-accent-50 py-24">
+                    <div class="max-w-5xl mx-auto px-4">
                         <!-- Reviews Header -->
                         <div class="text-center mb-12">
                             <h2 class="text-3xl font-display font-bold text-brown-900 mb-4">Reader Reviews</h2>
