@@ -53,7 +53,7 @@
 
     <div class="bg-gradient-to-b from-accent-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
                 <!-- Book Cover - Smaller and more elegant -->
                 <div class="flex justify-center lg:justify-start">
                     <div class="w-72 shadow-2xl rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300">
@@ -70,7 +70,7 @@
                 </div>
 
                 <!-- Book Details -->
-                <div class="space-y-6">
+                <div class="md:col-span-2 space-y-6">
                     <header>
                         <h1 class="text-4xl font-display font-bold text-brown-900">{{ $book->title }}</h1>
                         <p class="text-xl text-gray-600 mt-2">by Linda Ettehag Kviby</p>
@@ -187,7 +187,7 @@
 
             <!-- Reviews and Rating Section -->
             @if($totalReviews > 0 || true) {{-- Always show section so users can add reviews --}}
-                <div class="py-16 bg-gradient-to-b from-white to-accent-50">
+                <div class="py-16 bg-white">
                     <div class="max-w-5xl mx-auto px-4">
                         <!-- Reviews Header -->
                         <div class="text-center mb-12">
