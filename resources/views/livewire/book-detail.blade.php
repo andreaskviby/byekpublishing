@@ -187,7 +187,7 @@
 
             <!-- Reviews and Rating Section -->
             @if($totalReviews > 0 || true) {{-- Always show section so users can add reviews --}}
-                <div class="mt-40 bg-gradient-to-b from-white to-accent-50 py-24">
+                <div class="py-16 bg-gradient-to-b from-white to-accent-50">
                     <div class="max-w-5xl mx-auto px-4">
                         <!-- Reviews Header -->
                         <div class="text-center mb-12">
