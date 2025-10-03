@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VerificationController;
 use App\Livewire\ArtGallery;
 use App\Livewire\ArtPieceDetail;
 use App\Livewire\AuthorPage;
@@ -26,6 +27,10 @@ Route::get('/videos', VideosPage::class)->name('videos');
 Route::get('/videos/{youTubeVideo:slug}', VideoDetail::class)->name('video.detail');
 Route::get('/blog/{blogPost:slug}', BlogPostDetail::class)->name('blog.detail');
 Route::get('/contact', ContactForm::class)->name('contact');
+
+// Verification routes
+Route::get('/verify/review/{token}', [VerificationController::class, 'verifyReview'])->name('review.verify');
+Route::get('/verify/newsletter/{token}', [VerificationController::class, 'verifyNewsletter'])->name('newsletter.verify');
 
 // Sitemap
 Route::get('/sitemap.xml', function () {

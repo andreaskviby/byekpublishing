@@ -153,6 +153,117 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Reviews and Rating Section -->
+            @if($totalReviews > 0 || true) {{-- Always show section so users can add reviews --}}
+                <div class="mt-16 border-t border-gray-200 pt-16">
+                    <div class="max-w-4xl mx-auto">
+                        <!-- Reviews Header -->
+                        <div class="text-center mb-12">
+                            <h2 class="text-3xl font-display font-bold text-brown-900 mb-4">Reader Reviews</h2>
+                            @if($totalReviews > 0)
+                                <div class="flex items-center justify-center space-x-4">
+                                    <!-- Average Rating Display -->
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-2xl">
+                                            @for($i = 1; $i <= 5; $i++)
+                                                @if($i <= round($averageRating))
+                                                    🦋
+                                                @else
+                                                    <span class="text-gray-300">🤍</span>
+                                                @endif
+                                            @endfor
+                                        </span>
+                                        <span class="text-lg font-semibold text-gray-900">{{ number_format($averageRating, 1) }}</span>
+                                    </div>
+                                    <div class="text-gray-600">
+                                        <span class="font-medium">{{ $totalReviews }}</span> 
+                                        {{ $totalReviews === 1 ? 'review' : 'reviews' }}
+                                    </div>
+                                </div>
+
+                                <!-- Rating Breakdown -->
+                                <div class="mt-6 max-w-sm mx-auto">
+                                    @for($rating = 5; $rating >= 1; $rating--)
+                                        @php $count = $ratingCounts[$rating] ?? 0; @endphp
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <span class="text-sm w-3">{{ $rating }}</span>
+                                            <span class="text-lg">🦋</span>
+                                            <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                                <div class="bg-primary-600 h-2 rounded-full" 
+                                                     style="width: {{ $totalReviews > 0 ? ($count / $totalReviews * 100) : 0 }}%"></div>
+                                            </div>
+                                            <span class="text-sm text-gray-600 w-8">{{ $count }}</span>
+                                        </div>
+                                    @endfor
+                                </div>
+                            @else
+                                <p class="text-gray-600">Be the first to share your thoughts about this book!</p>
+                            @endif
+                        </div>
+
+                        <!-- Review Form -->
+                        <div class="mb-16">
+                            <livewire:book-review-form :book="$book" />
+                        </div>
+
+                        <!-- Existing Reviews -->
+                        @if($totalReviews > 0)
+                            <div class="space-y-8">
+                                <h3 class="text-2xl font-display font-bold text-brown-900 mb-6">What readers are saying</h3>
+                                
+                                @foreach($reviewsByLanguage as $languageName => $reviews)
+                                    @if($reviews->count() > 0)
+                                        <div class="mb-8">
+                                            @if($reviewsByLanguage->count() > 1)
+                                                <h4 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                                    <span class="mr-2">{{ $reviews->first()->language->flag_emoji ?? '🌍' }}</span>
+                                                    Reviews in {{ $languageName }}
+                                                </h4>
+                                            @endif
+                                            
+                                            <div class="grid gap-6">
+                                                @foreach($reviews as $review)
+                                                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200">
+                                                        <!-- Review Header -->
+                                                        <div class="flex items-start justify-between mb-4">
+                                                            <div class="flex items-center space-x-3">
+                                                                <div class="flex-shrink-0">
+                                                                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-pink-500 rounded-full flex items-center justify-center text-white font-semibold">
+                                                                        {{ substr($review->reviewer_signature ?: 'A', 0, 1) }}
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <div class="font-medium text-gray-900">
+                                                                        {{ $review->reviewer_signature ?: 'Anonymous Reader' }}
+                                                                    </div>
+                                                                    <div class="text-sm text-gray-500">
+                                                                        {{ $review->submitted_at->format('F j, Y') }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex items-center text-lg">
+                                                                {!! $review->butterfly_rating !!}
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Review Content -->
+                                                        @if($review->review_text)
+                                                            <div class="text-gray-700 leading-relaxed">
+                                                                <p>{{ $review->review_text }}</p>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>

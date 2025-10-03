@@ -38,6 +38,16 @@ class Book extends Model
         return $this->hasMany(PurchaseLink::class);
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(BookReview::class);
+    }
+
+    public function approvedReviews(): HasMany
+    {
+        return $this->hasMany(BookReview::class)->approved()->verified();
+    }
+
     public function getCoverImageUrlAttribute(): ?string
     {
         if (!$this->cover_image) {

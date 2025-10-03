@@ -19,7 +19,21 @@
                 </div>
             @endif
 
+            @if (session()->has('error'))
+                <div class="bg-gradient-to-r from-red-50 to-red-100 border-l-4 border-red-500 text-red-800 px-6 py-4 rounded-lg mb-8 shadow-md animate-fadeInUp" role="alert">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                        <p class="font-medium">{{ session('error') }}</p>
+                    </div>
+                </div>
+            @endif
+
             <form wire:submit="submit" class="space-y-8 bg-accent-50 p-8 rounded-2xl shadow-lg">
+                <!-- Honeypot field (hidden) -->
+                <input type="text" wire:model="website" style="display: none;" tabindex="-1" autocomplete="off">
+                
                 <div class="animate-fadeInUp" style="animation-delay: 0.1s">
                     <label for="name" class="block text-base font-semibold text-brown-900 mb-3">
                         Name <span class="text-primary-600">*</span>

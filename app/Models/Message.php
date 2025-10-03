@@ -13,10 +13,14 @@ class Message extends Model
         'message',
         'is_read',
         'read_at',
+        'ip_address',
+        'user_agent',
+        'submitted_at',
     ];
 
     protected $casts = [
         'is_read' => 'boolean',
         'read_at' => 'datetime',
+        'submitted_at' => 'datetime',
     ];
 }
