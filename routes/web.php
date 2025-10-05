@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SpotifyOAuthController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\YouTubeOAuthController;
 use App\Livewire\ArtGallery;
@@ -36,6 +37,10 @@ Route::get('/verify/newsletter/{token}', [VerificationController::class, 'verify
 // YouTube OAuth routes
 Route::get('/youtube/oauth/authorize', [YouTubeOAuthController::class, 'authorize'])->name('youtube.oauth.authorize');
 Route::get('/youtube/oauth/callback', [YouTubeOAuthController::class, 'callback'])->name('youtube.oauth.callback');
+
+// Spotify OAuth routes
+Route::get('/spotify/authorize', [SpotifyOAuthController::class, 'authorize'])->name('spotify.oauth.authorize');
+Route::get('/spotify/callback', [SpotifyOAuthController::class, 'callback'])->name('spotify.oauth.callback');
 
 // Sitemap
 Route::get('/sitemap.xml', function () {

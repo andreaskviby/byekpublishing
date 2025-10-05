@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 class MusicRelease extends Model
 {
     protected $fillable = [
+        'spotify_id',
         'title',
         'slug',
         'artist_name',

@@ -53,4 +53,11 @@ return [
         'user_id' => env('INSTAGRAM_USER_ID'),
     ],
 
+    'spotify' => [
+        'client_id' => env('SPOTIFY_CLIENT_ID'),
+        'client_secret' => env('SPOTIFY_CLIENT_SECRET'),
+        'redirect_uri' => env('SPOTIFY_REDIRECT_URI'),
+        'artist_id' => env('SPOTIFY_ARTIST_ID'),
+    ],
+
 ];
