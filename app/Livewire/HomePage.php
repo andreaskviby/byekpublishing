@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\ArtPiece;
 use App\Models\BlogPost;
 use App\Models\Book;
+use App\Models\Event;
 use App\Models\InstagramPost;
 use App\Models\MusicRelease;
 use App\Models\YouTubeVideo;
@@ -32,6 +33,12 @@ class HomePage extends Component
             ->limit(3)
             ->get();
 
+        $upcomingEvents = Event::where('is_active', true)
+            ->where('event_date', '>=', now()->toDateString())
+            ->orderBy('event_date', 'asc')
+            ->limit(3)
+            ->get();
+
         // Generate SEO data for home page
         $seoData = [
             'title' => 'By Ek Publishing | Linda Ettehag Kviby - Books, Art & Music',
@@ -51,6 +58,7 @@ class HomePage extends Component
             'activityFeed' => $activityFeed,
             'artPieces' => $artPieces,
             'musicReleases' => $musicReleases,
+            'upcomingEvents' => $upcomingEvents,
             'seoData' => $seoData,
             'organizationSchema' => $organizationSchema,
         ])->layout('layouts.app');

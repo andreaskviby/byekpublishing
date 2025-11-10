@@ -10,6 +10,7 @@ use App\Livewire\BlogPostDetail;
 use App\Livewire\BookDetail;
 use App\Livewire\BooksPage;
 use App\Livewire\ContactForm;
+use App\Livewire\EventDetail;
 use App\Livewire\HomePage;
 use App\Livewire\MusicPage;
 use App\Livewire\MusicReleaseDetail;
@@ -29,6 +30,9 @@ Route::get('/videos', VideosPage::class)->name('videos');
 Route::get('/videos/{youTubeVideo:slug}', VideoDetail::class)->name('video.detail');
 Route::get('/blog/{blogPost:slug}', BlogPostDetail::class)->name('blog.detail');
 Route::get('/contact', ContactForm::class)->name('contact');
+
+// Event routes
+Route::get('/events/{event:slug}', EventDetail::class)->name('event.detail');
 
 // Verification routes
 Route::get('/verify/review/{token}', [VerificationController::class, 'verifyReview'])->name('review.verify');
@@ -51,3 +55,6 @@ Route::get('/sitemap.xml', function () {
 Route::get('/robots.txt', function () {
     return response(view('robots'), 200, ['Content-Type' => 'text/plain']);
 })->name('robots');
+
+// Event slug catch-all route (must be last to avoid conflicts)
+Route::get('/{event:slug}', EventDetail::class)->name('event.slug');
