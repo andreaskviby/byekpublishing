@@ -23,7 +23,7 @@
             <div class="flex justify-between h-20">
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center space-x-3">
-                        <span class="text-2xl font-display font-bold text-brown-900">By Ek Publishing</span>
+                        <img src="/images/logga.png" alt="By Ek Publishing" class="h-14 w-auto">
                     </a>
                 </div>
 
@@ -100,7 +100,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <h3 class="text-xl font-display font-semibold mb-4">By Ek Publishing</h3>
+                    <img src="/images/logga.png" alt="By Ek Publishing" class="h-12 w-auto mb-4">
                     <p class="text-accent-300">Books, Art, and Music by Linda Ettehag Kviby</p>
                 </div>
 
