@@ -4,10 +4,6 @@
             @if($event->page_color) background-color: {{ $event->page_color }}; @endif
             @if($event->hero_banner_image) background-image: url('{{ Storage::url($event->hero_banner_image) }}'); background-size: contain; background-repeat: no-repeat; @endif
         ">
-        @if($event->hero_banner_image)
-            <!-- Overlay for better text readability when using custom banner -->
-            <div class="absolute inset-0 bg-gradient-to-br from-amber-50/90 via-yellow-50/90 to-accent-100/90"></div>
-        @endif
 
         @if($event->hero_graphic_image)
             <!-- Decorative graphic on left side -->
@@ -29,7 +25,7 @@
                     {{ $event->title }}
                 </h1>
                 @if($event->hero_badge_text)
-                    <div class="inline-block bg-amber-400 px-8 py-3 rounded-full">
+                    <div class="inline-block bg-[#F2D837] px-8 py-3 rounded-full">
                         <p class="text-lg md:text-xl font-bold text-brown-900 uppercase tracking-wide">{{ $event->hero_badge_text }}</p>
                     </div>
                 @endif
@@ -53,7 +49,7 @@
                 <div>
                     <div class="bg-white p-8 rounded-3xl shadow-xl mb-8 border-2 border-gray-200">
                         <h2 class="text-3xl font-display font-bold text-brown-900 mb-6 flex items-center">
-                            <svg class="w-8 h-8 mr-3 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-8 h-8 mr-3 text-[#dac430]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                             Evenemangsdetaljer
@@ -61,7 +57,7 @@
 
                         <div class="space-y-6">
                             <div class="flex items-start bg-white p-4 rounded-2xl shadow-sm">
-                                <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-2xl flex items-center justify-center text-white mr-4">
+                                <div class="flex-shrink-0 w-16 h-16 bg-[#F2D837] rounded-2xl flex items-center justify-center text-white mr-4">
                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
@@ -74,7 +70,7 @@
                             </div>
 
                             <div class="flex items-start bg-white p-4 rounded-2xl shadow-sm">
-                                <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-2xl flex items-center justify-center text-white mr-4">
+                                <div class="flex-shrink-0 w-16 h-16 bg-[#F2D837] rounded-2xl flex items-center justify-center text-white mr-4">
                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
@@ -91,7 +87,7 @@
                             </div>
 
                             <div class="flex items-start bg-white p-4 rounded-2xl shadow-sm">
-                                <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-2xl flex items-center justify-center text-white mr-4">
+                                <div class="flex-shrink-0 w-16 h-16 bg-[#F2D837] rounded-2xl flex items-center justify-center text-white mr-4">
                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -104,7 +100,7 @@
                             </div>
 
                             <div class="flex items-start bg-white p-4 rounded-2xl shadow-sm">
-                                <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-amber-500 to-yellow-500 rounded-2xl flex items-center justify-center text-white mr-4">
+                                <div class="flex-shrink-0 w-16 h-16 bg-[#F2D837] rounded-2xl flex items-center justify-center text-white mr-4">
                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -115,7 +111,7 @@
                                         {{ $event->availableSpots() }} av {{ $event->max_attendees }} platser kvar
                                     </div>
                                     @if($event->availableSpots() <= 10 && $event->availableSpots() > 0)
-                                        <div class="text-sm text-amber-700 font-semibold mt-1">⚠️ Bara några platser kvar!</div>
+                                        <div class="text-sm text-[#c2b028] font-semibold mt-1">⚠️ Bara några platser kvar!</div>
                                     @endif
                                 </div>
                             </div>
@@ -124,7 +120,7 @@
 
                     <div class="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-200">
                         <h3 class="text-2xl font-display font-bold text-brown-900 mb-4 flex items-center">
-                            <svg class="w-7 h-7 mr-3 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-7 h-7 mr-3 text-[#dac430]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             Om evenemanget

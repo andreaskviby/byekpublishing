@@ -4,9 +4,9 @@
             <p class="font-medium">Detta evenemang är fullbokat.</p>
         </div>
     @else
-        <div class="bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200 px-6 py-4 rounded-2xl mb-6 text-center">
+        <div class="bg-[#fdf8e6] border-2 border-[#f5e880] px-6 py-4 rounded-2xl mb-6 text-center">
             <p class="text-sm text-brown-700 font-medium">
-                <span class="text-2xl font-bold text-amber-600">{{ $event->availableSpots() }}</span> platser kvar av <span class="font-bold">{{ $event->max_attendees }}</span>
+                <span class="text-2xl font-bold text-[#c2b028]">{{ $event->availableSpots() }}</span> platser kvar av <span class="font-bold">{{ $event->max_attendees }}</span>
             </p>
         </div>
 
@@ -111,8 +111,7 @@
             </div>
 
             <button type="submit"
-                    style="background-color: rgb(217, 132, 110);"
-                    class="w-full hover:opacity-90 text-white px-8 py-4 rounded-xl
+                    class="w-full bg-[#F2D837] hover:bg-[#dac430] text-brown-900 px-8 py-4 rounded-xl
                            transition-all duration-300 font-bold text-lg shadow-lg
                            hover:shadow-xl transform hover:-translate-y-0.5 uppercase tracking-wide">
                 Anmäl dig nu

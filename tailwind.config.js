@@ -35,6 +35,16 @@ export default {
           800: '#166534',
           900: '#14532d',
         },
+        'lemon': {
+          50: '#fffee6',
+          100: '#fffccc',
+          200: '#fffab3',
+          300: '#fff980',
+          400: '#FFF700',
+          500: '#e6de00',
+          600: '#ccc500',
+          700: '#b3ac00',
+        },
       },
       fontFamily: {
         'display': ['Playfair Display', 'Georgia', 'serif'],
