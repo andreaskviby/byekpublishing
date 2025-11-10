@@ -75,7 +75,7 @@ class EventRsvpForm extends Component
         $this->sendAdminNotification($rsvpData);
         $this->sendUserConfirmation($rsvpData);
 
-        session()->flash('message', 'Your RSVP has been confirmed! Check your email for details.');
+        session()->flash('message', 'Din anmälan är bekräftad! Kolla din e-post för detaljer.');
 
         $this->reset(['name', 'email', 'phone', 'numberOfGuests']);
     }
