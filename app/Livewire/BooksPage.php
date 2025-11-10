@@ -49,7 +49,7 @@ class BooksPage extends Component
             'name' => 'Books by Linda Ettehag Kviby',
             'description' => 'Collection of books by Swedish author Linda Ettehag Kviby',
             'numberOfItems' => $books->count(),
-            'itemListElement' => $books->filter(fn($book) => !empty($book->slug))->map(function ($book, $index) {
+            'itemListElement' => $books->filter(fn ($book) => ! empty($book->slug))->map(function ($book, $index) {
                 return [
                     '@type' => 'ListItem',
                     'position' => $index + 1,

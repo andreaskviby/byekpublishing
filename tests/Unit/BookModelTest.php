@@ -12,8 +12,8 @@ class BookModelTest extends TestCase
      */
     public function test_book_model_uses_slug_as_route_key(): void
     {
-        $book = new Book();
-        
+        $book = new Book;
+
         $this->assertEquals('slug', $book->getRouteKeyName());
     }
 }
