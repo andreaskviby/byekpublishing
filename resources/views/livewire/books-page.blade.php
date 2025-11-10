@@ -79,6 +79,20 @@
                         </div>
 
                         <div class="md:col-span-2 relative">
+                            @if($book->isSoonToBeReleased())
+                                <div class="mb-4">
+                                    <span class="inline-block bg-[#F2D837] text-brown-900 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
+                                        🎄 Snart Tillgänglig - Förbeställ nu!
+                                    </span>
+                                </div>
+                            @elseif($book->status === 'out_of_stock')
+                                <div class="mb-4">
+                                    <span class="inline-block bg-red-100 text-red-800 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
+                                        Slutsåld
+                                    </span>
+                                </div>
+                            @endif
+
                             <h2 class="text-3xl font-display font-bold text-brown-900 mb-4">
                                 @if($book->slug)
                                     <a href="{{ route('book.detail', $book) }}" class="hover:text-primary-600 hover:underline transition-all">
@@ -101,26 +115,79 @@
                             @endif
 
                             <div class="mt-6">
-                                <h3 class="text-lg font-semibold text-gray-900 mb-4">Available in:</h3>
-                                <div class="space-y-4">
-                                    @foreach($book->purchaseLinks->groupBy('language_id') as $languageId => $links)
-                                        @php $language = $links->first()->language; @endphp
-                                        <div class="bg-white rounded-lg p-4">
-                                            <h4 class="font-medium text-brown-900 mb-3">{{ $language->flag_emoji }} {{ $language->name }}</h4>
-                                            <div class="flex flex-wrap gap-3">
-                                                @foreach($links->where('is_active', true) as $link)
-                                                    <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer"
-                                                       class="inline-block bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-colors text-sm">
-                                                        {{ $link->store_name }}
-                                                        @if($link->format)
-                                                            ({{ $link->format }})
-                                                        @endif
-                                                    </a>
-                                                @endforeach
-                                            </div>
+                                @if($book->isSoonToBeReleased())
+                                    <div class="bg-gradient-to-br from-yellow-50 to-amber-50 border-2 border-[#F2D837] rounded-lg p-6">
+                                        <h3 class="text-lg font-semibold text-brown-900 mb-3">Förbeställ nu!</h3>
+                                        <p class="text-sm text-brown-700 mb-4">
+                                            Säkra ditt exemplar redan idag. Boken skickas hem till dig så snart den är tillgänglig.
+                                            Perfekt som julklapp! 🎁
+                                        </p>
+                                        <div class="flex flex-wrap gap-3">
+                                            <a href="{{ route('book.preorder', $book) }}"
+                                               class="inline-block bg-[#F2D837] text-brown-900 px-6 py-3 rounded-xl hover:bg-[#dac430] transition-colors font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                                Förbeställ för 199 SEK
+                                            </a>
                                         </div>
-                                    @endforeach
-                                </div>
+                                    </div>
+                                @elseif($book->allow_christmas_orders)
+                                    <div class="bg-gradient-to-br from-red-50 via-green-50 to-yellow-50 border-2 border-[#F2D837] rounded-lg p-6 mb-4">
+                                        <h3 class="text-lg font-semibold text-brown-900 mb-3 flex items-center">
+                                            🎄 Beställ med jul-inpackning och signering!
+                                        </h3>
+                                        <p class="text-sm text-brown-700 mb-4">
+                                            Köp boken med vacker julklappsinpackning (+45 SEK) och be om en personlig dedikation från Linda.
+                                            Perfekt julklapp! 🎁
+                                        </p>
+                                        <div class="flex flex-wrap gap-3">
+                                            <a href="{{ route('book.preorder', $book) }}"
+                                               class="inline-block bg-[#F2D837] text-brown-900 px-6 py-3 rounded-xl hover:bg-[#dac430] transition-colors font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                                                Beställ för 199 SEK
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Eller köp här:</h3>
+                                    <div class="space-y-4">
+                                        @foreach($book->purchaseLinks->groupBy('language_id') as $languageId => $links)
+                                            @php $language = $links->first()->language; @endphp
+                                            <div class="bg-white rounded-lg p-4">
+                                                <h4 class="font-medium text-brown-900 mb-3">{{ $language->flag_emoji }} {{ $language->name }}</h4>
+                                                <div class="flex flex-wrap gap-3">
+                                                    @foreach($links->where('is_active', true) as $link)
+                                                        <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer"
+                                                           class="inline-block bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-colors text-sm">
+                                                            {{ $link->store_name }}
+                                                            @if($link->format)
+                                                                ({{ $link->format }})
+                                                            @endif
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Available in:</h3>
+                                    <div class="space-y-4">
+                                        @foreach($book->purchaseLinks->groupBy('language_id') as $languageId => $links)
+                                            @php $language = $links->first()->language; @endphp
+                                            <div class="bg-white rounded-lg p-4">
+                                                <h4 class="font-medium text-brown-900 mb-3">{{ $language->flag_emoji }} {{ $language->name }}</h4>
+                                                <div class="flex flex-wrap gap-3">
+                                                    @foreach($links->where('is_active', true) as $link)
+                                                        <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer"
+                                                           class="inline-block bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-colors text-sm">
+                                                            {{ $link->store_name }}
+                                                            @if($link->format)
+                                                                ({{ $link->format }})
+                                                            @endif
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </div>
 
                             @if($book->slug)

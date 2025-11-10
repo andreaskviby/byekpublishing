@@ -117,7 +117,7 @@ class EventRsvpForm extends Component
             "Antal gäster: {$rsvpData['number_of_guests']}\n\n" .
             "Vi ser fram emot att träffa dig där!\n\n" .
             "---\n\n" .
-            "Upptäck mer från By Ek Förlag:\n\n" .
+            "Upptäck mer från oss:\n\n" .
             "📚 Kolla in min första bok \"Fjärilsskugga\" - En fängslande berättelse av Linda Ettehag Kviby.\n" .
             "Besök: https://byekpublishing.com/books\n\n" .
             "🎥 Följ vårt Sicilien-äventyr på YouTube!\n" .

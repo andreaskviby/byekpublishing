@@ -78,6 +78,19 @@ class BookResource extends Resource
                 Forms\Components\TextInput::make('genre'),
                 Forms\Components\Toggle::make('is_published')
                     ->required(),
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'available' => 'Tillgänglig',
+                        'soon_to_be_released' => 'Snart tillgänglig',
+                        'out_of_stock' => 'Slutsåld',
+                    ])
+                    ->required()
+                    ->default('available')
+                    ->helperText('Välj "Snart tillgänglig" för förbeställningar'),
+                Forms\Components\Toggle::make('allow_christmas_orders')
+                    ->label('Köpbar med jul-inpackning och signering')
+                    ->helperText('Aktivera för att tillåta kunder beställa denna bok med julklappsinpackning och dedikation under julperioden')
+                    ->default(false),
                 Forms\Components\TextInput::make('sort_order')
                     ->required()
                     ->numeric()
@@ -104,6 +117,20 @@ class BookResource extends Resource
                     ->searchable(),
                 Tables\Columns\IconColumn::make('is_published')
                     ->boolean(),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'available' => 'success',
+                        'soon_to_be_released' => 'warning',
+                        'out_of_stock' => 'danger',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'available' => 'Tillgänglig',
+                        'soon_to_be_released' => 'Snart tillgänglig',
+                        'out_of_stock' => 'Slutsåld',
+                        default => $state,
+                    }),
                 Tables\Columns\TextColumn::make('sort_order')
                     ->numeric()
                     ->sortable(),

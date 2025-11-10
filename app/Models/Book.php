@@ -21,6 +21,8 @@ class Book extends Model
         'pages',
         'genre',
         'is_published',
+        'status',
+        'allow_christmas_orders',
         'sort_order',
     ];
 
@@ -29,6 +31,7 @@ class Book extends Model
         return [
             'publication_date' => 'date',
             'is_published' => 'boolean',
+            'allow_christmas_orders' => 'boolean',
             'pages' => 'integer',
             'sort_order' => 'integer',
         ];
@@ -47,6 +50,21 @@ class Book extends Model
     public function approvedReviews(): HasMany
     {
         return $this->hasMany(BookReview::class)->approved()->verified();
+    }
+
+    public function preorders(): HasMany
+    {
+        return $this->hasMany(BookPreorder::class);
+    }
+
+    public function isSoonToBeReleased(): bool
+    {
+        return $this->status === 'soon_to_be_released';
+    }
+
+    public function isAvailable(): bool
+    {
+        return $this->status === 'available';
     }
 
     public function getCoverImageUrlAttribute(): ?string
