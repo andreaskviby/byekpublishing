@@ -1,4 +1,8 @@
 <div>
+    @push('meta')
+        <x-seo-meta :seoData="$seoData" :structuredData="$structuredData" />
+    @endpush
+
     <section class="bg-gradient-to-r from-accent-100 to-primary-100 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-display font-bold text-brown-900 mb-4 text-center">Art Gallery</h1>

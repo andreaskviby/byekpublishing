@@ -1,4 +1,8 @@
 <div class="bg-white">
+    @push('meta')
+        <x-seo-meta :seoData="$seoData" :structuredData="$structuredData" />
+    @endpush
+
     <!-- Hero Section -->
     <section class="relative bg-gradient-to-br from-amber-50 via-yellow-50 to-accent-100 py-20 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

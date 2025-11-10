@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Book;
+use App\Services\SeoService;
 use Livewire\Component;
 
 class BookPreorderDetail extends Component
@@ -17,6 +18,25 @@ class BookPreorderDetail extends Component
 
     public function render()
     {
-        return view('livewire.book-preorder-detail')->layout('layouts.app')->title("Förbeställ {$this->book->title}");
+        $seoTitle = $this->book->isSoonToBeReleased()
+            ? "Förbeställ {$this->book->title}"
+            : "Beställ {$this->book->title} med julklappsinpackning";
+
+        $seoDescription = $this->book->isSoonToBeReleased()
+            ? "Förbeställ {$this->book->title} av Linda Ettehag Kviby. Få boken hemskickad så fort den är tillgänglig. Signerad med dedikation."
+            : "Beställ {$this->book->title} som perfekt julklapp! Signerad, inpackad och hemskickad. Endast 199 SEK (+45 SEK för julinslagning).";
+
+        $seoData = SeoService::generateMetaTags(
+            $this->book,
+            $seoTitle,
+            $seoDescription
+        );
+
+        $structuredData = SeoService::generateStructuredData($this->book);
+
+        return view('livewire.book-preorder-detail', [
+            'seoData' => $seoData,
+            'structuredData' => $structuredData,
+        ])->layout('layouts.app')->title($seoData['title']);
     }
 }

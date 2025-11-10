@@ -1,23 +1,6 @@
 <div>
     @push('meta')
-        <meta name="description" content="{{ $seoData['description'] }}">
-        <meta name="keywords" content="{{ $seoData['keywords'] }}">
-        <meta name="author" content="{{ $seoData['author'] }}">
-        <link rel="canonical" href="{{ $seoData['url'] }}">
-        
-        <!-- Open Graph Tags -->
-        <meta property="og:type" content="{{ $seoData['type'] }}">
-        <meta property="og:title" content="{{ $seoData['title'] }}">
-        <meta property="og:description" content="{{ $seoData['description'] }}">
-        <meta property="og:image" content="{{ $seoData['image'] }}">
-        <meta property="og:url" content="{{ $seoData['url'] }}">
-        <meta property="og:site_name" content="{{ $seoData['site_name'] }}">
-        
-        <!-- Twitter Card Tags -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{ $seoData['title'] }}">
-        <meta name="twitter:description" content="{{ $seoData['description'] }}">
-        <meta name="twitter:image" content="{{ $seoData['image'] }}">
+        <x-seo-meta :seoData="$seoData" :structuredData="$structuredData" />
     @endpush
 
     <section class="bg-gradient-to-r from-accent-100 to-primary-100 py-16">

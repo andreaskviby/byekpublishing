@@ -52,6 +52,24 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    @if($book->isSoonToBeReleased() || $book->allow_christmas_orders)
+    <url>
+        <loc>{{ route('book.preorder', $book) }}</loc>
+        <lastmod>{{ $book->updated_at->format('Y-m-d') }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    @endif
+    @endforeach
+
+    <!-- Events -->
+    @foreach(\App\Models\Event::whereNotNull('slug')->where('event_date', '>=', now())->get() as $event)
+    <url>
+        <loc>{{ route('event.detail', $event) }}</loc>
+        <lastmod>{{ $event->updated_at->format('Y-m-d') }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
     @endforeach
 
     <!-- Blog Posts -->

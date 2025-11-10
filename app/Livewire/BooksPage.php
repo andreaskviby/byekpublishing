@@ -30,17 +30,61 @@ class BooksPage extends Component
             'title' => 'Books | By Ek Publishing - Linda Ettehag Kviby',
             'description' => 'Explore emotional journeys through powerful storytelling. Discover psychological thriller books by Swedish author Linda Ettehag Kviby, available in multiple languages.',
             'keywords' => 'Linda Ettehag Kviby books, Swedish author, psychological thriller, emotional storytelling, multilingual books, Swedish literature',
-            'image' => asset('images/default-og-image.jpg'),
+            'image' => $books->first()?->cover_image_url ?? asset('images/default-og-image.jpg'),
             'url' => route('books'),
             'type' => 'website',
             'author' => 'Linda Ettehag Kviby',
             'site_name' => 'By Ek Publishing',
+            'twitter:card' => 'summary_large_image',
+            'twitter:site' => '@lindaettehagkviby',
+            'twitter:creator' => '@lindaettehagkviby',
+            'og:image:width' => '1200',
+            'og:image:height' => '630',
+            'og:locale' => 'sv_SE',
+        ];
+
+        $structuredData = [
+            '@context' => 'https://schema.org',
+            '@type' => 'ItemList',
+            'name' => 'Books by Linda Ettehag Kviby',
+            'description' => 'Collection of books by Swedish author Linda Ettehag Kviby',
+            'numberOfItems' => $books->count(),
+            'itemListElement' => $books->map(function ($book, $index) {
+                return [
+                    '@type' => 'ListItem',
+                    'position' => $index + 1,
+                    'item' => [
+                        '@type' => 'Book',
+                        '@id' => route('book.detail', $book),
+                        'name' => $book->title,
+                        'description' => $book->meta_description ?? $book->description,
+                        'image' => $book->cover_image_url,
+                        'author' => [
+                            '@type' => 'Person',
+                            'name' => 'Linda Ettehag Kviby',
+                            'url' => route('author'),
+                        ],
+                        'publisher' => [
+                            '@type' => 'Organization',
+                            'name' => 'By Ek Publishing',
+                            'url' => route('home'),
+                        ],
+                        'isbn' => $book->isbn,
+                        'genre' => $book->genre,
+                        'numberOfPages' => $book->pages,
+                        'datePublished' => $book->publication_date?->format('Y-m-d'),
+                        'inLanguage' => 'sv-SE',
+                        'bookFormat' => 'https://schema.org/Paperback',
+                    ],
+                ];
+            })->values()->all(),
         ];
 
         return view('livewire.books-page', [
             'books' => $books,
             'languages' => $languages,
             'seoData' => $seoData,
+            'structuredData' => $structuredData,
         ])->layout('layouts.app')->title($seoData['title']);
     }
 }

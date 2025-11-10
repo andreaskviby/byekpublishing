@@ -1,4 +1,8 @@
 <div @if($event->page_color) style="background-color: {{ $event->page_color }};" @endif>
+    @push('meta')
+        <x-seo-meta :seoData="$seoData" :structuredData="$structuredData" />
+    @endpush
+
     <section class="relative bg-gradient-to-br from-amber-50 via-yellow-50 to-accent-100 py-20 overflow-hidden"
         style="
             @if($event->page_color) background-color: {{ $event->page_color }}; @endif
