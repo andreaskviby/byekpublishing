@@ -57,6 +57,11 @@ class Book extends Model
         return $this->hasMany(BookPreorder::class);
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function isSoonToBeReleased(): bool
     {
         return $this->status === 'soon_to_be_released';
