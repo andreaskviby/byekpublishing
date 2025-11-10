@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^3.6",
         "openai-php/client": "^0.17.0",
+        "symfony/http-client": "^7.3",
         "symfony/mailgun-mailer": "^7.3"
     },
     "require-dev": {
