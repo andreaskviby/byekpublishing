@@ -18,7 +18,7 @@ class ArtGallery extends Component
             'description' => 'Explore the visual artworks of Swedish artist Linda Ettehag Kviby. Browse original paintings and artwork featuring emotional depth and unique artistic expression.',
             'keywords' => 'Linda Ettehag Kviby art, Swedish artist, paintings, visual artwork, contemporary art, original artwork, Swedish contemporary artist',
             'image' => $artPieces->first()?->image_url ?? asset('images/default-og-image.jpg'),
-            'url' => route('art-gallery'),
+            'url' => route('art'),
             'type' => 'website',
             'author' => 'Linda Ettehag Kviby',
             'site_name' => 'By Ek Publishing',
