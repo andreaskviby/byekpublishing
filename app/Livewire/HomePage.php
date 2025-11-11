@@ -10,6 +10,7 @@ use App\Models\InstagramPost;
 use App\Models\MusicRelease;
 use App\Models\YouTubeVideo;
 use App\Services\SeoService;
+use App\Services\YouTubeService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
@@ -17,7 +18,10 @@ use Livewire\Component;
 class HomePage extends Component
 {
     public $youtubeSubscribers = 0;
+    public $displaySubscribers = 1000;
     public $instagramFollowers = 0;
+    public $targetSubscribers = 0;
+    public $isAnimating = true;
 
     public function mount()
     {
@@ -26,14 +30,39 @@ class HomePage extends Component
 
     private function loadSocialStats()
     {
-        // Cache stats for 1 hour to avoid API rate limits
-        $this->youtubeSubscribers = cache()->remember('youtube_subscribers', 3600, function () {
-            return $this->getYoutubeSubscribers();
-        });
+        $youtubeService = new YouTubeService();
+        
+        // Get real subscriber count
+        $this->youtubeSubscribers = $youtubeService->getCachedSubscriberCount() ?? 0;
+        $this->targetSubscribers = $this->youtubeSubscribers;
 
         $this->instagramFollowers = cache()->remember('instagram_followers', 3600, function () {
             return $this->getInstagramFollowers();
         });
+    }
+
+    public function updateSubscriberCount()
+    {
+        $youtubeService = new YouTubeService();
+        $newCount = $youtubeService->getSubscriberCount();
+        
+        if ($newCount !== null && $newCount > $this->targetSubscribers) {
+            $this->targetSubscribers = $newCount;
+            $this->youtubeSubscribers = $newCount;
+        }
+    }
+
+    public function incrementCounter()
+    {
+        if ($this->displaySubscribers < $this->targetSubscribers) {
+            $increment = rand(3, 7);
+            $this->displaySubscribers = min($this->displaySubscribers + $increment, $this->targetSubscribers);
+            
+            // If we reach the target, refresh the target from API
+            if ($this->displaySubscribers >= $this->targetSubscribers) {
+                $this->updateSubscriberCount();
+            }
+        }
     }
 
     private function getYoutubeSubscribers(): int

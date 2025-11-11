@@ -58,6 +58,32 @@
         </div>
     </section>
 
+    <!-- YouTube Subscriber Counter -->
+    <section class="py-12 bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="inline-flex items-center justify-center p-8 rounded-2xl bg-gradient-to-r from-lemon-100 to-lemon-50 shadow-xl border-2 border-lemon-200">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 flex items-center justify-center rounded-full" style="background-color: var(--button-bg);">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="text-sm font-medium text-gray-600 mb-1">YouTube Subscribers</div>
+                            <div class="text-4xl font-bold" style="color: var(--button-bg);" wire:loading.attr="disabled">
+                                <span wire:target="incrementCounter" wire:poll.2000ms="incrementCounter">
+                                    {{ number_format($displaySubscribers) }}
+                                </span>
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">Live Counter</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     @if($upcomingEvents->count() > 0)
     <section class="py-20 bg-gradient-to-br from-slate-50 to-accent-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
