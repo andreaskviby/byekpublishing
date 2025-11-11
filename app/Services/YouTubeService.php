@@ -13,6 +13,70 @@ class YouTubeService
     private ?string $apiKey;
     private ?string $channelId;
 
+    public function getSubscriberCount(): ?int
+    {
+        if (! $this->apiKey || ! $this->channelId) {
+            Log::warning('YouTube API credentials not configured for subscriber count.');
+            return null;
+        }
+
+        try {
+            $response = Http::get('https://www.googleapis.com/youtube/v3/channels', [
+                'key' => $this->apiKey,
+                'id' => $this->channelId,
+                'part' => 'statistics',
+            ]);
+
+            if (! $response->successful()) {
+                Log::error('YouTube channel API request failed', ['status' => $response->status()]);
+                return null;
+            }
+
+            $data = $response->json();
+            
+            if (empty($data['items'])) {
+                Log::warning('No channel found for the provided channel ID.');
+                return null;
+            }
+
+            $subscriberCount = $data['items'][0]['statistics']['subscriberCount'] ?? null;
+            
+            if ($subscriberCount === null) {
+                Log::warning('Subscriber count not available for this channel.');
+                return null;
+            }
+
+            return (int) $subscriberCount;
+        } catch (\Exception $e) {
+            Log::error('Failed to get YouTube subscriber count', ['error' => $e->getMessage()]);
+            return null;
+        }
+    }
+
+    public function getFormattedSubscriberCount(): string
+    {
+        $count = $this->getCachedSubscriberCount();
+        
+        if ($count === null) {
+            return 'N/A';
+        }
+
+        if ($count >= 1000000) {
+            return number_format($count / 1000000, 1) . 'M';
+        } elseif ($count >= 1000) {
+            return number_format($count / 1000, 1) . 'K';
+        }
+        
+        return number_format($count);
+    }
+
+    public function getCachedSubscriberCount(): ?int
+    {
+        return Cache::remember('youtube_subscriber_count', 3600, function () {
+            return $this->getSubscriberCount();
+        });
+    }
+
     public function __construct()
     {
         $this->apiKey = config('services.youtube.api_key');
