@@ -32,9 +32,11 @@ class HomePage extends Component
     {
         $youtubeService = new YouTubeService();
         
-        // Get real subscriber count
-        $this->youtubeSubscribers = $youtubeService->getCachedSubscriberCount() ?? 0;
-        $this->targetSubscribers = $this->youtubeSubscribers;
+        // Get real subscriber count and start 1000 below
+        $realCount = $youtubeService->getCachedSubscriberCount() ?? 0;
+        $this->youtubeSubscribers = $realCount;
+        $this->displaySubscribers = max(1000, $realCount - 1000); // Start 1000 below, but minimum 1000
+        $this->targetSubscribers = $realCount;
 
         $this->instagramFollowers = cache()->remember('instagram_followers', 3600, function () {
             return $this->getInstagramFollowers();
