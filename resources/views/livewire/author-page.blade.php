@@ -34,7 +34,7 @@
                 <div class="order-2 lg:order-2">
                     <div class="space-y-6">
                         <div class="inline-block px-6 py-2 rounded-full mb-4" style="background-color: #FEF9E7; border: 2px solid #F2D837;">
-                            <span class="font-bold text-brown-900">Författare, Konstnär & Musikskapare</span>
+                            <span class="font-bold text-brown-900">Författare, Konstnär & Youtuber med mera</span>
                         </div>
 
                         <p class="text-xl text-gray-800 leading-relaxed font-medium">
