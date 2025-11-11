@@ -222,7 +222,7 @@
                     >
                         <div x-ref="counter" class="flex items-center">
                             <template x-for="(char, index) in displayValue" :key="index">
-                                <div class="digit-container inline-block" style="perspective: 1000px;">
+                                <div class="digit-container inline-block" :class="{ 'comma-container': char === ',' }" style="perspective: 1000px;">
                                     <div class="digit-wrapper inline-block relative" style="transform-style: preserve-3d;">
                                         <span x-text="char" class="digit inline-block"></span>
                                     </div>
@@ -237,10 +237,13 @@
                 <style>
                     .digit-container {
                         text-align: center;
+                        min-width: 0.6em;
                     }
 
-                    .digit-container:has(.digit:not(:empty)) {
-                        min-width: 0.6em;
+                    .digit-container.comma-container {
+                        min-width: 0.2em;
+                        padding: 0;
+                        margin: 0;
                     }
 
                     .digit-wrapper {
