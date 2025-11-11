@@ -123,10 +123,9 @@ class BookReviewForm extends Component
             }
         }
 
-        // Send admin notification
-        $this->sendAdminNotification($review);
+        // Note: Admin notification is sent automatically via BookReviewObserver
 
-        session()->flash('success', $this->email 
+        session()->flash('success', $this->email
             ? 'Thank you for your review! Please check your email to verify your submission.'
             : 'Thank you for your review! It will be published after admin approval.');
 
@@ -164,24 +163,6 @@ class BookReviewForm extends Component
             function ($mail) use ($subscription) {
                 $mail->to($subscription->email)
                     ->subject("Verify Your Newsletter Subscription - Linda's Creative Newsletter");
-            }
-        );
-    }
-
-    private function sendAdminNotification(BookReview $review)
-    {
-        Mail::raw(
-            "New book review submitted:\n\n" .
-            "Book: {$this->book->title}\n" .
-            "Rating: {$review->butterfly_rating}\n" .
-            "Signature: " . ($review->reviewer_signature ?: 'Anonymous') . "\n" .
-            "Email: " . ($review->reviewer_email ?: 'Not provided') . "\n" .
-            ($review->review_text ? "Review: {$review->review_text}\n" : '') .
-            "Newsletter signup: " . ($review->subscribed_to_newsletter ? 'Yes' : 'No') . "\n\n" .
-            "Please review and approve in the admin panel.",
-            function ($mail) {
-                $mail->to('linda.ettehag@gmail.com')
-                    ->subject("New Book Review Awaiting Approval");
             }
         );
     }
