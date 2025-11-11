@@ -59,7 +59,7 @@
                         Videos
                     </a>
                     <a href="{{ route('contact') }}"
-                       class="bg-primary-600 text-white px-6 py-2 rounded-full hover:bg-primary-700 transition-colors font-medium">
+                       class="bg-primary-400 text-black px-6 py-2 rounded-full hover:bg-primary-500 transition-colors font-medium">
                         Contact
                     </a>
                 </div>
@@ -87,7 +87,7 @@
                 <a href="{{ route('art') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-primary-600 rounded-md">Art</a>
                 <a href="{{ route('music') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-primary-600 rounded-md">Music</a>
                 <a href="{{ route('videos') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-primary-600 rounded-md">Videos</a>
-                <a href="{{ route('contact') }}" class="block px-3 py-2 text-white bg-primary-600 hover:bg-primary-700 rounded-md">Contact</a>
+                <a href="{{ route('contact') }}" class="block px-3 py-2 text-black bg-primary-400 hover:bg-primary-500 rounded-md">Contact</a>
             </div>
         </div>
     </nav>
@@ -96,22 +96,22 @@
         {{ $slot }}
     </main>
 
-    <footer class="bg-brown-900 text-white mt-20">
+    <footer class="mt-20" style="background-color: var(--button-bg); color: #1e293b;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <img src="/images/logga.png" alt="By Ek Publishing" class="h-12 w-auto mb-4">
-                    <p class="text-accent-300">Books, Art, and Music by Linda Ettehag Kviby</p>
+                    <p>Books, Art, and Music by Linda Ettehag Kviby</p>
                 </div>
 
                 <div>
                     <h3 class="text-xl font-display font-semibold mb-4">Quick Links</h3>
                     <nav aria-label="Footer navigation">
                         <ul class="space-y-2">
-                            <li><a href="{{ route('books') }}" class="text-accent-300 hover:text-white transition-colors">Books</a></li>
-                            <li><a href="{{ route('art') }}" class="text-accent-300 hover:text-white transition-colors">Art Gallery</a></li>
-                            <li><a href="{{ route('music') }}" class="text-accent-300 hover:text-white transition-colors">Music</a></li>
-                            <li><a href="{{ route('contact') }}" class="text-accent-300 hover:text-white transition-colors">Contact</a></li>
+                            <li><a href="{{ route('books') }}" class="hover:font-bold transition-colors">Books</a></li>
+                            <li><a href="{{ route('art') }}" class="hover:font-bold transition-colors">Art Gallery</a></li>
+                            <li><a href="{{ route('music') }}" class="hover:font-bold transition-colors">Music</a></li>
+                            <li><a href="{{ route('contact') }}" class="hover:font-bold transition-colors">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -122,7 +122,7 @@
                         <a href="https://www.youtube.com/@WeBoughtAnAdventureInSicily"
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="flex items-center space-x-2 text-accent-300 hover:text-white transition-colors">
+                           class="flex items-center space-x-2 hover:font-bold transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                             </svg>
@@ -131,20 +131,20 @@
                         <a href="https://www.patreon.com/c/WeBoughtAnAdventureInSicily"
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="flex items-center space-x-2 text-accent-300 hover:text-white transition-colors">
+                           class="flex items-center space-x-2 hover:font-bold transition-colors">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M15.386.524c-4.764 0-8.64 3.876-8.64 8.64 0 4.75 3.876 8.613 8.64 8.613 4.75 0 8.614-3.864 8.614-8.613C24 4.4 20.136.524 15.386.524M.003 23.537h4.22V.524H.003"/>
                             </svg>
                             <span>Support on Patreon</span>
                         </a>
                     </div>
-                    <p class="text-accent-300 text-sm mt-4">
+                    <p class="text-sm mt-4">
                         We only use AI for research and music production. All book content and YouTube videos are created by humans.
                     </p>
                 </div>
             </div>
 
-            <div class="mt-8 pt-8 border-t border-brown-800 text-center text-accent-300">
+            <div class="mt-8 pt-8 border-t" style="border-color: rgba(30, 41, 59, 0.2);" class="text-center">
                 <p>&copy; {{ date('Y') }} By Ek Publishing. All rights reserved.</p>
             </div>
         </div>

@@ -69,7 +69,8 @@
                     </div>
                     @if($book->sample_pdf_url)
                         <a href="{{ $book->sample_pdf_url }}" target="_blank" rel="noopener noreferrer"
-                           class="mt-6 inline-flex items-center text-sm text-primary-600 hover:text-primary-700 hover:underline transition-colors">
+                           class="mt-6 inline-flex items-center px-6 py-3 rounded-xl border-2 border-accent-200 hover:border-lemon-400 transition-all duration-300 font-medium"
+                           style="color: var(--button-bg);">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
@@ -152,7 +153,8 @@
                                                 <a href="{{ $link->url }}"
                                                    target="_blank"
                                                    rel="noopener noreferrer"
-                                                   class="inline-flex items-center px-5 py-3 bg-primary-600 text-white rounded-full hover:bg-primary-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 font-medium text-sm">
+                                                   class="inline-flex items-center px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:-translate-y-1 hover:font-bold"
+                                                   style="background-color: var(--button-bg); color: #1e293b;">
                                                     {{ $link->store_name }}
                                                     @if($link->format)
                                                         <span class="ml-2 text-xs opacity-80">({{ $link->format }})</span>
@@ -231,8 +233,8 @@
                                             <span class="text-sm w-3">{{ $rating }}</span>
                                             <span class="text-lg">🦋</span>
                                             <div class="flex-1 bg-gray-200 rounded-full h-2">
-                                                <div class="bg-primary-600 h-2 rounded-full" 
-                                                     style="width: {{ $totalReviews > 0 ? ($count / $totalReviews * 100) : 0 }}%"></div>
+                                                <div class="h-2 rounded-full" 
+                                                     style="width: {{ $totalReviews > 0 ? ($count / $totalReviews * 100) : 0 }}%; background-color: var(--button-bg);"></div>
                                             </div>
                                             <span class="text-sm text-gray-600 w-8">{{ $count }}</span>
                                         </div>
@@ -270,7 +272,8 @@
                                                         <div class="flex items-start justify-between mb-4">
                                                             <div class="flex items-center space-x-3">
                                                                 <div class="flex-shrink-0">
-                                                                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-pink-500 rounded-full flex items-center justify-center text-white font-semibold">
+                                                                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold"
+                                                                         style="background-color: var(--button-bg);">
                                                                         {{ substr($review->reviewer_signature ?: 'A', 0, 1) }}
                                                                     </div>
                                                                 </div>

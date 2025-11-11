@@ -1,26 +1,36 @@
 @import 'tailwindcss';
 
+/* eslint-disable-next-line at-rule-no-unknown */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+/* eslint-disable-next-line at-rule-no-unknown */
 @source '../../storage/framework/views/*.php';
+/* eslint-disable-next-line at-rule-no-unknown */
 @source '../**/*.blade.php';
+/* eslint-disable-next-line at-rule-no-unknown */
 @source '../**/*.js';
 
+/* Button background color setting */
+:root {
+    --button-bg: #F9D83F;
+}
+
+/* eslint-disable-next-line at-rule-no-unknown */
 @theme {
     --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
     --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
 
-    /* Primary colors - warm peachy-coral palette (from book cover) */
-    --color-primary-50: #fdf7f4;
-    --color-primary-100: #fceee8;
-    --color-primary-200: #f9ddd1;
-    --color-primary-300: #f4c4b0;
-    --color-primary-400: #eca289;
-    --color-primary-500: #e6a491;
-    --color-primary-600: #d9846e;
-    --color-primary-700: #c76b54;
-    --color-primary-800: #a85745;
-    --color-primary-900: #8a473a;
+    /* Primary colors - lemon palette from Etsy inspiration */
+    --color-primary-50: #fffcf0;
+    --color-primary-100: #fff9e0;
+    --color-primary-200: #fff5cc;
+    --color-primary-300: #ffef99;
+    --color-primary-400: #FFF700;
+    --color-primary-500: #e6d800;
+    --color-primary-600: #ccba00;
+    --color-primary-700: #b3a500;
+    --color-primary-800: #998f00;
+    --color-primary-900: #807800;
 
     /* Accent colors - cream and warm earth tones */
     --color-accent-50: #fdfcfa;
@@ -170,31 +180,53 @@ html {
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
 
-/* Smooth transitions */
-* {
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+/* Advanced Animations for World-Class Design */
+
+@keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
-/* Enhanced hover effects */
-.hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-20px) rotate(1deg); }
+    75% { transform: translateY(-10px) rotate(-1deg); }
 }
 
-.hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+@keyframes slide-in-left {
+    0% { opacity: 0; transform: translateX(-100px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
-.hover-glow:hover {
-    box-shadow: 0 0 20px rgba(230, 164, 145, 0.5);
+@keyframes slide-in-right {
+    0% { opacity: 0; transform: translateX(100px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
-/* Gradient text effect - warm peachy to cream */
-.gradient-text {
-    background: linear-gradient(135deg, #d9846e 0%, #e6a491 50%, #f0dcc4 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 6s ease infinite;
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-slide-in-left {
+    animation: slide-in-left 1s ease-out;
+}
+
+.animate-slide-in-right {
+    animation: slide-in-right 1s ease-out;
+}
+
+.animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
 }
 
 /* Glass morphism effect */
@@ -205,12 +237,27 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* Hover effects */
+.hover-lift {
+    transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 30px rgba(255, 247, 0, 0.6);
+}
+
 /* Image zoom effect */
 .image-zoom {
     overflow: hidden;
 }
 
 .image-zoom img {
+    transition: transform 0.5s ease;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

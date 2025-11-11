@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Add slug to books table
-        Schema::table('books', function (Blueprint $table) {
-            $table->string('slug')->unique()->after('title')->nullable();
-            $table->text('meta_description')->nullable()->after('description');
-            $table->string('meta_keywords')->nullable()->after('meta_description');
-        });
-
+        // Books table already has slug, meta_description, and meta_keywords in initial migration
+        
         // Add slug to art_pieces table
         Schema::table('art_pieces', function (Blueprint $table) {
             $table->string('slug')->unique()->after('title')->nullable();
@@ -51,10 +46,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('books', function (Blueprint $table) {
-            $table->dropColumn(['slug', 'meta_description', 'meta_keywords']);
-        });
-
+        // Books table handled in initial migration
+        
         Schema::table('art_pieces', function (Blueprint $table) {
             $table->dropColumn(['slug', 'meta_description', 'meta_keywords']);
         });

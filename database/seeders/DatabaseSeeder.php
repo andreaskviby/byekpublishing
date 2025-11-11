@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             LanguageSeeder::class,
             BookSeeder::class,
+            ArtPieceSeeder::class,
             PurchaseLinkSeeder::class,
             YouTubeVideoSeeder::class,
         ]);

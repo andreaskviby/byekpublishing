@@ -128,8 +128,8 @@
 
                 <div class="animate-fadeInUp" style="animation-delay: 0.5s">
                     <button type="submit"
-                            class="w-full bg-gradient-to-r from-primary-600 to-primary-500 text-white px-8 py-5 rounded-xl
-                                   hover:from-primary-700 hover:to-primary-600
+                            class="w-full bg-primary-400 text-black px-8 py-5 rounded-xl
+                                   hover:bg-primary-500
                                    transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl
                                    transform hover:-translate-y-0.5 active:translate-y-0
                                    focus:outline-none focus:ring-4 focus:ring-primary-300">

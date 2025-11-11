@@ -20,6 +20,9 @@ return new class extends Migration
             $table->date('publication_date')->nullable();
             $table->integer('pages')->nullable();
             $table->string('genre')->nullable();
+            $table->string('slug')->unique();
+            $table->text('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
             $table->boolean('is_published')->default(true);
             $table->integer('sort_order')->default(0);
             $table->timestamps();
