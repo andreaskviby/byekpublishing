@@ -57,14 +57,15 @@ class HomePage extends Component
     public function incrementCounter()
     {
         if ($this->displaySubscribers < $this->targetSubscribers) {
-            $increment = rand(3, 7);
+            $increment = rand(1, 10);
             $this->displaySubscribers = min($this->displaySubscribers + $increment, $this->targetSubscribers);
-            
-            // If we reach the target, refresh the target from API
-            if ($this->displaySubscribers >= $this->targetSubscribers) {
-                $this->updateSubscriberCount();
-            }
         }
+    }
+
+    public function refreshSubscriberTarget()
+    {
+        // Fetch new subscriber count from YouTube every 30 seconds
+        $this->updateSubscriberCount();
     }
 
     private function getYoutubeSubscribers(): int

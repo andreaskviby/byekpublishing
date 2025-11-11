@@ -178,9 +178,11 @@
                 
                 <!-- Animated Counter -->
                 <div class="text-6xl md:text-7xl font-black mb-4 leading-none" style="color: var(--button-bg);" wire:loading.attr="disabled">
-                    <span wire:target="incrementCounter" wire:poll.2000ms="incrementCounter" class="inline-block min-w-[300px]">
+                    <span wire:target="incrementCounter" wire:poll.1000ms="incrementCounter" class="inline-block min-w-[300px]">
                         {{ number_format($displaySubscribers) }}
                     </span>
+                    <!-- Hidden element to refresh subscriber count from YouTube every 30 seconds -->
+                    <span wire:poll.30000ms="refreshSubscriberTarget" class="hidden"></span>
                 </div>
                 
                 <!-- Live Indicator -->
