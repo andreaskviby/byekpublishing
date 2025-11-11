@@ -17,7 +17,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @forelse($artPieces as $art)
                     <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-accent-100 hover:-translate-y-2">
-                        <a href="{{ route('art.detail', $art) }}" class="block aspect-square bg-gradient-to-br from-lemon-100 to-accent-100 relative overflow-hidden">
+                        @if($art->slug)
+                            <a href="{{ route('art.detail', $art) }}" class="block aspect-square bg-gradient-to-br from-lemon-100 to-accent-100 relative overflow-hidden">
+                        @else
+                            <div class="block aspect-square bg-gradient-to-br from-lemon-100 to-accent-100 relative overflow-hidden">
+                        @endif
                             @if($art->image_url)
                                 <img src="{{ $art->image_url }}" alt="{{ $art->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                             @else
@@ -26,7 +30,11 @@
                                 </div>
                             @endif
                             <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </a>
+                        @if($art->slug)
+                            </a>
+                        @else
+                            </div>
+                        @endif
                         <div class="p-6">
                             <div class="flex items-center mb-3">
                                 <div class="w-8 h-8 mr-3 flex-shrink-0 flex items-center justify-center rounded-lg" style="background-color: var(--button-bg); color: #1e293b;">
@@ -36,9 +44,17 @@
                                 </div>
                                 <span class="text-sm font-medium text-gray-500">Original Artwork</span>
                             </div>
-                            <a href="{{ route('art.detail', $art) }}" class="block group-hover:text-lemon-600 transition-colors">
+                            @if($art->slug)
+                                <a href="{{ route('art.detail', $art) }}" class="block group-hover:text-lemon-600 transition-colors">
+                            @else
+                                <div class="block">
+                            @endif
                                 <h3 class="text-xl font-display font-bold text-gray-900 mb-3">{{ $art->title }}</h3>
-                            </a>
+                            @if($art->slug)
+                                </a>
+                            @else
+                                </div>
+                            @endif
                             @if($art->description)
                                 <p class="text-gray-700 mb-4 leading-relaxed">{{ Str::limit($art->description, 120) }}</p>
                             @endif
@@ -78,9 +94,15 @@
                                 <p class="text-xl font-semibold mb-4" style="color: var(--button-bg);">{{ number_format($art->price, 0) }} {{ $art->currency }}</p>
                             @endif
                             <div class="flex gap-3">
-                                <a href="{{ route('art.detail', $art) }}" class="inline-block flex-1 text-center px-4 py-3 rounded-xl transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:-translate-y-1 hover:font-bold border-2 border-accent-200 hover:border-lemon-400" style="color: var(--button-bg);">
-                                    View Details
-                                </a>
+                                @if($art->slug)
+                                    <a href="{{ route('art.detail', $art) }}" class="inline-block flex-1 text-center px-4 py-3 rounded-xl transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:-translate-y-1 hover:font-bold border-2 border-accent-200 hover:border-lemon-400" style="color: var(--button-bg);">
+                                        View Details
+                                    </a>
+                                @else
+                                    <div class="inline-block flex-1 text-center px-4 py-3 rounded-xl border-2 border-accent-200" style="color: var(--button-bg);">
+                                        View Details
+                                    </div>
+                                @endif
                                 <a href="{{ route('contact', ['art' => $art->title]) }}" class="inline-block flex-1 text-center px-4 py-3 rounded-xl transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:-translate-y-1 hover:font-bold" style="background-color: var(--button-bg); color: #1e293b;">
                                     Inquire
                                 </a>
