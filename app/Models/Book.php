@@ -57,6 +57,11 @@ class Book extends Model
         return $this->hasMany(BookPreorder::class);
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function isSoonToBeReleased(): bool
     {
         return $this->status === 'soon_to_be_released';
@@ -69,7 +74,7 @@ class Book extends Model
 
     public function getCoverImageUrlAttribute(): ?string
     {
-        if (!$this->cover_image) {
+        if (! $this->cover_image) {
             return null;
         }
 
@@ -79,12 +84,12 @@ class Book extends Model
         }
 
         // Otherwise, prepend /storage/ for files uploaded via Filament
-        return '/storage/' . $this->cover_image;
+        return '/storage/'.$this->cover_image;
     }
 
     public function getSamplePdfUrlAttribute(): ?string
     {
-        if (!$this->sample_pdf) {
+        if (! $this->sample_pdf) {
             return null;
         }
 
@@ -94,7 +99,7 @@ class Book extends Model
         }
 
         // Otherwise, prepend /storage/ for files uploaded via Filament
-        return '/storage/' . $this->sample_pdf;
+        return '/storage/'.$this->sample_pdf;
     }
 
     protected static function boot()
