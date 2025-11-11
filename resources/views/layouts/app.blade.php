@@ -102,7 +102,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <img src="/images/logga.png" alt="By Ek Publishing" class="h-12 w-auto mb-4">
+                    <img src="/images/logga.png" alt="By Ek Publishing" class="h-16 w-auto mb-4">
                     <p>Books, Art, and Music by Linda Ettehag Kviby</p>
                 </div>
 
