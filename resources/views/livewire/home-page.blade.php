@@ -100,11 +100,8 @@
                     
                     <!-- Call to Action Message -->
                     <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-6 border-2 border-gray-200">
-                        <p class="text-xl md:text-2xl font-bold text-gray-800 mb-3">
+                        <p class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
                             🎯 A lot of people follow me, why don't you too?
-                        </p>
-                        <p class="text-gray-600 mb-4">
-                            Join thousands of subscribers who follow my creative journey through travel, cooking, and renovating our house in Sicily!
                         </p>
                         
                         <!-- YouTube Subscribe Button -->
