@@ -199,14 +199,15 @@
                                 const oldChars = this.previousDisplayValue.split('');
                                 const newChars = this.displayValue.split('');
 
-                                // Pad arrays to same length
+                                // Pad arrays to same length (use empty string instead of space)
                                 const maxLen = Math.max(oldChars.length, newChars.length);
-                                while (oldChars.length < maxLen) oldChars.unshift(' ');
-                                while (newChars.length < maxLen) newChars.unshift(' ');
+                                while (oldChars.length < maxLen) oldChars.unshift('');
+                                while (newChars.length < maxLen) newChars.unshift('');
 
                                 digits.forEach((wrapper, index) => {
                                     const adjustedIndex = index + (maxLen - newChars.length);
-                                    if (adjustedIndex >= 0 && oldChars[adjustedIndex] !== newChars[index]) {
+                                    // Skip animation for commas
+                                    if (adjustedIndex >= 0 && oldChars[adjustedIndex] !== newChars[index] && newChars[index] !== ',') {
                                         wrapper.classList.add('digit-flip');
                                         setTimeout(() => {
                                             wrapper.classList.remove('digit-flip');
@@ -235,8 +236,11 @@
 
                 <style>
                     .digit-container {
-                        min-width: 0.6em;
                         text-align: center;
+                    }
+
+                    .digit-container:has(.digit:not(:empty)) {
+                        min-width: 0.6em;
                     }
 
                     .digit-wrapper {
