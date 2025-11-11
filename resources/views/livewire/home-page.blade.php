@@ -189,11 +189,11 @@
                      x-transition:enter-end="opacity-100 transform translate-x-0">
                     <div class="group relative">
                         <div class="absolute inset-0 bg-gradient-to-r from-lemon-400 to-lemon-500 rounded-2xl transform rotate-2 group-hover:rotate-3 transition-transform duration-500 opacity-20"></div>
-                        <div class="relative w-80 h-96 bg-white rounded-2xl shadow-2xl overflow-hidden border border-accent-100 hover:shadow-3xl transition-all duration-500 group-hover:-translate-y-2">
+                        <div class="relative w-80 h-auto bg-white rounded-2xl shadow-2xl overflow-hidden border border-accent-100 hover:shadow-3xl transition-all duration-500 group-hover:-translate-y-2">
                             @if($featuredBook->cover_image_url)
-                                <img src="{{ $featuredBook->cover_image_url }}" alt="{{ $featuredBook->title }}" class="w-full h-full object-cover">
+                                <img src="{{ $featuredBook->cover_image_url }}" alt="{{ $featuredBook->title }}" class="w-full h-auto object-contain">
                             @else
-                                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-lemon-100 to-accent-100">
+                                <div class="w-80 h-96 flex items-center justify-center bg-gradient-to-br from-lemon-100 to-accent-100">
                                     <span class="text-8xl">📖</span>
                                 </div>
                             @endif
