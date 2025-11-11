@@ -178,12 +178,49 @@
                 
                 <!-- Animated Counter -->
                 <div class="text-6xl md:text-7xl font-black mb-4 leading-none" style="color: var(--button-bg);" wire:loading.attr="disabled">
-                    <span wire:target="incrementCounter" wire:poll.1000ms="incrementCounter" class="inline-block min-w-[300px]">
+                    <span
+                        x-data="{
+                            count: {{ $displaySubscribers }},
+                            animating: false
+                        }"
+                        x-init="$watch('$wire.displaySubscribers', value => {
+                            if (value !== count) {
+                                animating = true;
+                                setTimeout(() => animating = false, 600);
+                                count = value;
+                            }
+                        })"
+                        wire:target="incrementCounter"
+                        wire:poll.1000ms="incrementCounter"
+                        class="inline-block min-w-[300px] transition-all duration-300"
+                        :class="{ 'counter-pulse': animating }"
+                    >
                         {{ number_format($displaySubscribers) }}
                     </span>
                     <!-- Hidden element to refresh subscriber count from YouTube every 30 seconds -->
                     <span wire:poll.30000ms="refreshSubscriberTarget" class="hidden"></span>
                 </div>
+
+                <style>
+                    @keyframes counterPulse {
+                        0% {
+                            transform: scale(1);
+                            filter: brightness(1);
+                        }
+                        50% {
+                            transform: scale(1.05);
+                            filter: brightness(1.2) drop-shadow(0 0 20px rgba(242, 216, 55, 0.6));
+                        }
+                        100% {
+                            transform: scale(1);
+                            filter: brightness(1);
+                        }
+                    }
+
+                    .counter-pulse {
+                        animation: counterPulse 0.6s ease-in-out;
+                    }
+                </style>
                 
                 <!-- Live Indicator -->
                 <div class="flex items-center justify-center space-x-2 mb-6">
