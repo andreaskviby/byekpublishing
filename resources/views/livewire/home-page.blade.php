@@ -182,23 +182,36 @@
                         x-data="{
                             currentValue: {{ $displaySubscribers }},
                             displayValue: '{{ number_format($displaySubscribers) }}',
+                            previousDisplayValue: '{{ number_format($displaySubscribers) }}',
 
                             updateCounter() {
                                 const newValue = $wire.displaySubscribers;
                                 if (newValue !== this.currentValue) {
+                                    this.previousDisplayValue = this.displayValue;
                                     this.currentValue = newValue;
                                     this.displayValue = newValue.toLocaleString('en-US');
-                                    this.animateDigits();
+                                    this.animateChangedDigits();
                                 }
                             },
 
-                            animateDigits() {
+                            animateChangedDigits() {
                                 const digits = this.$refs.counter.querySelectorAll('.digit-wrapper');
+                                const oldChars = this.previousDisplayValue.split('');
+                                const newChars = this.displayValue.split('');
+
+                                // Pad arrays to same length
+                                const maxLen = Math.max(oldChars.length, newChars.length);
+                                while (oldChars.length < maxLen) oldChars.unshift(' ');
+                                while (newChars.length < maxLen) newChars.unshift(' ');
+
                                 digits.forEach((wrapper, index) => {
-                                    wrapper.classList.add('digit-flip');
-                                    setTimeout(() => {
-                                        wrapper.classList.remove('digit-flip');
-                                    }, 500);
+                                    const adjustedIndex = index + (maxLen - newChars.length);
+                                    if (adjustedIndex >= 0 && oldChars[adjustedIndex] !== newChars[index]) {
+                                        wrapper.classList.add('digit-flip');
+                                        setTimeout(() => {
+                                            wrapper.classList.remove('digit-flip');
+                                        }, 500);
+                                    }
                                 });
                             }
                         }"
