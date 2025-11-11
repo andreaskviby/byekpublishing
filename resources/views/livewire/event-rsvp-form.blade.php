@@ -4,9 +4,9 @@
             <p class="font-medium">Detta evenemang är fullbokat.</p>
         </div>
     @else
-        <div class="bg-primary-50 border-2 border-primary-300 px-6 py-4 rounded-2xl mb-6 text-center">
+        <div class="px-6 py-4 rounded-2xl mb-6 text-center" style="background-color: #FEF9E7; border: 2px solid #F2D837;">
             <p class="text-sm text-brown-700 font-medium">
-                <span class="text-2xl font-bold text-primary-600">{{ $event->availableSpots() }}</span> platser kvar av <span class="font-bold">{{ $event->max_attendees }}</span>
+                <span class="text-2xl font-bold" style="color: #F2D837;">{{ $event->availableSpots() }}</span> platser kvar av <span class="font-bold">{{ $event->max_attendees }}</span>
             </p>
         </div>
 
@@ -43,9 +43,13 @@
                        id="name"
                        wire:model="name"
                        class="w-full px-5 py-4 text-base border-2 border-gray-200 rounded-xl shadow-sm
-                              focus:ring-2 focus:ring-primary-400 focus:border-primary-500
-                              transition-all duration-300 hover:border-primary-300
+                              transition-all duration-300
                               bg-white placeholder-gray-400"
+                       style="--tw-ring-color: #F2D837;"
+                       onmouseover="this.style.borderColor='#F2D837'"
+                       onmouseout="if(!this.matches(':focus')) this.style.borderColor=''"
+                       onfocus="this.style.borderColor='#F2D837'; this.style.outline='2px solid #F2D837'; this.style.outlineOffset='0px';"
+                       onblur="this.style.borderColor=''; this.style.outline='';"
                        placeholder="Ditt fullständiga namn"
                        required>
                 @error('name')
@@ -61,9 +65,13 @@
                        id="email"
                        wire:model="email"
                        class="w-full px-5 py-4 text-base border-2 border-gray-200 rounded-xl shadow-sm
-                              focus:ring-2 focus:ring-primary-400 focus:border-primary-500
-                              transition-all duration-300 hover:border-primary-300
+                              transition-all duration-300
                               bg-white placeholder-gray-400"
+                       style="--tw-ring-color: #F2D837;"
+                       onmouseover="this.style.borderColor='#F2D837'"
+                       onmouseout="if(!this.matches(':focus')) this.style.borderColor=''"
+                       onfocus="this.style.borderColor='#F2D837'; this.style.outline='2px solid #F2D837'; this.style.outlineOffset='0px';"
+                       onblur="this.style.borderColor=''; this.style.outline='';"
                        placeholder="din.email@exempel.se"
                        required>
                 @error('email')
@@ -79,9 +87,13 @@
                        id="phone"
                        wire:model="phone"
                        class="w-full px-5 py-4 text-base border-2 border-gray-200 rounded-xl shadow-sm
-                              focus:ring-2 focus:ring-primary-400 focus:border-primary-500
-                              transition-all duration-300 hover:border-primary-300
+                              transition-all duration-300
                               bg-white placeholder-gray-400"
+                       style="--tw-ring-color: #F2D837;"
+                       onmouseover="this.style.borderColor='#F2D837'"
+                       onmouseout="if(!this.matches(':focus')) this.style.borderColor=''"
+                       onfocus="this.style.borderColor='#F2D837'; this.style.outline='2px solid #F2D837'; this.style.outlineOffset='0px';"
+                       onblur="this.style.borderColor=''; this.style.outline='';"
                        placeholder="+46 123 456 789"
                        required>
                 @error('phone')
@@ -96,9 +108,13 @@
                 <select id="numberOfGuests"
                         wire:model="numberOfGuests"
                         class="w-full px-5 py-4 text-base border-2 border-gray-200 rounded-xl shadow-sm
-                               focus:ring-2 focus:ring-primary-400 focus:border-primary-500
-                               transition-all duration-300 hover:border-primary-300
+                               transition-all duration-300
                                bg-white"
+                        style="--tw-ring-color: #F2D837;"
+                        onmouseover="this.style.borderColor='#F2D837'"
+                        onmouseout="if(!this.matches(':focus')) this.style.borderColor=''"
+                        onfocus="this.style.borderColor='#F2D837'; this.style.outline='2px solid #F2D837'; this.style.outlineOffset='0px';"
+                        onblur="this.style.borderColor=''; this.style.outline='';"
                         required>
                     <option value="1">1 person</option>
                     <option value="2">2 personer</option>
@@ -111,9 +127,12 @@
             </div>
 
             <button type="submit"
-                    class="w-full bg-primary-400 hover:bg-primary-500 text-brown-900 px-8 py-4 rounded-xl
+                    class="w-full text-brown-900 px-8 py-4 rounded-xl
                            transition-all duration-300 font-bold text-lg shadow-lg
-                           hover:shadow-xl transform hover:-translate-y-0.5 uppercase tracking-wide">
+                           hover:shadow-xl transform hover:-translate-y-0.5 uppercase tracking-wide"
+                    style="background-color: #F2D837;"
+                    onmouseover="this.style.backgroundColor='#E5C832'"
+                    onmouseout="this.style.backgroundColor='#F2D837'">
                 Anmäl dig nu
             </button>
         </form>
