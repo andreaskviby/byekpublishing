@@ -428,7 +428,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 @foreach($artPieces as $art)
                     <div class="group">
-                        <a href="{{ route('art.detail', $art) }}" class="block bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-accent-100 hover:-translate-y-2">
+                        @if($art->slug)
+                            <a href="{{ route('art.detail', $art) }}" class="block bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-accent-100 hover:-translate-y-2">
+                        @else
+                            <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-accent-100">
+                        @endif
                             <div class="aspect-square bg-gradient-to-br from-lemon-100 to-accent-100 relative overflow-hidden">
                                 @if($art->image_url)
                                     <img src="{{ $art->image_url }}" alt="{{ $art->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
@@ -458,7 +462,11 @@
                                     <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full font-medium">Price on Request</span>
                                 @endif
                             </div>
-                        </a>
+                        @if($art->slug)
+                            </a>
+                        @else
+                            </div>
+                        @endif
                     </div>
                 @endforeach
             </div>
