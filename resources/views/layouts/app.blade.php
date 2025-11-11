@@ -29,44 +29,45 @@
 
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="{{ route('home') }}"
-                       class="text-gray-700 hover:text-primary-600 transition-colors font-medium {{ request()->routeIs('home') ? 'text-primary-600 border-b-2 border-primary-600' : '' }}"
+                       class="text-gray-700 hover:text-lemon-600 transition-colors font-medium {{ request()->routeIs('home') ? 'text-lemon-600 border-b-2 border-lemon-600' : '' }}"
                        aria-current="{{ request()->routeIs('home') ? 'page' : 'false' }}">
                         Home
                     </a>
                     <a href="{{ route('author') }}"
-                       class="text-gray-700 hover:text-primary-600 transition-colors font-medium {{ request()->routeIs('author') ? 'text-primary-600 border-b-2 border-primary-600' : '' }}"
+                       class="text-gray-700 hover:text-lemon-600 transition-colors font-medium {{ request()->routeIs('author') ? 'text-lemon-600 border-b-2 border-lemon-600' : '' }}"
                        aria-current="{{ request()->routeIs('author') ? 'page' : 'false' }}">
                         About Linda
                     </a>
                     <a href="{{ route('books') }}"
-                       class="text-gray-700 hover:text-primary-600 transition-colors font-medium {{ request()->routeIs('books') ? 'text-primary-600 border-b-2 border-primary-600' : '' }}"
+                       class="text-gray-700 hover:text-lemon-600 transition-colors font-medium {{ request()->routeIs('books') ? 'text-lemon-600 border-b-2 border-lemon-600' : '' }}"
                        aria-current="{{ request()->routeIs('books') ? 'page' : 'false' }}">
                         Books
                     </a>
                     <a href="{{ route('art') }}"
-                       class="text-gray-700 hover:text-primary-600 transition-colors font-medium {{ request()->routeIs('art') ? 'text-primary-600 border-b-2 border-primary-600' : '' }}"
+                       class="text-gray-700 hover:text-lemon-600 transition-colors font-medium {{ request()->routeIs('art') ? 'text-lemon-600 border-b-2 border-lemon-600' : '' }}"
                        aria-current="{{ request()->routeIs('art') ? 'page' : 'false' }}">
                         Art
                     </a>
                     <a href="{{ route('music') }}"
-                       class="text-gray-700 hover:text-primary-600 transition-colors font-medium {{ request()->routeIs('music') ? 'text-primary-600 border-b-2 border-primary-600' : '' }}"
+                       class="text-gray-700 hover:text-lemon-600 transition-colors font-medium {{ request()->routeIs('music') ? 'text-lemon-600 border-b-2 border-lemon-600' : '' }}"
                        aria-current="{{ request()->routeIs('music') ? 'page' : 'false' }}">
                         Music
                     </a>
                     <a href="{{ route('videos') }}"
-                       class="text-gray-700 hover:text-primary-600 transition-colors font-medium {{ request()->routeIs('videos') ? 'text-primary-600 border-b-2 border-primary-600' : '' }}"
+                       class="text-gray-700 hover:text-lemon-600 transition-colors font-medium {{ request()->routeIs('videos') ? 'text-lemon-600 border-b-2 border-lemon-600' : '' }}"
                        aria-current="{{ request()->routeIs('videos') ? 'page' : 'false' }}">
                         Videos
                     </a>
                     <a href="{{ route('contact') }}"
-                       class="bg-primary-400 text-black px-6 py-2 rounded-full hover:bg-primary-500 transition-colors font-medium">
+                       class="px-6 py-2 rounded-full transition-colors font-medium hover:font-bold hover:shadow-md hover:-translate-y-1"
+                       style="background-color: var(--button-bg); color: #1e293b;">
                         Contact
                     </a>
                 </div>
 
                 <div class="md:hidden flex items-center">
                     <button type="button"
-                            class="text-gray-700 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-600"
+                            class="text-gray-700 hover:text-lemon-600 focus:outline-none focus:ring-2 focus:ring-lemon-600"
                             aria-label="Toggle menu"
                             aria-expanded="false"
                             x-data="{ open: false }"
@@ -81,13 +82,14 @@
 
         <div class="md:hidden" x-data="{ open: false }" x-show="open" @click.away="open = false">
             <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg">
-                <a href="{{ route('home') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-primary-600 rounded-md">Home</a>
-                <a href="{{ route('author') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-primary-600 rounded-md">About Linda</a>
-                <a href="{{ route('books') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-primary-600 rounded-md">Books</a>
-                <a href="{{ route('art') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-primary-600 rounded-md">Art</a>
-                <a href="{{ route('music') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-primary-600 rounded-md">Music</a>
-                <a href="{{ route('videos') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-primary-600 rounded-md">Videos</a>
-                <a href="{{ route('contact') }}" class="block px-3 py-2 text-black bg-primary-400 hover:bg-primary-500 rounded-md">Contact</a>
+                <a href="{{ route('home') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">Home</a>
+                <a href="{{ route('author') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">About Linda</a>
+                <a href="{{ route('books') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">Books</a>
+                <a href="{{ route('art') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">Art</a>
+                <a href="{{ route('music') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">Music</a>
+                <a href="{{ route('videos') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">Videos</a>
+                <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md hover:font-bold transition-all"
+                   style="background-color: var(--button-bg); color: #1e293b;">Contact</a>
             </div>
         </div>
     </nav>
