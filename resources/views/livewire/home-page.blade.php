@@ -58,67 +58,6 @@
         </div>
     </section>
 
-    <!-- YouTube Subscriber Counter - Full Screen -->
-    <section class="py-20 bg-gradient-to-r from-lemon-400 via-lemon-300 to-lemon-400 relative overflow-hidden">
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full animate-pulse"></div>
-            <div class="absolute bottom-10 right-10 w-48 h-48 bg-white rounded-full animate-pulse delay-1000"></div>
-            <div class="absolute top-1/2 left-1/4 w-24 h-24 bg-white rounded-full animate-pulse delay-500"></div>
-        </div>
-        
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <!-- Main Counter Container -->
-                <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-12 border-4 border-white/50">
-                    <!-- YouTube Icon -->
-                    <div class="flex justify-center mb-6">
-                        <div class="w-20 h-20 flex items-center justify-center rounded-2xl shadow-lg transform hover:scale-110 transition-transform duration-300" style="background-color: var(--button-bg);">
-                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    
-                    <!-- Subscribers Label -->
-                    <div class="text-2xl font-bold text-gray-800 mb-4">YouTube Subscribers</div>
-                    
-                    <!-- Animated Counter -->
-                    <div class="relative">
-                        <div class="text-7xl md:text-8xl font-black mb-4 leading-none" style="color: var(--button-bg);" wire:loading.attr="disabled">
-                            <span wire:target="incrementCounter" wire:poll.2000ms="incrementCounter" class="inline-block min-w-[300px]">
-                                {{ number_format($displaySubscribers) }}
-                            </span>
-                        </div>
-                        
-                        <!-- Live Indicator -->
-                        <div class="flex items-center justify-center space-x-2 mb-6">
-                            <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                            <span class="text-sm font-medium text-gray-600">Live Counter</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Call to Action Message -->
-                    <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-6 border-2 border-gray-200">
-                        <p class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
-                            🎯 A lot of people follow me, why don't you too?
-                        </p>
-                        
-                        <!-- YouTube Subscribe Button -->
-                        <a href="https://www.youtube.com/@weboughtanadventureinsicily" target="_blank" rel="noopener noreferrer"
-                           class="inline-flex items-center px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
-                           style="background-color: var(--button-bg); color: #1e293b;">
-                            <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                            Subscribe Now
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     @if($upcomingEvents->count() > 0)
     <section class="py-20 bg-gradient-to-br from-slate-50 to-accent-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -200,6 +139,53 @@
         </div>
     </section>
     @endif
+
+    <!-- YouTube Subscriber Counter - Full Screen Wide -->
+    <section class="py-16 bg-gradient-to-r from-lemon-400 via-lemon-300 to-lemon-400 w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <!-- YouTube Icon -->
+                <div class="flex justify-center mb-4">
+                    <div class="w-16 h-16 flex items-center justify-center" style="background-color: var(--button-bg);">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Subscribers Label -->
+                <div class="text-2xl font-bold text-gray-800 mb-4">YouTube Subscribers</div>
+                
+                <!-- Animated Counter -->
+                <div class="text-6xl md:text-7xl font-black mb-4 leading-none" style="color: var(--button-bg);" wire:loading.attr="disabled">
+                    <span wire:target="incrementCounter" wire:poll.2000ms="incrementCounter" class="inline-block min-w-[300px]">
+                        {{ number_format($displaySubscribers) }}
+                    </span>
+                </div>
+                
+                <!-- Live Indicator -->
+                <div class="flex items-center justify-center space-x-2 mb-6">
+                    <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                    <span class="text-sm font-medium text-gray-600">Live Counter</span>
+                </div>
+                
+                <!-- Call to Action Message -->
+                <p class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+                    🎯 A lot of people follow me, why don't you too?
+                </p>
+                
+                <!-- YouTube Subscribe Button -->
+                <a href="https://www.youtube.com/@weboughtanadventureinsicily" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center px-8 py-4 rounded-full font-bold text-lg transform hover:-translate-y-1 transition-all duration-300"
+                   style="background-color: var(--button-bg); color: #1e293b;">
+                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    Subscribe Now
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Section Divider -->
     <div class="relative py-12">
