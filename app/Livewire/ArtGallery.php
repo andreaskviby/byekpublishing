@@ -42,7 +42,7 @@ class ArtGallery extends Component
                     'position' => $index + 1,
                     'item' => [
                         '@type' => 'VisualArtwork',
-                        '@id' => route('art.detail', $artPiece),
+                        '@id' => $artPiece->slug ? route('art.detail', $artPiece) : null,
                         'name' => $artPiece->title,
                         'description' => $artPiece->description,
                         'image' => $artPiece->image_url,
