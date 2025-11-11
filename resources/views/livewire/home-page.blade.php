@@ -177,48 +177,80 @@
                 <div class="text-2xl font-bold text-gray-800 mb-4">YouTube Subscribers</div>
                 
                 <!-- Animated Counter -->
-                <div class="text-6xl md:text-7xl font-black mb-4 leading-none" style="color: var(--button-bg);" wire:loading.attr="disabled">
-                    <span
+                <div class="text-6xl md:text-7xl font-black mb-4 leading-none overflow-hidden" style="color: var(--button-bg);" wire:loading.attr="disabled">
+                    <div
                         x-data="{
-                            count: {{ $displaySubscribers }},
-                            animating: false
-                        }"
-                        x-init="$watch('$wire.displaySubscribers', value => {
-                            if (value !== count) {
-                                animating = true;
-                                setTimeout(() => animating = false, 600);
-                                count = value;
+                            currentValue: {{ $displaySubscribers }},
+                            displayValue: '{{ number_format($displaySubscribers) }}',
+
+                            updateCounter() {
+                                const newValue = $wire.displaySubscribers;
+                                if (newValue !== this.currentValue) {
+                                    this.currentValue = newValue;
+                                    this.displayValue = newValue.toLocaleString('en-US');
+                                    this.animateDigits();
+                                }
+                            },
+
+                            animateDigits() {
+                                const digits = this.$refs.counter.querySelectorAll('.digit-wrapper');
+                                digits.forEach((wrapper, index) => {
+                                    wrapper.classList.add('digit-flip');
+                                    setTimeout(() => {
+                                        wrapper.classList.remove('digit-flip');
+                                    }, 500);
+                                });
                             }
-                        })"
-                        wire:target="incrementCounter"
+                        }"
+                        x-init="setInterval(() => updateCounter(), 1000)"
                         wire:poll.1000ms="incrementCounter"
-                        class="inline-block min-w-[300px] transition-all duration-300"
-                        :class="{ 'counter-pulse': animating }"
+                        class="inline-flex items-center justify-center min-w-[300px]"
                     >
-                        {{ number_format($displaySubscribers) }}
-                    </span>
+                        <div x-ref="counter" class="flex items-center">
+                            <template x-for="(char, index) in displayValue" :key="index">
+                                <div class="digit-container inline-block" style="perspective: 1000px;">
+                                    <div class="digit-wrapper inline-block relative" style="transform-style: preserve-3d;">
+                                        <span x-text="char" class="digit inline-block"></span>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
                     <!-- Hidden element to refresh subscriber count from YouTube every 30 seconds -->
                     <span wire:poll.30000ms="refreshSubscriberTarget" class="hidden"></span>
                 </div>
 
                 <style>
-                    @keyframes counterPulse {
+                    .digit-container {
+                        min-width: 0.6em;
+                        text-align: center;
+                    }
+
+                    .digit-wrapper {
+                        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                        display: inline-block;
+                    }
+
+                    .digit-wrapper.digit-flip {
+                        animation: flipDigit 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                    }
+
+                    @keyframes flipDigit {
                         0% {
-                            transform: scale(1);
-                            filter: brightness(1);
+                            transform: translateY(0) rotateX(0deg);
                         }
                         50% {
-                            transform: scale(1.05);
-                            filter: brightness(1.2) drop-shadow(0 0 20px rgba(242, 216, 55, 0.6));
+                            transform: translateY(-0.2em) rotateX(90deg);
+                            opacity: 0.3;
                         }
                         100% {
-                            transform: scale(1);
-                            filter: brightness(1);
+                            transform: translateY(0) rotateX(0deg);
                         }
                     }
 
-                    .counter-pulse {
-                        animation: counterPulse 0.6s ease-in-out;
+                    .digit {
+                        display: inline-block;
+                        backface-visibility: hidden;
                     }
                 </style>
                 
