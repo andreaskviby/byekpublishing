@@ -57,9 +57,14 @@ class Book extends Model
         return $this->hasMany(BookPreorder::class);
     }
 
-    public function getRouteKeyName(): string
+    public function resolveRouteBinding($value, $field = null)
     {
-        return 'slug';
+        // For Filament admin, use ID; for frontend, use slug
+        if (request()->is('admin/*') || request()->is('filament/*')) {
+            return $this->where('id', $value)->firstOrFail();
+        }
+        
+        return $this->where('slug', $value)->firstOrFail();
     }
 
     public function isSoonToBeReleased(): bool

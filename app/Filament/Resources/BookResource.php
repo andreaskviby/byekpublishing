@@ -101,7 +101,6 @@ class BookResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn (Builder $query) => $query->whereNotNull('id'))
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
@@ -148,8 +147,7 @@ class BookResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
-                    ->visible(fn ($record) => $record && $record->exists && $record->id),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
