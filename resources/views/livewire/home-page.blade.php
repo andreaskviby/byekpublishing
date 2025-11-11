@@ -186,7 +186,7 @@
                 <!-- Live Indicator -->
                 <div class="flex items-center justify-center space-x-2 mb-6">
                     <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                    <span class="text-xs font-medium text-gray-600">Live Counter (might be slightly behind YouTube due to API lag & cable power issues)</span>
+                    <span class="font-medium text-gray-600" style="font-size: 0.65rem;">Live Counter (might be slightly behind YouTube due to API lag & cable power issues)</span>
                 </div>
                 
                 <!-- Call to Action Message -->
