@@ -217,8 +217,8 @@
             <h2 class="text-4xl font-display font-bold text-brown-900 mb-8 text-center">Art Gallery Preview</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach($artPieces as $art)
-                    <div class="bg-gray-100 rounded-lg overflow-hidden hover:shadow-xl transition-shadow">
-                        <div class="aspect-square bg-gradient-to-br from-primary-200 to-accent-200 flex items-center justify-center">
+                    <a href="{{ route('art.detail', $art) }}" class="bg-gray-100 rounded-lg overflow-hidden hover:shadow-xl transition-shadow block">
+                        <div class="aspect-square bg-gradient-to-br from-primary-200 to-accent-200 flex items-center justify-center hover:opacity-90 transition-opacity">
                             @if($art->image_url)
                                 <img src="{{ $art->image_url }}" alt="{{ $art->title }}" class="w-full h-full object-cover">
                             @else
@@ -226,12 +226,12 @@
                             @endif
                         </div>
                         <div class="p-4">
-                            <h3 class="font-semibold text-gray-900">{{ $art->title }}</h3>
+                            <h3 class="font-semibold text-gray-900 hover:text-primary-600 transition-colors">{{ $art->title }}</h3>
                             @if($art->price)
                                 <p class="text-primary-600 font-medium">{{ number_format($art->price, 0) }} {{ $art->currency }}</p>
                             @endif
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
             <div class="text-center mt-8">

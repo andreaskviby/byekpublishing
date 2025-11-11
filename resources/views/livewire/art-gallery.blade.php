@@ -15,17 +15,19 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @forelse($artPieces as $art)
                     <div class="bg-accent-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <div class="aspect-square bg-gradient-to-br from-primary-200 to-accent-200 flex items-center justify-center">
+                        <a href="{{ route('art.detail', $art) }}" class="block aspect-square bg-gradient-to-br from-primary-200 to-accent-200 flex items-center justify-center hover:opacity-90 transition-opacity">
                             @if($art->image_url)
                                 <img src="{{ $art->image_url }}" alt="{{ $art->title }}" class="w-full h-full object-cover">
                             @else
                                 <span class="text-6xl">🎨</span>
                             @endif
-                        </div>
+                        </a>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold text-brown-900 mb-2">{{ $art->title }}</h3>
+                            <a href="{{ route('art.detail', $art) }}" class="block hover:text-primary-600 transition-colors">
+                                <h3 class="text-xl font-semibold text-brown-900 mb-2">{{ $art->title }}</h3>
+                            </a>
                             @if($art->description)
-                                <p class="text-gray-600 mb-3">{{ $art->description }}</p>
+                                <p class="text-gray-600 mb-3">{{ Str::limit($art->description, 100) }}</p>
                             @endif
                             <div class="space-y-1 text-sm text-gray-600">
                                 @if($art->medium)
@@ -41,9 +43,14 @@
                             @if($art->price)
                                 <p class="text-xl font-semibold text-primary-600 mt-4">{{ number_format($art->price, 0) }} {{ $art->currency }}</p>
                             @endif
-                            <a href="{{ route('contact', ['art' => $art->title]) }}" class="inline-block mt-4 bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-colors text-sm">
-                                Inquire
-                            </a>
+                            <div class="flex gap-2 mt-4">
+                                <a href="{{ route('art.detail', $art) }}" class="inline-block flex-1 text-center bg-brown-900 text-white px-4 py-2 rounded-full hover:bg-brown-800 transition-colors text-sm">
+                                    View Details
+                                </a>
+                                <a href="{{ route('contact', ['art' => $art->title]) }}" class="inline-block flex-1 text-center bg-primary-600 text-white px-4 py-2 rounded-full hover:bg-primary-700 transition-colors text-sm">
+                                    Inquire
+                                </a>
+                            </div>
                         </div>
                     </div>
                 @empty
