@@ -223,7 +223,7 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <div class="font-semibold text-gray-900">Publication date</div>
+                                        <div class="font-semibold text-gray-900">Release date</div>
                                         <div class="text-sm text-gray-600">{{ $featuredBook->publication_date->format('F j, Y') }}</div>
                                     </div>
                                 </div>
