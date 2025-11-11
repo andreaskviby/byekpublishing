@@ -1,4 +1,8 @@
 <div>
+    @push('meta')
+        <x-seo-meta :seoData="$seoData" :structuredData="$structuredData" />
+    @endpush
+
     <section class="bg-gradient-to-br from-amber-50 via-yellow-50 to-accent-100 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 class="text-5xl md:text-6xl font-display font-bold text-brown-900 mb-4 text-center">About Linda Ettehag Kviby</h1>
