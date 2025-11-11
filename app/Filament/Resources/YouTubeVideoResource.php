@@ -19,6 +19,8 @@ class YouTubeVideoResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-video-camera';
 
+    protected static ?string $recordRouteKeyName = 'id';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -70,6 +72,7 @@ class YouTubeVideoResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (Builder $query) => $query->whereNotNull('id'))
             ->columns([
                 Tables\Columns\TextColumn::make('youtube_id')
                     ->searchable(),
