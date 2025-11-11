@@ -104,7 +104,7 @@
                             🎯 A lot of people follow me, why don't you too?
                         </p>
                         <p class="text-gray-600 mb-4">
-                            Join thousands of subscribers who enjoy my books, art, and music content!
+                            Join thousands of subscribers who follow my creative journey through books, art, and music!
                         </p>
                         
                         <!-- YouTube Subscribe Button -->
