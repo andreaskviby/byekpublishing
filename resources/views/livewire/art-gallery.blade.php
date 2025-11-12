@@ -15,15 +15,19 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @forelse($artPieces as $art)
                     <div class="bg-accent-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                        <div class="aspect-square bg-gradient-to-br from-primary-200 to-accent-200 flex items-center justify-center">
-                            @if($art->image_url)
-                                <img src="{{ $art->image_url }}" alt="{{ $art->title }}" class="w-full h-full object-cover">
-                            @else
-                                <span class="text-6xl">🎨</span>
-                            @endif
-                        </div>
+                        <a href="{{ route('art.detail', $art) }}" class="block">
+                            <div class="aspect-square bg-gradient-to-br from-primary-200 to-accent-200 flex items-center justify-center">
+                                @if($art->image_url)
+                                    <img src="{{ $art->image_url }}" alt="{{ $art->title }}" class="w-full h-full object-cover">
+                                @else
+                                    <span class="text-6xl">🎨</span>
+                                @endif
+                            </div>
+                        </a>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold text-brown-900 mb-2">{{ $art->title }}</h3>
+                            <a href="{{ route('art.detail', $art) }}">
+                                <h3 class="text-xl font-semibold text-brown-900 mb-2 hover:text-primary-600 transition-colors">{{ $art->title }}</h3>
+                            </a>
                             @if($art->description)
                                 <p class="text-gray-600 mb-3">{{ $art->description }}</p>
                             @endif
