@@ -135,6 +135,45 @@
                         @endif
                     </div>
 
+                    <!-- Preorder/Christmas Order Button -->
+                    @if($book->isSoonToBeReleased() || $book->allow_christmas_orders)
+                        <div class="bg-white rounded-xl p-8 shadow-md">
+                            @if($book->isSoonToBeReleased())
+                                <div class="bg-gradient-to-br from-lemon-50 to-amber-50 border-2 rounded-xl p-6 mb-6"
+                                     style="border-color: var(--button-bg);">
+                                    <h3 class="text-xl font-semibold text-brown-900 mb-3">Förbeställ nu!</h3>
+                                    <p class="text-base text-brown-700 mb-4 leading-relaxed">
+                                        Säkra ditt exemplar redan idag. Boken skickas hem till dig så snart den är tillgänglig.
+                                        Perfekt som julklapp! 🎁
+                                    </p>
+                                    <a href="{{ route('book.preorder', $book) }}"
+                                       class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:-translate-y-1"
+                                       style="background-color: var(--button-bg); color: #1e293b;">
+                                        Förbeställ för {{ $book->price }} SEK
+                                    </a>
+                                </div>
+                            @elseif($book->allow_christmas_orders)
+                                <div class="relative bg-gradient-to-br from-red-600 via-red-700 to-red-800 border-2 rounded-xl p-8 mb-6 shadow-2xl"
+                                     style="border-color: #FFD700;">
+                                    <div class="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 rounded-xl"></div>
+                                    <div class="relative">
+                                        <h3 class="text-xl font-semibold text-white mb-3 flex items-center">
+                                            🎄 Beställ med jul-inpackning och signering!
+                                        </h3>
+                                        <p class="text-base text-white/90 mb-4 leading-relaxed">
+                                            Köp boken med vacker julklappsinpackning (+49 SEK) och be om en personlig dedikation från Linda.
+                                            Perfekt julklapp! 🎁
+                                        </p>
+                                        <a href="{{ route('book.preorder', $book) }}"
+                                           class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 bg-white text-red-700 hover:bg-yellow-100 border-2 border-yellow-400">
+                                            🎅 Beställ för {{ $book->price }} SEK
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+
                     <!-- Purchase Links -->
                     @if($book->purchaseLinks->count() > 0)
                         <div class="bg-white rounded-xl p-8 shadow-md">
