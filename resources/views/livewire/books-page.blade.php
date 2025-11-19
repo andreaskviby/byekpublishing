@@ -178,49 +178,53 @@
                                             </div>
                                         </div>
 
-                                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Eller köp här:</h3>
-                                        <div class="space-y-6">
-                                            @foreach($book->purchaseLinks->groupBy('language_id') as $languageId => $links)
-                                                @php $language = $links->first()->language; @endphp
-                                                <div class="bg-white rounded-xl p-6 shadow-lg border border-accent-100">
-                                                    <h4 class="font-semibold text-brown-900 mb-4 text-lg">{{ $language->flag_emoji }} {{ $language->name }}</h4>
-                                                    <div class="flex flex-wrap gap-3">
-                                                        @foreach($links->where('is_active', true) as $link)
-                                                            <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer"
-                                                               class="inline-block px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:-translate-y-1 hover:font-bold"
-                                                               style="background-color: var(--button-bg); color: #1e293b;">
-                                                                {{ $link->store_name }}
-                                                                @if($link->format)
-                                                                    ({{ $link->format }})
-                                                                @endif
-                                                            </a>
-                                                        @endforeach
+                                        @if($book->purchaseLinks->isNotEmpty())
+                                            <h3 class="text-xl font-semibold text-gray-900 mb-6">Eller köp här:</h3>
+                                            <div class="space-y-6">
+                                                @foreach($book->purchaseLinks->groupBy('language_id') as $languageId => $links)
+                                                    @php $language = $links->first()->language; @endphp
+                                                    <div class="bg-white rounded-xl p-6 shadow-lg border border-accent-100">
+                                                        <h4 class="font-semibold text-brown-900 mb-4 text-lg">{{ $language->flag_emoji }} {{ $language->name }}</h4>
+                                                        <div class="flex flex-wrap gap-3">
+                                                            @foreach($links->where('is_active', true) as $link)
+                                                                <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer"
+                                                                   class="inline-block px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:-translate-y-1 hover:font-bold"
+                                                                   style="background-color: var(--button-bg); color: #1e293b;">
+                                                                    {{ $link->store_name }}
+                                                                    @if($link->format)
+                                                                        ({{ $link->format }})
+                                                                    @endif
+                                                                </a>
+                                                            @endforeach
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
+                                                @endforeach
+                                            </div>
+                                        @endif
                                     @else
-                                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Available in:</h3>
-                                        <div class="space-y-6">
-                                            @foreach($book->purchaseLinks->groupBy('language_id') as $languageId => $links)
-                                                @php $language = $links->first()->language; @endphp
-                                                <div class="bg-white rounded-xl p-6 shadow-lg border border-accent-100">
-                                                    <h4 class="font-semibold text-brown-900 mb-4 text-lg">{{ $language->flag_emoji }} {{ $language->name }}</h4>
-                                                    <div class="flex flex-wrap gap-3">
-                                                        @foreach($links->where('is_active', true) as $link)
-                                                            <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer"
-                                                               class="inline-block px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:-translate-y-1 hover:font-bold"
-                                                               style="background-color: var(--button-bg); color: #1e293b;">
-                                                                {{ $link->store_name }}
-                                                                @if($link->format)
-                                                                    ({{ $link->format }})
-                                                                @endif
-                                                            </a>
-                                                        @endforeach
+                                        @if($book->purchaseLinks->isNotEmpty())
+                                            <h3 class="text-xl font-semibold text-gray-900 mb-6">Available in:</h3>
+                                            <div class="space-y-6">
+                                                @foreach($book->purchaseLinks->groupBy('language_id') as $languageId => $links)
+                                                    @php $language = $links->first()->language; @endphp
+                                                    <div class="bg-white rounded-xl p-6 shadow-lg border border-accent-100">
+                                                        <h4 class="font-semibold text-brown-900 mb-4 text-lg">{{ $language->flag_emoji }} {{ $language->name }}</h4>
+                                                        <div class="flex flex-wrap gap-3">
+                                                            @foreach($links->where('is_active', true) as $link)
+                                                                <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer"
+                                                                   class="inline-block px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:-translate-y-1 hover:font-bold"
+                                                                   style="background-color: var(--button-bg); color: #1e293b;">
+                                                                    {{ $link->store_name }}
+                                                                    @if($link->format)
+                                                                        ({{ $link->format }})
+                                                                    @endif
+                                                                </a>
+                                                            @endforeach
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
+                                                @endforeach
+                                            </div>
+                                        @endif
                                     @endif
                                 </div>
 
