@@ -17,7 +17,7 @@ class SwishQrService
         int $size = 300
     ): ?string {
         try {
-            $response = Http::timeout(10)->post(self::API_URL, [
+            $payload = [
                 'format' => $format,
                 'size' => $size,
                 'payee' => [
@@ -32,14 +32,28 @@ class SwishQrService
                     'value' => $message,
                     'editable' => false,
                 ],
+            ];
+
+            Log::info('Swish QR code generation attempt', [
+                'url' => self::API_URL,
+                'payload' => $payload,
             ]);
 
+            $response = Http::timeout(10)
+                ->withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ])
+                ->post(self::API_URL, $payload);
+
             if ($response->successful()) {
+                Log::info('Swish QR code generated successfully');
                 return base64_encode($response->body());
             }
 
             Log::error('Swish QR code generation failed', [
                 'status' => $response->status(),
+                'headers' => $response->headers(),
                 'body' => $response->body(),
             ]);
 
@@ -47,6 +61,7 @@ class SwishQrService
         } catch (\Exception $e) {
             Log::error('Swish QR code generation exception', [
                 'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
             ]);
 
             return null;
