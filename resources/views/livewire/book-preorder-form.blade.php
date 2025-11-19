@@ -219,7 +219,7 @@
                                   focus:ring-[#dac430] focus:ring-2 cursor-pointer">
                     <label for="wantsGiftWrap" class="ml-3 cursor-pointer">
                         <span class="text-lg font-bold text-brown-900 flex items-center">
-                            🎁 Julklappsinpackning (+45 SEK)
+                            🎁 Julklappsinpackning (+49 SEK)
                         </span>
                         <p class="text-sm text-brown-700 mt-1">
                             Vi slår in boken i vackert julpapper med en etikett där du kan skriva avsändare.
@@ -238,7 +238,7 @@
             <p class="text-sm text-brown-700 font-medium mb-1">Totalpris</p>
             <p class="text-3xl font-bold text-brown-900">
                 <span x-data="{ price: @entangle('wantsGiftWrap').live }">
-                    <span x-text="price ? '244' : '199'">199</span> SEK
+                    <span x-text="price ? '{{ $book->price + 49 }}' : '{{ $book->price }}'">{{ $book->price }}</span> SEK
                 </span>
             </p>
             <p class="text-xs text-brown-600 mt-1">Inkl. frakt</p>

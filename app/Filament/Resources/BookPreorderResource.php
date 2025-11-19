@@ -88,7 +88,7 @@ class BookPreorderResource extends Resource
                             ->rows(3)
                             ->columnSpanFull(),
                         Forms\Components\Toggle::make('wants_gift_wrap')
-                            ->label('Julklappsinpackning (+45 SEK)')
+                            ->label('Julklappsinpackning (+49 SEK)')
                             ->default(false),
                         Forms\Components\TextInput::make('total_price')
                             ->label('Totalpris (SEK)')

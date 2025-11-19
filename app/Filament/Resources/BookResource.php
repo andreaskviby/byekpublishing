@@ -72,6 +72,12 @@ class BookResource extends Resource
                     ->visibility('public')
                     ->maxSize(10240),
                 Forms\Components\TextInput::make('isbn'),
+                Forms\Components\TextInput::make('price')
+                    ->required()
+                    ->numeric()
+                    ->default(199)
+                    ->suffix('SEK')
+                    ->helperText('Pris i SEK (utan decimaler)'),
                 Forms\Components\DatePicker::make('publication_date'),
                 Forms\Components\TextInput::make('pages')
                     ->numeric(),
@@ -107,6 +113,10 @@ class BookResource extends Resource
                 Tables\Columns\ImageColumn::make('cover_image'),
                 Tables\Columns\TextColumn::make('isbn')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('price')
+                    ->numeric()
+                    ->sortable()
+                    ->suffix(' SEK'),
                 Tables\Columns\TextColumn::make('publication_date')
                     ->date()
                     ->sortable(),

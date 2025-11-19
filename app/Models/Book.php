@@ -17,6 +17,7 @@ class Book extends Model
         'cover_image',
         'sample_pdf',
         'isbn',
+        'price',
         'publication_date',
         'pages',
         'genre',
@@ -33,6 +34,7 @@ class Book extends Model
             'is_published' => 'boolean',
             'allow_christmas_orders' => 'boolean',
             'pages' => 'integer',
+            'price' => 'integer',
             'sort_order' => 'integer',
         ];
     }

@@ -24,7 +24,7 @@ class BookPreorderDetail extends Component
 
         $seoDescription = $this->book->isSoonToBeReleased()
             ? "Förbeställ {$this->book->title} av Linda Ettehag Kviby. Få boken hemskickad så fort den är tillgänglig. Signerad med dedikation."
-            : "Beställ {$this->book->title} som perfekt julklapp! Signerad, inpackad och hemskickad. Endast 199 SEK (+45 SEK för julinslagning).";
+            : "Beställ {$this->book->title} som perfekt julklapp! Signerad, inpackad och hemskickad. Endast {$this->book->price} SEK (+49 SEK för julinslagning).";
 
         $seoData = SeoService::generateMetaTags(
             $this->book,

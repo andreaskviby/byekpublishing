@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <div class="text-sm font-semibold text-brown-700 uppercase tracking-wide mb-1">Bokpris</div>
-                                    <div class="text-2xl font-bold text-brown-900">199 SEK</div>
+                                    <div class="text-2xl font-bold text-brown-900">{{ $book->price }} SEK</div>
                                     <div class="text-sm text-gray-600">Fri frakt ingår!</div>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <div class="text-sm font-semibold text-brown-700 uppercase tracking-wide mb-1">Julklappsinpackning</div>
-                                    <div class="text-lg font-bold text-brown-900">+45 SEK</div>
+                                    <div class="text-lg font-bold text-brown-900">+49 SEK</div>
                                     <div class="text-sm text-gray-600">Vackert inslaget i julpapper med etikett</div>
                                 </div>
                             </div>

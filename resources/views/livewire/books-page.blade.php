@@ -153,7 +153,7 @@
                                                 <a href="{{ route('book.preorder', $book) }}"
                                                    class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 hover:font-bold"
                                                    style="background-color: var(--button-bg); color: #1e293b;">
-                                                    Förbeställ för 199 SEK
+                                                    Förbeställ för {{ $book->price }} SEK
                                                 </a>
                                             </div>
                                         </div>
@@ -166,13 +166,13 @@
                                                     🎄 Beställ med jul-inpackning och signering!
                                                 </h3>
                                                 <p class="text-base text-white/90 mb-6 leading-relaxed">
-                                                    Köp boken med vacker julklappsinpackning (+45 SEK) och be om en personlig dedikation från Linda.
+                                                    Köp boken med vacker julklappsinpackning (+49 SEK) och be om en personlig dedikation från Linda.
                                                     Perfekt julklapp! 🎁
                                                 </p>
                                                 <div class="flex flex-wrap gap-4">
                                                     <a href="{{ route('book.preorder', $book) }}"
                                                        class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 hover:font-bold bg-white text-red-700 hover:bg-yellow-100 border-2 border-yellow-400">
-                                                        🎅 Beställ för 199 SEK
+                                                        🎅 Beställ för {{ $book->price }} SEK
                                                     </a>
                                                 </div>
                                             </div>
