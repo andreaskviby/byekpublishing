@@ -135,10 +135,11 @@
 
             <div style="margin: 20px 0; padding: 15px; background: white; border-radius: 8px; border: 2px dashed #E5E7EB;">
                 <p style="margin: 0 0 10px 0; font-weight: 600; color: #1e293b;">Eller scanna QR-koden:</p>
-                @if($qrCodeData)
-                    <img src="data:image/png;base64,{{ $qrCodeData }}"
+                @if($qrCodeUrl)
+                    <img src="{{ $qrCodeUrl }}"
                          alt="Swish QR Code"
-                         class="qr-code">
+                         class="qr-code"
+                         style="margin: 20px auto; display: block; max-width: 300px;">
                 @else
                     <p style="margin: 20px 0;">QR-koden kunde inte genereras. Använd knappen ovan eller informationen nedan för att swisha manuellt.</p>
                 @endif

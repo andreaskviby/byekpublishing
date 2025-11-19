@@ -4,15 +4,17 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class SwishQrService
 {
     private const API_URL = 'https://mpc.getswish.net/qrg-swish/api/v1/prefilled';
     private const SWISH_NUMBER = '46734642332';
 
-    public static function generateQrCode(
+    public static function generateAndSaveQrCode(
         float $amount,
         string $message,
+        string $identifier,
         string $format = 'png',
         int $size = 300
     ): ?string {
@@ -47,8 +49,14 @@ class SwishQrService
                 ->post(self::API_URL, $payload);
 
             if ($response->successful()) {
-                Log::info('Swish QR code generated successfully');
-                return base64_encode($response->body());
+                $filename = "qr-codes/swish-{$identifier}.{$format}";
+                Storage::disk('public')->put($filename, $response->body());
+
+                Log::info('Swish QR code saved successfully', [
+                    'filename' => $filename,
+                ]);
+
+                return $filename;
             }
 
             Log::error('Swish QR code generation failed', [
@@ -68,15 +76,6 @@ class SwishQrService
         }
     }
 
-    public static function getInlineImageData(?string $base64Image, string $format = 'png'): ?string
-    {
-        if (! $base64Image) {
-            return null;
-        }
-
-        return "data:image/{$format};base64,{$base64Image}";
-    }
-
     public static function generatePaymentUrl(float $amount, string $message): string
     {
         $params = http_build_query([
@@ -86,5 +85,27 @@ class SwishQrService
         ]);
 
         return 'https://app.swish.nu/1/p/sw/?' . $params;
+    }
+
+    public static function getPublicUrl(?string $filename): ?string
+    {
+        if (! $filename) {
+            return null;
+        }
+
+        return asset('storage/' . $filename);
+    }
+
+    public static function cleanupOldQrCodes(int $olderThanHours = 24): void
+    {
+        $files = Storage::disk('public')->files('qr-codes');
+        $threshold = now()->subHours($olderThanHours)->timestamp;
+
+        foreach ($files as $file) {
+            if (Storage::disk('public')->lastModified($file) < $threshold) {
+                Storage::disk('public')->delete($file);
+                Log::info('Deleted old QR code', ['file' => $file]);
+            }
+        }
     }
 }

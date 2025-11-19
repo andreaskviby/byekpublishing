@@ -15,19 +15,22 @@ class BookPreorderConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public ?string $qrCodeData = null;
+    public ?string $qrCodeUrl = null;
     public string $swishPaymentUrl;
 
     public function __construct(
         public BookPreorder $preorder,
         public Book $book
     ) {
-        $this->qrCodeData = SwishQrService::generateQrCode(
+        $filename = SwishQrService::generateAndSaveQrCode(
             amount: $this->preorder->total_price,
             message: "Förbeställning #{$this->preorder->id}",
+            identifier: "preorder-{$this->preorder->id}",
             format: 'png',
             size: 300
         );
+
+        $this->qrCodeUrl = SwishQrService::getPublicUrl($filename);
 
         $this->swishPaymentUrl = SwishQrService::generatePaymentUrl(
             amount: $this->preorder->total_price,

@@ -15,30 +15,35 @@ class TestSwishQr extends Command
     {
         $amount = (float) $this->argument('amount');
         $message = $this->argument('message');
+        $identifier = 'test-' . time();
 
         $this->info("Testing Swish QR code generation...");
         $this->info("Amount: {$amount} SEK");
         $this->info("Message: {$message}");
         $this->newLine();
 
-        $qrCode = SwishQrService::generateQrCode($amount, $message);
+        $filename = SwishQrService::generateAndSaveQrCode($amount, $message, $identifier);
 
-        if ($qrCode) {
-            $this->info("✓ QR code generated successfully!");
-            $this->info("Base64 length: " . strlen($qrCode) . " characters");
+        if ($filename) {
+            $this->info("✓ QR code generated and saved successfully!");
+            $this->info("Filename: {$filename}");
+            $this->newLine();
+
+            $publicUrl = SwishQrService::getPublicUrl($filename);
+            $this->info("Public URL: {$publicUrl}");
             $this->newLine();
 
             $paymentUrl = SwishQrService::generatePaymentUrl($amount, $message);
             $this->info("Payment URL: {$paymentUrl}");
             $this->newLine();
 
-            $this->info("You can test the QR code by saving this base64 string to an HTML file:");
-            $this->line('<img src="data:image/png;base64,' . substr($qrCode, 0, 50) . '..." />');
+            $this->info("Open this URL in your browser to view the QR code:");
+            $this->line($publicUrl);
         } else {
             $this->error("✗ QR code generation failed!");
             $this->warn("Check the Laravel logs (storage/logs/laravel.log) for detailed error information.");
         }
 
-        return $qrCode ? Command::SUCCESS : Command::FAILURE;
+        return $filename ? Command::SUCCESS : Command::FAILURE;
     }
 }
