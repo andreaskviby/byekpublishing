@@ -115,17 +115,37 @@
 
         <div class="qr-section">
             <div class="section-title" style="font-size: 18px; color: #1e293b;">💳 BETALA MED SWISH</div>
-            <p style="margin: 10px 0;">Scanna QR-koden nedan för att betala {{ $preorder->total_price }} SEK med Swish</p>
 
-            @if($qrCodeData)
-                <img src="data:image/png;base64,{{ $qrCodeData }}"
-                     alt="Swish QR Code"
-                     class="qr-code">
-            @else
-                <p style="margin: 20px 0;">QR-koden kunde inte genereras. Använd informationen nedan för att swisha manuellt.</p>
-            @endif
+            <a href="{{ $swishPaymentUrl }}"
+               style="display: inline-block;
+                      background: linear-gradient(135deg, #491F5F 0%, #6B2D8E 100%);
+                      color: white;
+                      padding: 18px 40px;
+                      text-decoration: none;
+                      border-radius: 12px;
+                      font-weight: bold;
+                      font-size: 18px;
+                      margin: 20px 0;
+                      box-shadow: 0 4px 12px rgba(73, 31, 95, 0.3);
+                      transition: all 0.3s;">
+                📱 BETALA MED SWISH
+            </a>
+
+            <p style="margin: 10px 0; font-size: 14px; color: #6b7280;">Klicka på knappen ovan för att öppna Swish-appen direkt</p>
+
+            <div style="margin: 20px 0; padding: 15px; background: white; border-radius: 8px; border: 2px dashed #E5E7EB;">
+                <p style="margin: 0 0 10px 0; font-weight: 600; color: #1e293b;">Eller scanna QR-koden:</p>
+                @if($qrCodeData)
+                    <img src="data:image/png;base64,{{ $qrCodeData }}"
+                         alt="Swish QR Code"
+                         class="qr-code">
+                @else
+                    <p style="margin: 20px 0;">QR-koden kunde inte genereras. Använd knappen ovan eller informationen nedan för att swisha manuellt.</p>
+                @endif
+            </div>
 
             <div style="margin-top: 20px; text-align: left; background: white; padding: 15px; border-radius: 8px;">
+                <p style="margin: 0 0 10px 0; font-weight: 600; color: #1e293b;">Manuell betalning:</p>
                 <div class="info-row"><strong>Swish-nummer:</strong> +46734642332</div>
                 <div class="info-row"><strong>Mottagare:</strong> Linda Ettehag Kviby</div>
                 <div class="info-row"><strong>Belopp:</strong> {{ $preorder->total_price }} SEK</div>

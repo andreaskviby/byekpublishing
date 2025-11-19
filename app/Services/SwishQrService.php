@@ -61,4 +61,15 @@ class SwishQrService
 
         return "data:image/{$format};base64,{$base64Image}";
     }
+
+    public static function generatePaymentUrl(float $amount, string $message): string
+    {
+        $params = http_build_query([
+            'sw' => self::SWISH_NUMBER,
+            'amt' => number_format($amount, 2, '.', ''),
+            'msg' => $message,
+        ]);
+
+        return 'https://app.swish.nu/1/p/sw/?' . $params;
+    }
 }
