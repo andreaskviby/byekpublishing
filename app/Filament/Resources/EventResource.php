@@ -166,11 +166,11 @@ class EventResource extends Resource
                     ->searchable()
                     ->limit(30)
                     ->label('Location'),
-                Tables\Columns\TextColumn::make('rsvps_count')
-                    ->counts('rsvps')
+                Tables\Columns\TextColumn::make('total_guests')
                     ->label('RSVPs')
                     ->badge()
-                    ->color('success'),
+                    ->color('success')
+                    ->formatStateUsing(fn ($record) => $record->rsvps->sum('number_of_guests')),
                 Tables\Columns\TextColumn::make('max_attendees')
                     ->numeric()
                     ->label('Capacity')
