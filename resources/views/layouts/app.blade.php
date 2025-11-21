@@ -18,7 +18,7 @@
     @livewireStyles
 </head>
 <body class="font-sans antialiased bg-accent-100">
-    <nav class="bg-white shadow-md sticky top-0 z-50" role="navigation" aria-label="Main navigation">
+    <nav class="bg-white shadow-md sticky top-0 z-50" role="navigation" aria-label="Main navigation" x-data="{ mobileMenuOpen: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20">
                 <div class="flex items-center">
@@ -67,29 +67,122 @@
 
                 <div class="md:hidden flex items-center">
                     <button type="button"
-                            class="text-gray-700 hover:text-lemon-600 focus:outline-none focus:ring-2 focus:ring-lemon-600"
+                            @click="mobileMenuOpen = !mobileMenuOpen"
+                            class="p-2 text-gray-700 hover:text-lemon-600 focus:outline-none focus:ring-2 focus:ring-lemon-600 rounded-lg"
                             aria-label="Toggle menu"
-                            aria-expanded="false"
-                            x-data="{ open: false }"
-                            @click="open = !open">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            :aria-expanded="mobileMenuOpen">
+                        <svg x-show="!mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg x-show="mobileMenuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display: none;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
 
-        <div class="md:hidden" x-data="{ open: false }" x-show="open" @click.away="open = false">
-            <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg">
-                <a href="{{ route('home') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">Home</a>
-                <a href="{{ route('author') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">About Linda</a>
-                <a href="{{ route('books') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">Books</a>
-                <a href="{{ route('art') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">Art</a>
-                <a href="{{ route('music') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">Music</a>
-                <a href="{{ route('videos') }}" class="block px-3 py-2 text-gray-700 hover:bg-accent-50 hover:text-lemon-600 rounded-md">Videos</a>
-                <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md hover:font-bold transition-all"
-                   style="background-color: var(--button-bg); color: #1e293b;">Contact</a>
+        <!-- Full Screen Mobile Menu -->
+        <div x-show="mobileMenuOpen"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             class="fixed inset-0 z-50 md:hidden"
+             style="display: none;">
+
+            <!-- Background Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-br from-primary-200 via-lemon-300 to-accent-200 animate-gradient"></div>
+
+            <!-- Menu Content -->
+            <div class="relative h-full flex flex-col">
+                <!-- Header with Logo and Close Button -->
+                <div class="flex items-center justify-between px-6 py-6 bg-white/10 backdrop-blur-sm">
+                    <img src="/images/logga.png" alt="By Ek Publishing" class="h-12 w-auto">
+                    <button @click="mobileMenuOpen = false"
+                            class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30 transition-colors">
+                        <svg class="w-6 h-6 text-brown-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="flex-1 flex items-center justify-center px-6">
+                    <div class="w-full max-w-md space-y-2">
+                        <a href="{{ route('home') }}"
+                           @click="mobileMenuOpen = false"
+                           class="block px-8 py-5 text-center text-2xl font-display font-bold text-brown-900 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl hover:bg-white hover:scale-105 transition-all duration-300 {{ request()->routeIs('home') ? 'ring-4 ring-lemon-600' : '' }}"
+                           x-data
+                           x-transition:enter="transition ease-out duration-300 delay-75"
+                           x-transition:enter-start="opacity-0 transform translate-y-4"
+                           x-transition:enter-end="opacity-100 transform translate-y-0">
+                            Home
+                        </a>
+                        <a href="{{ route('author') }}"
+                           @click="mobileMenuOpen = false"
+                           class="block px-8 py-5 text-center text-2xl font-display font-bold text-brown-900 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl hover:bg-white hover:scale-105 transition-all duration-300 {{ request()->routeIs('author') ? 'ring-4 ring-lemon-600' : '' }}"
+                           x-data
+                           x-transition:enter="transition ease-out duration-300 delay-100"
+                           x-transition:enter-start="opacity-0 transform translate-y-4"
+                           x-transition:enter-end="opacity-100 transform translate-y-0">
+                            About Linda
+                        </a>
+                        <a href="{{ route('books') }}"
+                           @click="mobileMenuOpen = false"
+                           class="block px-8 py-5 text-center text-2xl font-display font-bold text-brown-900 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl hover:bg-white hover:scale-105 transition-all duration-300 {{ request()->routeIs('books') ? 'ring-4 ring-lemon-600' : '' }}"
+                           x-data
+                           x-transition:enter="transition ease-out duration-300 delay-150"
+                           x-transition:enter-start="opacity-0 transform translate-y-4"
+                           x-transition:enter-end="opacity-100 transform translate-y-0">
+                            Books
+                        </a>
+                        <a href="{{ route('art') }}"
+                           @click="mobileMenuOpen = false"
+                           class="block px-8 py-5 text-center text-2xl font-display font-bold text-brown-900 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl hover:bg-white hover:scale-105 transition-all duration-300 {{ request()->routeIs('art') ? 'ring-4 ring-lemon-600' : '' }}"
+                           x-data
+                           x-transition:enter="transition ease-out duration-300 delay-200"
+                           x-transition:enter-start="opacity-0 transform translate-y-4"
+                           x-transition:enter-end="opacity-100 transform translate-y-0">
+                            Art
+                        </a>
+                        <a href="{{ route('music') }}"
+                           @click="mobileMenuOpen = false"
+                           class="block px-8 py-5 text-center text-2xl font-display font-bold text-brown-900 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl hover:bg-white hover:scale-105 transition-all duration-300 {{ request()->routeIs('music') ? 'ring-4 ring-lemon-600' : '' }}"
+                           x-data
+                           x-transition:enter="transition ease-out duration-300 delay-250"
+                           x-transition:enter-start="opacity-0 transform translate-y-4"
+                           x-transition:enter-end="opacity-100 transform translate-y-0">
+                            Music
+                        </a>
+                        <a href="{{ route('videos') }}"
+                           @click="mobileMenuOpen = false"
+                           class="block px-8 py-5 text-center text-2xl font-display font-bold text-brown-900 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl hover:bg-white hover:scale-105 transition-all duration-300 {{ request()->routeIs('videos') ? 'ring-4 ring-lemon-600' : '' }}"
+                           x-data
+                           x-transition:enter="transition ease-out duration-300 delay-300"
+                           x-transition:enter-start="opacity-0 transform translate-y-4"
+                           x-transition:enter-end="opacity-100 transform translate-y-0">
+                            Videos
+                        </a>
+                        <a href="{{ route('contact') }}"
+                           @click="mobileMenuOpen = false"
+                           class="block px-8 py-5 text-center text-2xl font-display font-bold rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                           style="background-color: var(--button-bg); color: #1e293b;"
+                           x-data
+                           x-transition:enter="transition ease-out duration-300 delay-350"
+                           x-transition:enter-start="opacity-0 transform translate-y-4"
+                           x-transition:enter-end="opacity-100 transform translate-y-0">
+                            Contact
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Footer Info -->
+                <div class="px-6 py-6 text-center bg-white/10 backdrop-blur-sm">
+                    <p class="text-sm font-medium text-brown-900">© {{ date('Y') }} By Ek Publishing</p>
+                </div>
             </div>
         </div>
     </nav>

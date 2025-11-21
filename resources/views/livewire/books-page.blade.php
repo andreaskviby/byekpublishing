@@ -3,11 +3,11 @@
         <x-seo-meta :seoData="$seoData" :structuredData="$structuredData" />
     @endpush
 
-    <section class="bg-gradient-to-br from-slate-50 to-accent-50 py-20">
+    <section class="bg-gradient-to-br from-primary-100 to-lemon-200 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h1 class="text-5xl font-display font-bold text-brown-900 mb-6">Books</h1>
-                <p class="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">Explore emotional journeys through powerful storytelling that touches the heart and inspires the soul.</p>
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-display font-bold text-brown-900 mb-4">Books</h1>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">Explore emotional journeys through powerful storytelling that touches the heart and inspires the soul.</p>
             </div>
         </div>
     </section>

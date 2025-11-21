@@ -29,7 +29,7 @@
         <div class="relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div class="animate-slide-in-left">
+                    <div class="animate-slide-in-left relative z-10">
                         <h1 class="text-5xl font-display font-bold text-brown-900 mb-6 gradient-text">
                             Linda Ettehag Kviby
                         </h1>
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <!-- Absolute Positioned Lemons -->
-            <div class="absolute -top-32 right-0 animate-slide-in-right md:opacity-100 opacity-50">
+            <div class="absolute -top-32 right-0 animate-slide-in-right md:opacity-100 opacity-50 -z-10">
                 <img src="{{ asset('images/lemons.png') }}" alt="Fresh Lemons" class="w-96 h-auto transform scale-x-[-1]">
             </div>
         </div>
