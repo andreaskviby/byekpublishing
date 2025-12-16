@@ -248,12 +248,12 @@
                 class="w-full bg-[#F2D837] hover:bg-[#dac430] text-brown-900 px-8 py-4 rounded-xl
                        transition-all duration-300 font-bold text-lg shadow-lg
                        hover:shadow-xl transform hover:-translate-y-0.5 uppercase tracking-wide">
-            Forbestall nu
+            Bestall nu
         </button>
 
         <p class="text-xs text-gray-600 text-center">
             Efter att du har skickat in formularet far du betalningsinstruktioner via e-post.
-            Betalningen maste goras inom 2 timmar for att sakra din forbestallning.
+            Betalningen maste goras inom 2 timmar for att sakra din bestallning.
         </p>
     </form>
 </div>

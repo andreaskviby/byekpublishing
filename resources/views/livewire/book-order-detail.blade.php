@@ -7,14 +7,11 @@
     <section class="relative bg-gradient-to-br from-amber-50 via-yellow-50 to-accent-100 py-20 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="text-center mb-6">
-                <p class="text-sm uppercase tracking-wider mb-2 font-medium text-brown-700">
-                    SNART TILLGANGLIG
-                </p>
                 <h1 class="text-5xl md:text-6xl font-display font-bold mb-4 leading-tight text-stone-900">
                     {{ $book->title }}
                 </h1>
                 <div class="inline-block bg-[#F2D837] px-8 py-3 rounded-full">
-                    <p class="text-lg md:text-xl font-bold text-brown-900 uppercase tracking-wide">Forbestall nu!</p>
+                    <p class="text-lg md:text-xl font-bold text-brown-900 uppercase tracking-wide">Bestall med jul-inpackning!</p>
                 </div>
             </div>
 
@@ -22,12 +19,12 @@
                 <p class="text-2xl font-display font-bold mb-2 text-stone-900">
                     Perfekt som julklapp!
                 </p>
-                <p class="text-lg text-brown-700">Fa boken hemskickad sa fort den ar tillganglig</p>
+                <p class="text-lg text-brown-700">Signerad, julklappsinslagen och hemskickad till dig</p>
             </div>
         </div>
     </section>
 
-    <!-- Book Details and Preorder Form -->
+    <!-- Book Details and Order Form -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -69,7 +66,7 @@
 
                                 @if($book->publication_date)
                                     <div class="mb-3">
-                                        <span class="text-sm font-semibold text-brown-700 uppercase tracking-wide">Beraknat utgivningsdatum</span>
+                                        <span class="text-sm font-semibold text-brown-700 uppercase tracking-wide">Utgivningsdatum</span>
                                         <p class="text-lg text-brown-900">{{ $book->publication_date->locale('sv')->isoFormat('MMMM YYYY') }}</p>
                                     </div>
                                 @endif
@@ -142,15 +139,15 @@
                     @endif
                 </div>
 
-                <!-- Preorder Form -->
+                <!-- Order Form -->
                 <div class="lg:sticky lg:top-8 h-fit">
                     <div class="bg-white p-8 rounded-3xl shadow-xl border-2 border-gray-200">
                         <div class="text-center mb-6">
-                            <h3 class="text-3xl font-display font-bold text-brown-900 mb-2">Forbestall nu</h3>
-                            <p class="text-gray-600">Sakra ditt exemplar redan idag</p>
+                            <h3 class="text-3xl font-display font-bold text-brown-900 mb-2">Bestall nu</h3>
+                            <p class="text-gray-600">Bestall din bok med julklappsinpackning</p>
                         </div>
 
-                        <livewire:book-preorder-form :book="$book" />
+                        <livewire:book-order-form :book="$book" />
                     </div>
 
                     <!-- Payment Info Box -->
@@ -172,11 +169,11 @@
                             </li>
                             <li class="flex items-start">
                                 <span class="font-bold mr-2 text-[#dac430]">3.</span>
-                                <span>Betala inom 2 timmar for att sakra din forbestallning</span>
+                                <span>Betala inom 2 timmar for att sakra din bestallning</span>
                             </li>
                             <li class="flex items-start">
                                 <span class="font-bold mr-2 text-[#dac430]">4.</span>
-                                <span>Boken skickas hem till dig sa snart den ar tillganglig!</span>
+                                <span>Boken skickas hem till dig inom nagra dagar!</span>
                             </li>
                         </ol>
                     </div>
