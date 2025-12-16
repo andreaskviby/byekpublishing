@@ -170,7 +170,7 @@
                                                     Perfekt julklapp! 🎁
                                                 </p>
                                                 <div class="flex flex-wrap gap-4">
-                                                    <a href="{{ route('book.preorder', $book) }}"
+                                                    <a href="{{ route('book.order', $book) }}"
                                                        class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 hover:font-bold bg-white text-red-700 hover:bg-yellow-100 border-2 border-yellow-400">
                                                         🎅 Beställ för {{ $book->price }} SEK
                                                     </a>
