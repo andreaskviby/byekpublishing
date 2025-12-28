@@ -59,7 +59,8 @@
     </section>
 
     @if($upcomingEvents->count() > 0)
-    <section class="py-20 bg-gradient-to-br from-slate-50 to-accent-50">
+        {{-- Show Events section when there are upcoming events --}}
+        <section class="py-20 bg-gradient-to-br from-slate-50 to-accent-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-5xl font-display font-bold text-brown-900 mb-6">Upcoming Events</h2>
@@ -138,6 +139,123 @@
             </div>
         </div>
     </section>
+    @else
+        {{-- Show Featured Book first when no events --}}
+        @if($featuredBook)
+        <!-- Section Divider - Featured Book (no events) -->
+        <div class="relative py-12">
+            <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                <div class="w-full border-t-2 border-dashed" style="border-color: var(--button-bg);"></div>
+            </div>
+            <div class="relative flex justify-center">
+                <div class="px-8 py-3 bg-white rounded-full shadow-lg border-2" style="border-color: var(--button-bg); background-color: var(--button-bg);">
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" style="color: #1e293b;">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                        <span class="font-semibold" style="color: #1e293b;">Featured Book</span>
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" style="color: #1e293b;">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="py-20 bg-gradient-to-br from-slate-50 to-accent-50" x-data="{ show: false }" x-intersect="show = true">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-display font-bold text-brown-900 mb-6"
+                        x-show="show"
+                        x-transition:enter="transition ease-out duration-700"
+                        x-transition:enter-start="opacity-0 transform translate-y-8"
+                        x-transition:enter-end="opacity-100 transform translate-y-0">
+                        Featured Book
+                    </h2>
+                    <p class="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
+                       x-show="show"
+                       x-transition:enter="transition ease-out duration-700 delay-200"
+                       x-transition:enter-start="opacity-0 transform translate-y-8"
+                       x-transition:enter-end="opacity-100 transform translate-y-0">
+                        Discover Linda's latest literary masterpiece - a heartfelt journey through emotions,
+                        art, and the human experience that will touch your soul and inspire your spirit.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                    <div class="flex justify-center"
+                         x-show="show"
+                         x-transition:enter="transition ease-out duration-700 delay-300"
+                         x-transition:enter-start="opacity-0 transform -translate-x-12"
+                         x-transition:enter-end="opacity-100 transform translate-x-0">
+                        <div class="group relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-lemon-400 to-lemon-500 rounded-2xl transform rotate-2 group-hover:rotate-3 transition-transform duration-500 opacity-20"></div>
+                            <div class="relative w-80 h-auto bg-white rounded-2xl shadow-2xl overflow-hidden border border-accent-100 hover:shadow-3xl transition-all duration-500 group-hover:-translate-y-2">
+                                @if($featuredBook->cover_image_url)
+                                    <img src="{{ $featuredBook->cover_image_url }}" alt="{{ $featuredBook->title }}" class="w-full h-auto object-contain">
+                                @else
+                                    <div class="w-80 h-96 flex items-center justify-center bg-gradient-to-br from-lemon-100 to-accent-100">
+                                        <span class="text-8xl">📖</span>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <div x-show="show"
+                         x-transition:enter="transition ease-out duration-700 delay-500"
+                         x-transition:enter-start="opacity-0 transform translate-x-12"
+                         x-transition:enter-end="opacity-100 transform translate-x-0">
+                        <div class="space-y-6">
+                            <h3 class="text-4xl font-display font-bold text-brown-900 group-hover:text-lemon-600 transition-colors">
+                                {{ $featuredBook->title }}
+                            </h3>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                {{ $featuredBook->description }}
+                            </p>
+
+                            <!-- Book Facts -->
+                            <div class="space-y-4">
+                                @if($featuredBook->publication_date)
+                                    <div class="flex items-center p-4 bg-accent-50 rounded-lg">
+                                        <div class="w-10 h-10 mr-4 flex-shrink-0 flex items-center justify-center rounded-lg" style="background-color: var(--button-bg); color: #1e293b;">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-900">Release date</div>
+                                            <div class="text-sm text-gray-600">{{ $featuredBook->publication_date->format('F j, Y') }}</div>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                @if($featuredBook->genre)
+                                    <div class="flex items-center p-4 bg-accent-50 rounded-lg">
+                                        <div class="w-10 h-10 mr-4 flex-shrink-0 flex items-center justify-center rounded-lg" style="background-color: var(--button-bg); color: #1e293b;">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold text-gray-900">Genre</div>
+                                            <div class="text-sm text-gray-600">{{ $featuredBook->genre }}</div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+
+                            <a href="{{ route('books') }}"
+                               class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 hover:font-bold"
+                               style="background-color: var(--button-bg); color: #1e293b;">
+                                View All Books
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @endif
     @endif
 
     <!-- Section Divider - YouTube Channel -->
@@ -298,7 +416,8 @@
         </div>
     </section>
 
-    <!-- Section Divider -->
+    @if($featuredBook && $upcomingEvents->count() > 0)
+    <!-- Section Divider - Featured Book (only when events exist) -->
     <div class="relative py-12">
         <div class="absolute inset-0 flex items-center" aria-hidden="true">
             <div class="w-full border-t-2 border-dashed" style="border-color: var(--button-bg);"></div>
@@ -317,8 +436,7 @@
             </div>
         </div>
     </div>
-
-    @if($featuredBook)
+    {{-- Only show Featured Book here when there ARE events (otherwise it's shown at the top) --}}
     <section class="py-20 bg-gradient-to-br from-slate-50 to-accent-50" x-data="{ show: false }" x-intersect="show = true">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -334,11 +452,11 @@
                    x-transition:enter="transition ease-out duration-700 delay-200"
                    x-transition:enter-start="opacity-0 transform translate-y-8"
                    x-transition:enter-end="opacity-100 transform translate-y-0">
-                    Discover Linda's latest literary masterpiece - a heartfelt journey through emotions, 
+                    Discover Linda's latest literary masterpiece - a heartfelt journey through emotions,
                     art, and the human experience that will touch your soul and inspire your spirit.
                 </p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                 <div class="flex justify-center"
                      x-show="show"
@@ -358,7 +476,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div x-show="show"
                      x-transition:enter="transition ease-out duration-700 delay-500"
                      x-transition:enter-start="opacity-0 transform translate-x-12"
@@ -370,7 +488,7 @@
                         <p class="text-lg text-gray-700 leading-relaxed">
                             {{ $featuredBook->description }}
                         </p>
-                        
+
                         <!-- Book Facts -->
                         <div class="space-y-4">
                             @if($featuredBook->publication_date)
@@ -386,7 +504,7 @@
                                     </div>
                                 </div>
                             @endif
-                            
+
                             @if($featuredBook->genre)
                                 <div class="flex items-center p-4 bg-accent-50 rounded-lg">
                                     <div class="w-10 h-10 mr-4 flex-shrink-0 flex items-center justify-center rounded-lg" style="background-color: var(--button-bg); color: #1e293b;">
@@ -401,7 +519,7 @@
                                 </div>
                             @endif
                         </div>
-                        
+
                         <a href="{{ route('books') }}"
                            class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 hover:font-bold"
                            style="background-color: var(--button-bg); color: #1e293b;">
@@ -481,9 +599,17 @@
                                 </div>
                             </div>
                         @elseif($item['type'] === 'youtube')
-                            <div class="aspect-video bg-gray-900 relative overflow-hidden">
+                            <div class="aspect-video bg-gray-200 relative overflow-hidden">
                                 @if($item['data']->thumbnail_url)
-                                    <img src="{{ $item['data']->thumbnail_url }}" alt="{{ $item['data']->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <img src="{{ $item['data']->thumbnail_url }}"
+                                         alt="{{ $item['data']->title }}"
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="w-full h-full items-center justify-center bg-gradient-to-br from-red-600 to-red-800 hidden absolute inset-0">
+                                        <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                        </svg>
+                                    </div>
                                 @else
                                     <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-red-600 to-red-800">
                                         <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -491,7 +617,7 @@
                                         </svg>
                                     </div>
                                 @endif
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 pointer-events-none"></div>
                             </div>
                             <div class="p-6">
                                 <div class="flex items-center mb-4">
