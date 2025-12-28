@@ -84,8 +84,9 @@
             <div class="section-title">BOKDETALJER</div>
             <div class="info-row"><strong>Titel:</strong> {{ $book->title }}</div>
             <div class="info-row"><strong>ISBN:</strong> {{ $book->isbn }}</div>
-            <div class="info-row"><strong>Pris:</strong> {{ $book->price }} SEK</div>
-            <div class="info-row"><strong>Totalt:</strong> <span class="highlight">{{ $order->total_price }} SEK</span> (exkl. frakt)</div>
+            <div class="info-row"><strong>Bokpris:</strong> {{ $book->price }} SEK</div>
+            <div class="info-row"><strong>Frakt (Postnord):</strong> 55 SEK</div>
+            <div class="info-row"><strong>Totalt att betala:</strong> <span class="highlight">{{ $order->total_price }} SEK</span></div>
         </div>
 
         <div class="section">

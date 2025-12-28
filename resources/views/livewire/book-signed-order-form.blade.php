@@ -208,12 +208,21 @@
         </div>
 
         <!-- Price Summary -->
-        <div class="bg-[#fdf8e6] border-2 border-[#F2D837] px-6 py-4 rounded-2xl text-center">
-            <p class="text-sm text-brown-700 font-medium mb-1">Totalpris</p>
-            <p class="text-3xl font-bold text-brown-900">
-                {{ $book->price }} SEK
-            </p>
-            <p class="text-xs text-brown-600 mt-1">Exkl. frakt</p>
+        <div class="bg-[#fdf8e6] border-2 border-[#F2D837] px-6 py-4 rounded-2xl">
+            <div class="space-y-2 mb-3">
+                <div class="flex justify-between text-sm text-brown-700">
+                    <span>Bok</span>
+                    <span>{{ $book->price }} SEK</span>
+                </div>
+                <div class="flex justify-between text-sm text-brown-700">
+                    <span>Frakt (Postnord)</span>
+                    <span>{{ $shippingCost }} SEK</span>
+                </div>
+                <div class="border-t border-[#F2D837] pt-2 flex justify-between">
+                    <span class="font-bold text-brown-900">Totalt</span>
+                    <span class="text-2xl font-bold text-brown-900">{{ $totalPrice }} SEK</span>
+                </div>
+            </div>
         </div>
 
         <button type="submit"

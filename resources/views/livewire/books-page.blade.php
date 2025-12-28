@@ -192,13 +192,13 @@
                                             </h3>
                                             <p class="text-base text-brown-700 mb-6 leading-relaxed">
                                                 Kop en signerad bok och be om en personlig dedikation fran Linda.
-                                                Boken skickas hem till dig (frakt tillkommer).
+                                                Boken skickas hem till dig (+55 SEK frakt).
                                             </p>
                                             <div class="flex flex-wrap gap-4">
                                                 <a href="{{ route('book.signed', $book) }}"
                                                    class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:-translate-y-1"
                                                    style="background-color: #F2D837; color: #1e293b;">
-                                                    Bestall signerad for {{ $book->price }} SEK
+                                                    Bestall signerad for {{ $book->price + 55 }} SEK
                                                 </a>
                                             </div>
                                         </div>
