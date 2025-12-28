@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <div class="text-sm font-semibold text-brown-700 uppercase tracking-wide mb-1">Frakt (Postnord)</div>
-                                    <div class="text-lg font-bold text-brown-900">55 SEK</div>
+                                    <div class="text-lg font-bold text-brown-900">{{ $book->getEffectiveShippingCost() }} SEK</div>
                                     <div class="text-sm text-gray-600">Hemleverans inom Sverige</div>
                                 </div>
                             </div>

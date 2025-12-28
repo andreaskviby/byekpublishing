@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class BookSignedOrderForm extends Component
 {
-    public const SHIPPING_COST = 55;
+    public const DEFAULT_SHIPPING_COST = 55;
 
     public Book $book;
     public string $name = '';
@@ -65,7 +65,7 @@ class BookSignedOrderForm extends Component
 
         RateLimiter::hit($key, 3600);
 
-        $shippingCost = self::SHIPPING_COST;
+        $shippingCost = $this->book->getEffectiveShippingCost();
         $totalPrice = $this->book->price + $shippingCost;
         $paymentDeadline = now()->addHours(2);
 
@@ -100,7 +100,7 @@ class BookSignedOrderForm extends Component
     private function sendAdminNotification(BookPreorder $order): void
     {
         $dedicationText = $order->dedication_message ? "\nDedikation: {$order->dedication_message}" : '';
-        $shippingCost = self::SHIPPING_COST;
+        $shippingCost = $this->book->getEffectiveShippingCost();
 
         Mail::raw(
             "Ny Bokbestallning (Signerad)\n\n" .
@@ -144,19 +144,21 @@ class BookSignedOrderForm extends Component
 
     public function getShippingCost(): int
     {
-        return self::SHIPPING_COST;
+        return $this->book->getEffectiveShippingCost();
     }
 
     public function getTotalPrice(): int
     {
-        return $this->book->price + self::SHIPPING_COST;
+        return $this->book->price + $this->book->getEffectiveShippingCost();
     }
 
     public function render()
     {
+        $shippingCost = $this->book->getEffectiveShippingCost();
+
         return view('livewire.book-signed-order-form', [
-            'shippingCost' => self::SHIPPING_COST,
-            'totalPrice' => $this->book->price + self::SHIPPING_COST,
+            'shippingCost' => $shippingCost,
+            'totalPrice' => $this->book->price + $shippingCost,
         ]);
     }
 }

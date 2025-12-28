@@ -25,6 +25,7 @@ class Book extends Model
         'status',
         'allow_christmas_orders',
         'allow_signed_orders',
+        'shipping_cost',
         'sort_order',
     ];
 
@@ -35,6 +36,7 @@ class Book extends Model
             'is_published' => 'boolean',
             'allow_christmas_orders' => 'boolean',
             'allow_signed_orders' => 'boolean',
+            'shipping_cost' => 'integer',
             'pages' => 'integer',
             'price' => 'integer',
             'sort_order' => 'integer',
@@ -79,6 +81,11 @@ class Book extends Model
     public function isAvailable(): bool
     {
         return $this->status === 'available';
+    }
+
+    public function getEffectiveShippingCost(): int
+    {
+        return $this->shipping_cost ?? 55;
     }
 
     public function getCoverImageUrlAttribute(): ?string

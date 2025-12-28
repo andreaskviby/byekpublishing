@@ -101,6 +101,11 @@ class BookResource extends Resource
                     ->label('Köpbar med signering')
                     ->helperText('Aktivera för att tillåta kunder beställa en signerad bok med personlig dedikation')
                     ->default(false),
+                Forms\Components\TextInput::make('shipping_cost')
+                    ->label('Fraktkostnad (SEK)')
+                    ->helperText('Lämna tomt för standardpris (55 SEK)')
+                    ->numeric()
+                    ->placeholder('55'),
                 Forms\Components\TextInput::make('sort_order')
                     ->required()
                     ->numeric()

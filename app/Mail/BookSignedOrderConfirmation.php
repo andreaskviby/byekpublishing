@@ -17,11 +17,13 @@ class BookSignedOrderConfirmation extends Mailable
 
     public ?string $qrCodeUrl = null;
     public string $swishPaymentUrl;
+    public int $shippingCost;
 
     public function __construct(
         public BookPreorder $order,
         public Book $book
     ) {
+        $this->shippingCost = $this->book->getEffectiveShippingCost();
         $filename = SwishQrService::generateAndSaveQrCode(
             amount: $this->order->total_price,
             message: "Bestallning #{$this->order->id}",
