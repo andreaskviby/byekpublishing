@@ -617,7 +617,6 @@
                                         </svg>
                                     </div>
                                 @endif
-                                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 pointer-events-none"></div>
                             </div>
                             <div class="p-6">
                                 <div class="flex items-center mb-4">
