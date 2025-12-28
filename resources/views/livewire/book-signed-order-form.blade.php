@@ -213,7 +213,7 @@
             <p class="text-3xl font-bold text-brown-900">
                 {{ $book->price }} SEK
             </p>
-            <p class="text-xs text-brown-600 mt-1">Inkl. frakt och signering</p>
+            <p class="text-xs text-brown-600 mt-1">Exkl. frakt</p>
         </div>
 
         <button type="submit"

@@ -85,7 +85,7 @@
             <div class="info-row"><strong>Titel:</strong> {{ $book->title }}</div>
             <div class="info-row"><strong>ISBN:</strong> {{ $book->isbn }}</div>
             <div class="info-row"><strong>Pris:</strong> {{ $book->price }} SEK</div>
-            <div class="info-row"><strong>Totalt:</strong> <span class="highlight">{{ $order->total_price }} SEK</span> (inkl. frakt)</div>
+            <div class="info-row"><strong>Totalt:</strong> <span class="highlight">{{ $order->total_price }} SEK</span> (exkl. frakt)</div>
         </div>
 
         <div class="section">

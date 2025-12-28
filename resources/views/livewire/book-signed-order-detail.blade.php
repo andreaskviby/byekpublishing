@@ -93,7 +93,7 @@
                                 <div class="flex-1">
                                     <div class="text-sm font-semibold text-brown-700 uppercase tracking-wide mb-1">Bokpris</div>
                                     <div class="text-2xl font-bold text-brown-900">{{ $book->price }} SEK</div>
-                                    <div class="text-sm text-gray-600">Fri frakt ingar!</div>
+                                    <div class="text-sm text-gray-600">Exkl. frakt</div>
                                 </div>
                             </div>
 
@@ -117,9 +117,9 @@
                                     </svg>
                                 </div>
                                 <div class="flex-1">
-                                    <div class="text-sm font-semibold text-brown-700 uppercase tracking-wide mb-1">Hemleverans</div>
-                                    <div class="text-lg font-bold text-brown-900">Fri frakt!</div>
-                                    <div class="text-sm text-gray-600">Boken skickas hem till dig</div>
+                                    <div class="text-sm font-semibold text-brown-700 uppercase tracking-wide mb-1">Leverans</div>
+                                    <div class="text-lg font-bold text-brown-900">Hemleverans</div>
+                                    <div class="text-sm text-gray-600">Frakt tillkommer</div>
                                 </div>
                             </div>
                         </div>

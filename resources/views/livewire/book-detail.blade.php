@@ -185,7 +185,7 @@
                                     </h3>
                                     <p class="text-base text-brown-700 mb-4 leading-relaxed">
                                         Kop en signerad bok och be om en personlig dedikation fran Linda.
-                                        Boken skickas hem till dig med fri frakt!
+                                        Boken skickas hem till dig (frakt tillkommer).
                                     </p>
                                     <a href="{{ route('book.signed', $book) }}"
                                        class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:-translate-y-1"
