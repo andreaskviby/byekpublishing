@@ -157,51 +157,76 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    @elseif($book->allow_christmas_orders)
+                                    @endif
+
+                                    @if($book->allow_christmas_orders && $book->isAvailable())
                                         <div class="relative bg-gradient-to-br from-red-600 via-red-700 to-red-800 border-2 rounded-xl p-8 mb-6 shadow-2xl"
                                              style="border-color: #FFD700;">
                                             <div class="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 rounded-xl"></div>
                                             <div class="relative">
                                                 <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
-                                                    🎄 Beställ med jul-inpackning och signering!
+                                                    Bestall med jul-inpackning och signering!
                                                 </h3>
                                                 <p class="text-base text-white/90 mb-6 leading-relaxed">
-                                                    Köp boken med vacker julklappsinpackning (+49 SEK) och be om en personlig dedikation från Linda.
-                                                    Perfekt julklapp! 🎁
+                                                    Kop boken med vacker julklappsinpackning (+49 SEK) och be om en personlig dedikation fran Linda.
+                                                    Perfekt julklapp!
                                                 </p>
                                                 <div class="flex flex-wrap gap-4">
                                                     <a href="{{ route('book.order', $book) }}"
                                                        class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 hover:font-bold bg-white text-red-700 hover:bg-yellow-100 border-2 border-yellow-400">
-                                                        🎅 Beställ för {{ $book->price }} SEK
+                                                        Bestall for {{ $book->price }} SEK
                                                     </a>
                                                 </div>
                                             </div>
                                         </div>
+                                    @endif
 
-                                        @if($book->purchaseLinks->isNotEmpty())
-                                            <h3 class="text-xl font-semibold text-gray-900 mb-6">Eller köp här:</h3>
-                                            <div class="space-y-6">
-                                                @foreach($book->purchaseLinks->groupBy('language_id') as $languageId => $links)
-                                                    @php $language = $links->first()->language; @endphp
-                                                    <div class="bg-white rounded-xl p-6 shadow-lg border border-accent-100">
-                                                        <h4 class="font-semibold text-brown-900 mb-4 text-lg">{{ $language->flag_emoji }} {{ $language->name }}</h4>
-                                                        <div class="flex flex-wrap gap-3">
-                                                            @foreach($links->where('is_active', true) as $link)
-                                                                <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer"
-                                                                   class="inline-block px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:-translate-y-1 hover:font-bold"
-                                                                   style="background-color: var(--button-bg); color: #1e293b;">
-                                                                    {{ $link->store_name }}
-                                                                    @if($link->format)
-                                                                        ({{ $link->format }})
-                                                                    @endif
-                                                                </a>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                @endforeach
+                                    @if($book->allow_signed_orders && $book->isAvailable())
+                                        <div class="bg-gradient-to-br from-amber-50 to-yellow-50 border-2 rounded-xl p-6 mb-6"
+                                             style="border-color: #F2D837;">
+                                            <h3 class="text-xl font-semibold text-brown-900 mb-4 flex items-center">
+                                                <svg class="w-6 h-6 mr-2 text-[#dac430]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                </svg>
+                                                Bestall med signering!
+                                            </h3>
+                                            <p class="text-base text-brown-700 mb-6 leading-relaxed">
+                                                Kop en signerad bok och be om en personlig dedikation fran Linda.
+                                                Boken skickas hem till dig med fri frakt!
+                                            </p>
+                                            <div class="flex flex-wrap gap-4">
+                                                <a href="{{ route('book.signed', $book) }}"
+                                                   class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:-translate-y-1"
+                                                   style="background-color: #F2D837; color: #1e293b;">
+                                                    Bestall signerad for {{ $book->price }} SEK
+                                                </a>
                                             </div>
-                                        @endif
-                                    @else
+                                        </div>
+                                    @endif
+
+                                    @if(($book->allow_christmas_orders || $book->allow_signed_orders) && $book->purchaseLinks->isNotEmpty())
+                                        <h3 class="text-xl font-semibold text-gray-900 mb-6">Eller kop har:</h3>
+                                        <div class="space-y-6">
+                                            @foreach($book->purchaseLinks->groupBy('language_id') as $languageId => $links)
+                                                @php $language = $links->first()->language; @endphp
+                                                <div class="bg-white rounded-xl p-6 shadow-lg border border-accent-100">
+                                                    <h4 class="font-semibold text-brown-900 mb-4 text-lg">{{ $language->flag_emoji }} {{ $language->name }}</h4>
+                                                    <div class="flex flex-wrap gap-3">
+                                                        @foreach($links->where('is_active', true) as $link)
+                                                            <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer"
+                                                               class="inline-block px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:-translate-y-1 hover:font-bold"
+                                                               style="background-color: var(--button-bg); color: #1e293b;">
+                                                                {{ $link->store_name }}
+                                                                @if($link->format)
+                                                                    ({{ $link->format }})
+                                                                @endif
+                                                            </a>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @elseif(!$book->allow_christmas_orders && !$book->allow_signed_orders)
                                         @if($book->purchaseLinks->isNotEmpty())
                                             <h3 class="text-xl font-semibold text-gray-900 mb-6">Available in:</h3>
                                             <div class="space-y-6">

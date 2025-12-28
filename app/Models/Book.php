@@ -24,6 +24,7 @@ class Book extends Model
         'is_published',
         'status',
         'allow_christmas_orders',
+        'allow_signed_orders',
         'sort_order',
     ];
 
@@ -33,6 +34,7 @@ class Book extends Model
             'publication_date' => 'date',
             'is_published' => 'boolean',
             'allow_christmas_orders' => 'boolean',
+            'allow_signed_orders' => 'boolean',
             'pages' => 'integer',
             'price' => 'integer',
             'sort_order' => 'integer',

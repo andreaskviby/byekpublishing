@@ -97,6 +97,10 @@ class BookResource extends Resource
                     ->label('Köpbar med jul-inpackning och signering')
                     ->helperText('Aktivera för att tillåta kunder beställa denna bok med julklappsinpackning och dedikation under julperioden')
                     ->default(false),
+                Forms\Components\Toggle::make('allow_signed_orders')
+                    ->label('Köpbar med signering')
+                    ->helperText('Aktivera för att tillåta kunder beställa en signerad bok med personlig dedikation')
+                    ->default(false),
                 Forms\Components\TextInput::make('sort_order')
                     ->required()
                     ->numeric()

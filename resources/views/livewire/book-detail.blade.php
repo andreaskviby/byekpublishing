@@ -135,8 +135,8 @@
                         @endif
                     </div>
 
-                    <!-- Preorder/Christmas Order Button -->
-                    @if($book->isSoonToBeReleased() || $book->allow_christmas_orders)
+                    <!-- Preorder/Christmas Order/Signed Order Button -->
+                    @if($book->isSoonToBeReleased() || $book->allow_christmas_orders || $book->allow_signed_orders)
                         <div class="bg-white rounded-xl p-8 shadow-md">
                             @if($book->isSoonToBeReleased())
                                 <div class="bg-gradient-to-br from-lemon-50 to-amber-50 border-2 rounded-xl p-6 mb-6"
@@ -152,7 +152,9 @@
                                         Forbestall for {{ $book->price }} SEK
                                     </a>
                                 </div>
-                            @elseif($book->allow_christmas_orders)
+                            @endif
+
+                            @if($book->allow_christmas_orders && $book->isAvailable())
                                 <div class="relative bg-gradient-to-br from-red-600 via-red-700 to-red-800 border-2 rounded-xl p-8 mb-6 shadow-2xl"
                                      style="border-color: #FFD700;">
                                     <div class="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 rounded-xl"></div>
@@ -169,6 +171,27 @@
                                             Bestall for {{ $book->price }} SEK
                                         </a>
                                     </div>
+                                </div>
+                            @endif
+
+                            @if($book->allow_signed_orders && $book->isAvailable())
+                                <div class="bg-gradient-to-br from-amber-50 to-yellow-50 border-2 rounded-xl p-6 mb-6"
+                                     style="border-color: #F2D837;">
+                                    <h3 class="text-xl font-semibold text-brown-900 mb-3 flex items-center">
+                                        <svg class="w-6 h-6 mr-2 text-[#dac430]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                        Bestall med signering!
+                                    </h3>
+                                    <p class="text-base text-brown-700 mb-4 leading-relaxed">
+                                        Kop en signerad bok och be om en personlig dedikation fran Linda.
+                                        Boken skickas hem till dig med fri frakt!
+                                    </p>
+                                    <a href="{{ route('book.signed', $book) }}"
+                                       class="inline-block px-8 py-4 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:-translate-y-1"
+                                       style="background-color: #F2D837; color: #1e293b;">
+                                        Bestall signerad for {{ $book->price }} SEK
+                                    </a>
                                 </div>
                             @endif
                         </div>
